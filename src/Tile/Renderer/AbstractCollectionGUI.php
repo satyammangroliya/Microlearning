@@ -116,7 +116,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
 
-            $tpl->setVariable("TEST_LINKS",$base_container);
+            //$tpl->setVariable("TEST_LINKS",$base_container);
 
             // foreach($coll->getBranches() as $test_branch){
             //     $tpl->setVariable("TEST_LINKS",$test_branch);

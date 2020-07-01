@@ -7,7 +7,8 @@
   ],
   "license": "GPL-3.0-only",
   "contributors": [
-    "srag <support-custom1@studer-raimann.ch> (https://studer-raimann.ch)"
+    "srag <support-custom1@studer-raimann.ch> (https://studer-raimann.ch)",
+    "Jephte Abijuru <jephte.abijuru>"
   ],
   "bugs": {
     "url": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLSRTILE"
