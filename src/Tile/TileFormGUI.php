@@ -119,15 +119,15 @@ class TileFormGUI extends PropertyFormGUI
         ],*/
 	    "branch_topic"=>[
 	        self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
-	        "setTitle"            =>"Branch and Topic"
+	        "setTitle"            =>$this->txt("branches_and_topics")
 	     ],
 	     "branch"     =>[
                 self::PROPERTY_CLASS=>ilTextInputGUI::class,
-                "setTitle"            =>"Branche"
+                "setTitle"            =>$this->txt("branches")
 	      ],
              "topic"      =>[
 		self::PROPERTY_CLASS=>ilTextInputGUI::class,
-		"setTitle"            =>"Thema"
+		"setTitle"            =>$this->txt("topics")
          ],            
 	    "general_settings"=>[
 		self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,

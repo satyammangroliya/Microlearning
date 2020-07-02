@@ -9,7 +9,10 @@ Start at your ILIAS root directory
 ```bash
 mkdir -p Customizing/global/plugins/Services/UIComponent/UserInterfaceHook
 cd Customizing/global/plugins/Services/UIComponent/UserInterfaceHook
-clone this project
+git clone https://github.com/jephteaSudo/srtile.git Tile
+npm install 
+composer install
+composer dumpautoload
 ```
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
@@ -27,4 +30,3 @@ Tile config:
 ### Requirements
 * ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
-

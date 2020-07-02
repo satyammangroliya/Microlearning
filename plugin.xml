@@ -1,5 +1,5 @@
 <?php xml version = "1.0" encoding = "UTF-8"?>
-<plugin id="srtile">
+<plugin id="tile">
 	<events>
 		<event type="listen" id="Services/Object" />
 		<event type="raise" id="change_title_before_render" />

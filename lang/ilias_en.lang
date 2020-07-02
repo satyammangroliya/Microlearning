@@ -140,3 +140,7 @@ tile_view_disabled#:#Default ILIAS layout
 tile_view_list#:#List
 tile_view_tile#:#Tile
 tile_devices#:#Devices
+tile_branches_and_topics#:#Branches and Topics
+tile_branches#:#Branches
+tile_topics#:#Topics
+tile_general_settings#:#General Settings
