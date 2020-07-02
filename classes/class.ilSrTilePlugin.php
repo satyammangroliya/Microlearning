@@ -18,7 +18,7 @@ class ilSrTilePlugin extends ilUserInterfaceHookPlugin
 
     use PluginUninstallTrait;
     use SrTileTrait;
-    const PLUGIN_ID = "srtile";
+    const PLUGIN_ID = "tiles";
     const PLUGIN_NAME = "SrTile";
     const PLUGIN_CLASS_NAME = self::class;
     const WEB_DATA_FOLDER = self::PLUGIN_ID . "_data";

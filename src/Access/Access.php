@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\SrTile\Access;
+namespace plugins\SrTile\Access;
 
 use ilObjCourse;
 use ilObjCourseAccess;
@@ -8,13 +8,13 @@ use ilObjGroup;
 use ilObjGroupAccess;
 use ilSrTilePlugin;
 use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use plugins\SrTile\Tile\Tile;
+use plugins\SrTile\Utils\SrTileTrait;
 
 /**
  * Class Access
  *
- * @package srag\Plugins\SrTile\Access
+ * @package plugins\SrTile\Access
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
