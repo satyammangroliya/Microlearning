@@ -1,11 +1,11 @@
 <?php
 
 use srag\DIC\SrTile\DICTrait;
-use plugins\SrTile\Config\ConfigFormGUI;
-use plugins\SrTile\Recommend\RecommendGUI;
-use plugins\SrTile\Tile\Tile;
-use plugins\SrTile\Tile\TileGUI;
-use plugins\SrTile\Utils\SrTileTrait;
+use srag\Plugins\SrTile\Config\ConfigFormGUI;
+use srag\Plugins\SrTile\Recommend\RecommendGUI;
+use srag\Plugins\SrTile\Tile\Tile;
+use srag\Plugins\SrTile\Tile\TileGUI;
+use srag\Plugins\SrTile\Utils\SrTileTrait;
 
 /**
  * Class ilSrTileUIHookGUI
