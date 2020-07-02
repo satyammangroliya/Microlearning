@@ -1,5 +1,5 @@
 {
-  "name": "plugins/tile",
+  "name": "srag/plugins/srtile",
   "description": "",
   "type": "project",
   "keywords": [
@@ -32,7 +32,7 @@
   },
   "autoload": {
     "psr-4": {
-      "plugins\\Tile\\": "src/"
+      "srag\\Plugins\\SrTile\\": "src/"
     },
     "classmap": [
       "classes/"
