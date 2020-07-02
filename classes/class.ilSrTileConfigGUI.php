@@ -4,8 +4,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\SrTile\DICTrait;
 use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
-use plugins\SrTile\Template\TemplatesConfigGUI;
-use plugins\SrTile\Utils\SrTileTrait;
+use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
+use srag\Plugins\SrTile\Utils\SrTileTrait;
 use ilPropertyFormGUI;
 
 /**
