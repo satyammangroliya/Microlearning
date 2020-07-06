@@ -75,7 +75,9 @@ final class Repository extends AbstractRepository
     {
         return [
             ConfigFormGUI::KEY_BASE_CONTAINER                   => [Config::TYPE_STRING, ""],
-            ConfigFormGUI::KEY_ENABLED_ON_FAVORITES             => [Config::TYPE_BOOLEAN, true],
+            ConfigFormGUI::KEY_UMFRAGE_OBJECT                   => [Config::TYPE_STRING, ""],
+            ConfigFormGUI::KEY_WAS_SIND_LINK                   => [Config::TYPE_STRING, ""],
+            ConfigFormGUI::KEY_ENABLED_ON_FAVORITES             => [Config::TYPE_BOOLEAN, false],
             ConfigFormGUI::KEY_ENABLED_ON_REPOSITORY            => [Config::TYPE_BOOLEAN, true],
             ConfigFormGUI::KEY_ENABLED_OBJECT_LINKS             => [Config::TYPE_BOOLEAN, false],
             ConfigFormGUI::KEY_ENABLED_OBJECT_LINKS_ONCE_SELECT => [Config::TYPE_BOOLEAN, false]
@@ -90,5 +92,13 @@ final class Repository extends AbstractRepository
         parse_str($query_str, $query_params);
         $ref_id=$query_params['ref_id'];
         return $ref_id;
+    }
+    public function getUmfrageObjRefId(){
+        $obj_ref_id=self::srTile()->config()->getValue(ConfigFormGUI::KEY_UMFRAGE_OBJECT);
+        return $obj_ref_id;
+    }
+    public function getWasSindObjRefId(){
+        $obj_ref_id=self::srTile()->config()->getValue(ConfigFormGUI::KEY_WAS_SIND_LINK);
+        return $obj_ref_id;
     }
 }

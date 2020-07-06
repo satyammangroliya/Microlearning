@@ -369,7 +369,7 @@ div[id^='dropzone_'],
 }
 
 
-.btn.btn-default{
+#ilLSMainMenuEntries .btn.btn-default{
   background-color: #DEF0F0 !important;
   color: black !important;
   border-color: #DEF0F0 !important;
@@ -378,10 +378,60 @@ div[id^='dropzone_'],
 div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer{
   padding-top: 50px !important;
 }
+#LSHeaderImage>img{
+  width: 100%;
+}
 
-@media only screen and (max-width:600px){
+.ilLSHeader,#ilLSTopNav{
+  background-color: #DEF0F0;
+}
+#ilLSTopNav.navbar.navbar-default{
+  border: 0;
+  margin-bottom:0
+}
+.ls_link{
+  margin-top: 3px;
+}
+
+#ilLSMainMenuEntries li.dropdown{
+  margin-left: 30px;
+}
+#ilLSMainMenuEntries button.btn.btn-default.dropdown-toggle{
+  margin-top: 10px;
+}
+
+
+@media only screen and (max-width:767px){
   .tiles{
     padding-left:30px;
+  }
+
+  #ilLSTopNav button.btn.btn.default.dropdown-toggle{
+    padding-left: 0;
+  }
+  #ilLSTopNav .navbar-nav >li button{
+    padding-left: 0;
+  }
+  #ilLSTopNav.navbar.navbar-default.navbar-header{
+     background-color: white;
+  }
+  .navbar-nav{
+    position: relative;
+    float: right;
+  }
+  #ilLSTopNav .navbar-header{
+    background-color: white;
+  }
+  #ilLsTopNav .dropdown-menu{
+    background-color:#F9F9F9;
+    margin-left: 5px;
+  }
+  #ilLSTopNav .btn.btn-default{
+    background-color: white !important;
+    border:0;
+  }
+  #ilLsMainMenuEntries.navbar-collapse.collapse.in{
+    background-color: white;
   }
 
 }

@@ -5,6 +5,8 @@ config_enabled_object_links#:#Enable object links
 config_enabled_object_links_once_select#:#User can only select once
 config_enabled_on_repository#:#Enabled on repository
 config_base_container#:#Base Container
+config_umfrage_object#:#Ref ID of  the survey object
+config_was_sind#:# Ref ID of the  'Was Sind Lernsnacks' object
 config_save#:#Save
 favorites_add_to_favorites#:#Add to favorites
 favorites_added_to_favorites#:#The object has been added to the favorites

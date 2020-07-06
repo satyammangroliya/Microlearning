@@ -5,6 +5,8 @@ config_enabled_object_links#:#Objekt-Verknüpfungen aktivieren
 config_enabled_object_links_once_select#:#Benutzer kann nur einmal auswählen
 config_enabled_on_repository#:#Im Magazin aktivieren
 config_base_container#:#Die Homekategorie für Lernsnacks
+config_umfrage_object#:#Ref ID zum Umfrage-Objekt
+config_was_sind#:# Ref ID zum 'Was Sind Lernsnacks'-Objekt
 config_save#:#Speichern
 favorites_add_to_favorites#:#Zu den Favoriten legen
 favorites_added_to_favorites#:#Das Objekt wurde zu den Favoriten gelegt

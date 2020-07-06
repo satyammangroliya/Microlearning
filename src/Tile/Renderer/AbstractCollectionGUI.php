@@ -87,6 +87,9 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             //     TileGUI::class
             // ], TileGUI::CMD_SORT_TOPIC);
 
+            $tpl->setVariableEscaped("HEADER",self::plugin()->directory() ."/templates/images/headerImage.png");
+            $tpl->setVariableEscaped("HEADER_RESPONSIVE",self::plugin()->directory() ."/templates/images/headerImage.png");
+
             $home_link=ilLink::_getStaticLink(intval(self::srTile()->config()->getHomeRefId()));
 
 
@@ -116,11 +119,51 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
 
-            //$tpl->setVariable("TEST_LINKS",$base_container);
+            
 
             // foreach($coll->getBranches() as $test_branch){
             //     $tpl->setVariable("TEST_LINKS",$test_branch);
             // }
+
+            /**
+             * 
+             * Patch
+
+            */
+            $tpl_ls_mainmenu=self::plugin()->template("MainMenu/mainmenu.html");
+            $umfrage_obj_ref_id=self::srTile()->config()->getUmfrageObjRefId();
+            $umfrage_link="Umfrage";
+            if($umfrage_obj_ref_id){
+                $umfrage_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($umfrage_obj_ref_id))->_getAdvancedLink();
+                $umfrage_link=str_replace("href=","",$umfrage_link);
+                $umfrage_link=str_replace('"',"",$umfrage_link);
+            }
+            $tpl_ls_mainmenu->setVariable("LS_UMFRAGE",self::output()->getHTML($this->generateLinks("Umfrage",$umfrage_link)));
+
+            $was_sind_obj_ref_id=self::srTile()->config()->getWasSindObjRefId();
+            $was_sind_link="Was sind die Lernsnacks?";
+            if($was_sind_obj_ref_id){
+                $was_sind_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
+                $was_sind_link=str_replace("href=","",$was_sind_link);
+                $was_sind_link=str_replace('"',"",$was_sind_link);
+            }
+            // $tpl->setVariable("TEST_LINKS",str_replace("href=","",$was_sind_link));
+
+
+            $tpl_ls_mainmenu->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lernsnacks?",$was_sind_link)));
+
+            
+            $tpl_ls_mainmenu->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Lernsnacks",$home_link)));
+            
+            
+            $tpl_ls_mainmenu->setVariable("LS_FILTER_TOPIC",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())) );
+            $tpl_ls_mainmenu->setVariable("LS_FILTER_BRANCH",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
+
+            $tpl->setVariable("LS_MAINMENU",self::output()->getHTML($tpl_ls_mainmenu));
+
+
+
+            
 
 
             if (!self::dic()->ctrl()->isAsynch() && $parent_tile->getShowLearningProgressFilter() === Tile::SHOW_TRUE) {
@@ -191,6 +234,14 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         }
 
         self::dic()->ui()->mainTemplate()->addInlineCss($css);
+    }
+
+    public function generateLinks(string $label, string $obj_link){
+        //cut the href out
+        
+        $ui=self::dic()->ui()->factory();
+        $renderer=self::dic()->ui()->renderer();
+        return $renderer->render($ui->link()->standard($label,$obj_link));
     }
 
 

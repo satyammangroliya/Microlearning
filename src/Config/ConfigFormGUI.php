@@ -28,6 +28,8 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_ENABLED_ON_REPOSITORY = "enabled_on_repository";
     const LANG_MODULE = ilSrTileConfigGUI::LANG_MODULE;
     const KEY_BASE_CONTAINER="base_container";
+    const KEY_UMFRAGE_OBJECT="umfrage_object";
+    const KEY_WAS_SIND_LINK="was_sind";
 
 
     /**
@@ -84,7 +86,13 @@ class ConfigFormGUI extends PropertyFormGUI
                         self::PROPERTY_CLASS => ilCheckboxInputGUI::class
                     ]
                 ]
-            ]
+            ],
+            self::KEY_UMFRAGE_OBJECT => [
+                self::PROPERTY_CLASS => ilTextInputGUI::class
+            ],
+            self::KEY_WAS_SIND_LINK => [
+                self::PROPERTY_CLASS => ilTextInputGUI::class
+            ],
         ];
     }
 
