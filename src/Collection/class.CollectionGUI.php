@@ -11,7 +11,7 @@ use srag\Plugins\SrTile\Tile\Tile;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
 /**
- * Class CollectionGUI
+ * Class CollectionGUI1
  *
  * @package           srag\Plugins\SrTile\Collection
  *

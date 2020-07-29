@@ -39,6 +39,7 @@ class Tile extends ActiveRecord
     const COLOR_TYPE_CONTRAST = 2;
     const COLOR_TYPE_BACKGROUND = 3;
     const COLOR_TYPE_AUTO_FROM_IMAGE = 4;
+    const BAG_IMAGE_PREFIX="bag_image_";
     /**
      * @var int
      *
@@ -135,7 +136,7 @@ class Tile extends ActiveRecord
     const DEFAULT_BORDER_SIZE = 1;
     const DEFAULT_BORDER_SIZE_TYPE = self::SIZE_TYPE_PX;
     const DEFAULT_BORDER_COLOR_TYPE = self::COLOR_BLACK;
-    const DEFAULT_COLUMNS = 220;
+    const DEFAULT_COLUMNS = 290;
     const DEFAULT_COLUMNS_TYPE = self::SIZE_TYPE_PX;
     const DEFAULT_ENABLE_RATING = Tile::SHOW_TRUE;
     const DEFAULT_FONT_COLOR_TYPE = self::COLOR_TYPE_CONTRAST;
@@ -254,6 +255,15 @@ class Tile extends ActiveRecord
      */
     protected $image = "";
     /**
+     * @var string
+     *
+     * @con_has_field   true
+     * @con_fieldtype   text
+     * @con_length      256
+     * @con_is_notnull  true
+     */
+    protected $bag_image = "";
+    /**
      * @var int
      *
      * @con_has_field   true
@@ -268,7 +278,7 @@ class Tile extends ActiveRecord
      * @con_fieldtype   text
      * @con_is_notnull  true
      */
-    protected $background_color = "";
+    protected $background_color = "ffffff";
     /**
      * @var int
      *
@@ -492,7 +502,7 @@ class Tile extends ActiveRecord
      * @con_fieldtype   text
      * @con_is_notnull  true
      */
-    protected $border_color = "";
+    protected $border_color = "000000";
     /**
      * @var int
      *
@@ -1894,7 +1904,71 @@ class Tile extends ActiveRecord
             }
         }
     }
+/**
+     * @param bool $append_filename
+     *
+     * @return string
+     */
+    public function getBagImagePathAsRelative(bool $append_filename = true) : string
+    {
+        $path = ilSrTilePlugin::WEB_DATA_FOLDER . "/" . static::BAG_IMAGE_PREFIX . $this->getTileId() . "/";
 
+        if ($append_filename) {
+            $path .= $this->getBagImage();
+        }
+
+        return $path;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getBagImagePath() : string
+    {
+        return ILIAS_WEB_DIR . "/" . CLIENT_ID . "/" . $this->getBagImagePathAsRelative();
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getBagImagePathWithCheck() : string
+    {
+        if (!empty($this->getBagImage())) {
+            if (file_exists($bag_image_path = $this->getBagImagePath())) {
+                return $bag_image_path;
+            }
+        }
+
+        return "";
+    }
+
+
+    /**
+     * @param string $path_of_new_image
+     */
+    public function applyNewBagImage(string $path_of_new_image)/*: void*/
+    {
+        if (!empty($this->getBagImage())) {
+            if (file_exists($image_old_path = $this->getBagImagePath())) {
+                unlink($image_old_path);
+            }
+            $this->setBagImage("");
+
+            self::srTile()->colorThiefCaches()->delete($image_old_path);
+        }
+
+        if (!empty($path_of_new_image)) {
+            if (file_exists($path_of_new_image)) {
+                $this->setBagImage($this->getTileId() . "." . pathinfo($path_of_new_image, PATHINFO_EXTENSION));
+
+                self::dic()->filesystem()->web()->createDir($this->getBagImagePathAsRelative(false));
+
+                copy($path_of_new_image, $this->getBagImagePath());
+            }
+        }
+    }
 
     /**
      * @return ilObject|null

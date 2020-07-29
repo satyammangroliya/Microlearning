@@ -1,0 +1,132 @@
+<span class="ilFixedTopSpacer"></span>
+<div class="customHeaderContainer">
+	<div class="osdNotificationContainer"></div><!-- END osd_container --><!-- BEGIN main_menu_bl -->
+	<div class="ilMainHeader  hidden-print lsHeader" >
+		<header class="container-fluid ilContainerWidth">
+			<div class="row ">
+				
+				<div  class="header_image_container logo">
+					<a href="{REPOSITORY}">
+						<img class="header_image" src="{LOGO_IMAGE}">
+					</a>
+				</div>
+				<div class="header_image_container horizontal-space before-go">
+
+				</div>
+				<div class="right_header">
+					<div class="header_image_container togo">
+						<img class="header_image" src="{TOGO_IMAGE}">
+					</div>
+					<div class="header_image_container horizontal-space before-bag">
+		
+					</div>
+					<div class="header_image_container bag">
+						<img class="header_image" src="{BAG_IMAGE}">
+					</div>
+				</div>
+			</div>
+		</header>
+
+	</div>
+<div class="LSMainHeader">
+	
+</div>
+<div id="HeaderContainer" class="lsHeader">
+	<div class="ilLSMainMenu">
+		<div class="container-fluid ilContainerWidth">
+			<div class="row">
+				<nav id="ilLSTopNav" class="navbar navbar-default" role="navigation">
+	
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ilLSMainMenuEntries">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- <a class="navbar-brand" href="#">Brand</a> -->
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="ilLSMainMenuEntries">
+						<!-- {MAIN_MENU_LIST_ENTRIES} -->
+						<ul class="nav navbar-nav">
+							<li class="dropdown ls_link">{LS_HOME}</li>
+							<li class="dropdown">{LS_FILTER_TOPIC}</li>
+							<li class="dropdown">{LS_FILTER_BRANCH}</li>
+							<li class="dropdown ls_link">{LS_WAS_SIND}</li>
+							<li class="dropdown ls_link">{LS_UMFRAGE}</li>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+					<!-- Brand and toggle get grouped for better mobile display -->
+	
+				</nav>
+				<!-- BEGIN top_section --><!-- END top_section -->
+			</div>
+		</div>
+	</div>
+
+<div class="ilMainMenu  hidden-print">
+	<div class="container-fluid ilContainerWidth">
+		<div class="row">
+			<nav id="ilTopNav" class="navbar navbar-default" role="navigation">
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="ilMainMenuEntries">
+                    <!-- {MAIN_MENU_LIST_ENTRIES} -->
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown ls_link">{LS_HOME}</li>
+                        <li class="dropdown">{LS_FILTER_TOPIC}</li>
+                        <li class="dropdown">{LS_FILTER_BRANCH}</li>
+                        <li class="dropdown ls_link">{LS_WAS_SIND}</li>
+                        <li class="dropdown ls_link">{LS_UMFRAGE}</li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ilMainMenuEntries">
+						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<!-- <a class="navbar-brand" href="#">Brand</a> -->
+				</div>
+			</nav>
+			<!-- BEGIN screen_id -->
+			<div id="il_screen_id" class="ilHighlighted small">Screen-ID: {SCREEN_ID}</div>
+			<!-- END screen_id -->
+			<!-- BEGIN top_section --><!-- END top_section -->
+		</div>
+	</div>
+</div><!-- END main_menu_bl -->
+<!-- <div class="container-fluid ilContainerWidth ilFixedTopSpacer">
+	<img class="customMainMenuImage" src="./Customizing/global/skin/nabuskin/images/StartupPageReduced.jpg">
+</div> -->
+
+</div>
+<script type="text/javascript" >
+	detectUserAdmin();
+	function detectUserAdmin(){
+        if($("#mm_adm").length!=0){
+            return true;
+        }else{
+            var ilToHide=["#ilTab",".breadcrumb"];
+            for (var item of ilToHide){
+                if($(item) &&$(item)[0]){
+					if($(item)[0].classList==undefined){
+						$(item)[0].classList=[];
+					}
+					$(item)[0].classList.add("ilUserHidden");
+				}
+			}
+			//resize the mainskeeper
+			if($("#mainspacekeeper").length!=0){
+				var item="#mainspacekeeper";
+				if($(item)[0].classList==undefined){
+					$(item)[0].classList=[];
+				}
+				$(item)[0].classList.add("mainspacekeeper_padding");
+			}
+
+        }
+        return false;      
+    }
+
+</script>

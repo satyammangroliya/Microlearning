@@ -175,14 +175,12 @@ class ilSrTileUIHookGUI extends ilUIHookPluginGUI
                 if (self::srTile()->tiles()->getInstanceForObjRefId($obj_ref_id)->getShowObjectTabs() === Tile::SHOW_FALSE) {
                     self::dic()->tabs()->clearTargets();
                     self::dic()->tabs()->clearSubTabs();
+                    
 
                 }
-                    // Customized
-		/*
-                $ref_obj=self::srTile()->tiles()->getInstanceForObjRefId($obj_ref_id);
-                TileGUI::chooseTabs($obj_ref_id,$ref_obj);
-                self::dic()->tabs()->target[count(self::dic()->tabs()->target) - 1]["cmd"] = [];
-               */
+
+                
+
 
                return;
             }

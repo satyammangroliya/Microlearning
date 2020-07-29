@@ -7,9 +7,14 @@ use ilSrTileConfigGUI;
 use ilSrTilePlugin;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\Plugins\SrTile\Config\Repository as Conf;
 
 use ilRepositorySearchGUI;
 use ilTextInputGUI;
+
+use ILIAS\FileUpload\DTO\UploadResult;
+use ILIAS\FileUpload\Location;
+use ilImageFileInputGUI;
 /**
  * Class ConfigFormGUI
  *
@@ -30,6 +35,7 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_BASE_CONTAINER="base_container";
     const KEY_UMFRAGE_OBJECT="umfrage_object";
     const KEY_WAS_SIND_LINK="was_sind";
+    const BAG_IMAGE="bag_image";
 
 
     /**
@@ -49,11 +55,16 @@ class ConfigFormGUI extends PropertyFormGUI
     protected function getValue(/*string*/ $key)
     {
         switch ($key) {
+            case self::BAG_IMAGE:
+                if (!empty(self::srTile()->config()->getValue(self::BAG_IMAGE))) {
+                    return "./" . Conf::getImagePath();
+                }
+                break;             
+             
             default:
                 return self::srTile()->config()->getValue($key);
         }
     }
-
 
     /**
      * @inheritDoc
@@ -93,6 +104,10 @@ class ConfigFormGUI extends PropertyFormGUI
             self::KEY_WAS_SIND_LINK => [
                 self::PROPERTY_CLASS => ilTextInputGUI::class
             ],
+            self::BAG_IMAGE =>[
+                self::PROPERTY_CLASS    => ilImageFileInputGUI::class,
+                self::PROPERTY_REQUIRED => false
+            ],
         ];
     }
 
@@ -121,18 +136,46 @@ class ConfigFormGUI extends PropertyFormGUI
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {
         switch ($key) {
+            case self::BAG_IMAGE:
+                if (!self::dic()->upload()->hasBeenProcessed()) {
+                    self::dic()->upload()->process();
+                }
+
+                /** @var UploadResult $result */
+                $result = array_pop(self::dic()->upload()->getResults());
+
+                if ($this->getInput("image_delete") || $result->getSize() > 0) {
+                    Conf::applyNewImage("");
+                }
+
+                if (intval($result->getSize()) === 0) {
+                    //break;
+                }
+
+                $file_name = "bag_image." . pathinfo($result->getName(), PATHINFO_EXTENSION);
+
+                self::dic()->upload()->moveOneFileTo($result, Conf::getImagePathAsRelative(false), Location::WEB, $file_name, true);
+
+                self::srTile()->config()->setValue($key, $file_name);
+                break;
             default:
                 self::srTile()->config()->setValue($key, $value);
                 break;
         }
     }
-    public function getHomeRefId(){
-        $query_params="";
-        $url = $this->getValue(KEY_BASE_CONTAINER);
-        $query_str = parse_url($url, PHP_URL_QUERY);
-        parse_str($query_str, $query_params);
-        $ref_id=query_params['ref_id'];
-        return ref_id;
-       
+
+    /**
+     * @return string
+     */
+    public static function getImagePathWithCheck() : string
+    {
+        if (!empty(self::srTile()->config()->getValue(self::BAG_IMAGE))) {
+            if (file_exists($image_path = Conf::getImagePath())) {
+                return $image_path;
+            }
+        }
+
+        return "";
     }
+
 }

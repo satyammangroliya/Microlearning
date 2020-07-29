@@ -6,7 +6,8 @@ config_enabled_object_links_once_select#:#Benutzer kann nur einmal auswählen
 config_enabled_on_repository#:#Im Magazin aktivieren
 config_base_container#:#Die Homekategorie für Lernsnacks
 config_umfrage_object#:#Ref ID zum Umfrage-Objekt
-config_was_sind#:# Ref ID zum 'Was Sind Lernsnacks'-Objekt
+config_was_sind#:# Ref ID zum 'Was Sind Lernsnacks'-
+config_bag_image#:#Rücksack
 config_save#:#Speichern
 favorites_add_to_favorites#:#Zu den Favoriten legen
 favorites_added_to_favorites#:#Das Objekt wurde zu den Favoriten gelegt
@@ -148,3 +149,4 @@ tile_branches_and_topics#:#Branche und Themen
 tile_branches#:#Branche
 tile_topics#:#Themen
 tile_general_settings#:#Allgemeine Einstellungen
+tile_bag_image#:#Rücksack

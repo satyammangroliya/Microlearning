@@ -74,6 +74,7 @@ class TileGUI
 
         if (!self::srTile()->access()->hasWriteAccess($this->tile->getObjRefId())) {
             //die();
+            
         }
 
         self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_REF_ID);
@@ -119,39 +120,20 @@ class TileGUI
     public static function addTabs(int $obj_ref_id)/*:void*/
     {
         self::dic()->ctrl()->setParameterByClass(self::class, self::GET_PARAM_REF_ID, $obj_ref_id);
-
+        
         if(self::srTile()->tiles()->isParentAContainer($obj_ref_id)|| self::srTile()->config()->getHomeRefId()==$obj_ref_id){
             self::dic()->tabs()->addTab(self::TAB_TILE, ilSrTilePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
                 ilUIPluginRouterGUI::class,
                 self::class
-            ], self::CMD_EDIT_TILE));            
+            ], self::CMD_EDIT_TILE));  
 
+            if (!self::srTile()->access()->hasWriteAccess($obj_ref_id)){
+                self::dic()->tabs()->clearTabs();
+            }
         }
-        // self::dic()->tabs()->addTab(self::TAB_TILE, ilSrTilePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
-        //     ilUIPluginRouterGUI::class,
-        //     self::class
-        // ], self::CMD_EDIT_TILE));  
         
+       
 
-        
-        
-        /*$sort_branch_link=self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            self::class
-        ], self::CMD_SORT_BRANCH);*/
-        //$is_home=self::srTile()->tiles()->isParentAContainer(151);
-        //echo "<script> console.log('" .'"'.$is_home .'"'."')</script>";
-
-        /*self::dic()->tabs()->addNonTabbedLink(self::TAB_SORT, "Nach Thema", self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            self::class
-        ], self::CMD_SORT_TOPIC));
-        self::dic()->tabs()->addNonTabbedLink(self::TAB_SORT, "Nach Branche", self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            self::class
-        ], self::CMD_SORT_BRANCH));
-        */
-      
     }
 
     public static function addFilterItem(string $item){
@@ -159,36 +141,6 @@ class TileGUI
         self::dic()->ctrl()->saveParameterByClass(self::class, self::GET_FILTER_ITEM);
 
     }
-
-
-    /**
-     * @param int $obj_ref_id
-     */
-    public static function chooseTabs(int $obj_ref_id, $ref_obj=null)/*:void*/
-    {
-        self::dic()->ctrl()->setParameterByClass(self::class, self::GET_PARAM_REF_ID, $obj_ref_id);
-        self::dic()->ctrl()->saveParameterByClass(self::class, self::GET_PARAM_REF_ID);
-
-
-
-
-       self::dic()->tabs()->addTab(self::TAB_TILE, ilSrTilePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            self::class
-        ], self::CMD_EDIT_TILE));
-
-        /*self::dic()->tabs()->addNonTabbedLink(self::TAB_SORT, "Nach Thema", self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            self::class
-        ], self::CMD_SORT_TOPIC));
-        self::dic()->tabs()->addNonTabbedLink(self::TAB_SORT, "Nach Branche", self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            self::class
-        ], self::CMD_SORT_BRANCH));*/
-
-      //  self::dic()->tabs()->addNonTabbedLink(self::TAB_SORT, "Nach Branch", self::dic()->ctrl()->getLinkTarget(new TileGUI(), self::CMD_SORT_BRANCH));
-    }
-
 
 
     /**
@@ -238,18 +190,6 @@ class TileGUI
 
     {
         
-
-        /*$user_id=self::dic()->user()->getId();
-        $filter=Filter::where(["user_id"=>$user_id])->first();
-        if($filter===null){
-            $filter=Filter();
-            $filter->setUserId($user_id);
-            
-        }
-        $filter->setItemType("all");
-        $filter->setItemName("all");
-        $filter->setFlag(0);
-        $filter->save();*/
 
 
         self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));

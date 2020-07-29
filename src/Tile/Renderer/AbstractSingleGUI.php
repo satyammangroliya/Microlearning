@@ -497,29 +497,28 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         $count_members = 0;
         $count_user_reads = 0;
         $count_anonymous_reads = 0;
+        $activated_by_the_plugin=false;
 
         require_once './Services/Tracking/classes/class.ilChangeEvent.php';
-        if (\ilChangeEvent::_isActive()) {
+        $event_active=\ilChangeEvent::_isActive();
+        if(!$event_active){
+            
+            \ilChangeEvent::_activate();
+            $activated_by_the_plugin=true;
+        }
+        if ($event_active) {
             /*if ($ilUser->getId() != ANONYMOUS_USER_ID) {*/
              if (true) {
                 $readEvents = \ilChangeEvent::_lookupReadEvents($a_obj_id);
 
-	       /*
-	        $count_users = 0;
-                $count_members = 0;
-                $count_user_reads = 0;
-                $count_anonymous_reads = 0;
-               */
                 foreach ($readEvents as $evt) {
                     if ($evt['usr_id'] == ANONYMOUS_USER_ID) {
                         $count_anonymous_reads += $evt['read_count'];
+                        $count_users++;
                     } else {
                         $count_user_reads += $evt['read_count'];
                         $count_users++;
-                        /* to do: if ($evt['user_id'] is member of $this->getRefId())
-                        {
-                            $count_members++;
-                        }*/
+
                     }
                 }
                /* if ($count_anonymous_reads > 0) {
@@ -535,6 +534,9 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
             }
         }
         // END ChangeEvent: Display change event info
+        if($activated_by_the_plugin){
+            //\ilChangeEvent::_deactivate();
+        }
     return $count_users;
    }
 }

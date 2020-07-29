@@ -7,6 +7,7 @@ config_enabled_on_repository#:#Enabled on repository
 config_base_container#:#Base Container
 config_umfrage_object#:#Ref ID of  the survey object
 config_was_sind#:# Ref ID of the  'Was Sind Lernsnacks' object
+config_bag_image#:#Bagpack image
 config_save#:#Save
 favorites_add_to_favorites#:#Add to favorites
 favorites_added_to_favorites#:#The object has been added to the favorites
@@ -146,3 +147,4 @@ tile_branches_and_topics#:#Branches and Topics
 tile_branches#:#Branches
 tile_topics#:#Topics
 tile_general_settings#:#General Settings
+tile_bag_image#:#Bagpack image
