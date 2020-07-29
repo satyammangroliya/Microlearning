@@ -80,7 +80,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
             $tpl->setVariableEscaped("HEADER",self::plugin()->directory() ."/templates/images/headerImage.png");
             $tpl->setVariableEscaped("HEADER_RESPONSIVE",self::plugin()->directory() ."/templates/images/headerImage.png");
-            //$tpl->setVariable("REPOSITORY", )
+            $tpl->setVariable("REPOSITORY","#" );
             
 
             $home_link=ilLink::_getStaticLink(intval(self::srTile()->config()->getHomeRefId()));
@@ -108,7 +108,6 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             $tpl->setVariable("TOPICS",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())));
             $tpl->setVariable("BRANCHES",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
 
-            $base_container=self::srTile()->tiles()->isParentAContainer(99);
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
             // $tpl->setVariable("TABS",self::dic()->tabs()->getHTML());
@@ -130,6 +129,13 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             }else{
                 $tpl_ls_mainmenu->setVariable("BAG_IMAGE",self::plugin()->directory() ."/templates/images/Rucksack.jpg");
             }
+            $colors=self::srTile()->config()->getValue(ConfigFormGUI::BACK_COLOR);
+            if (!empty($colors)){
+                $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#".$colors);
+            }else{
+                $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#d4edfc"); 
+            }
+            
             
 
             $umfrage_obj_ref_id=self::srTile()->config()->getUmfrageObjRefId();

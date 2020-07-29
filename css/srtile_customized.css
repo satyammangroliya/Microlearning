@@ -389,9 +389,9 @@ div[id^='dropzone_'],
   /* background-color: #A1DAF8 !important; */
   border-bottom: 0 !important;
 }
-.lsHeader{
+/* .lsHeader{
   background-color: #d4edfc !important;
-}
+} */
 
 #ilLSTopNav .collapsing {
   position: relative;

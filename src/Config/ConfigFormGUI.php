@@ -36,6 +36,7 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_UMFRAGE_OBJECT="umfrage_object";
     const KEY_WAS_SIND_LINK="was_sind";
     const BAG_IMAGE="bag_image";
+    const BACK_COLOR="back_color";
 
 
     /**
@@ -107,6 +108,9 @@ class ConfigFormGUI extends PropertyFormGUI
             self::BAG_IMAGE =>[
                 self::PROPERTY_CLASS    => ilImageFileInputGUI::class,
                 self::PROPERTY_REQUIRED => false
+            ],
+            self::BACK_COLOR =>[
+                self::PROPERTY_CLASS    => ilTextInputGUI::class
             ],
         ];
     }

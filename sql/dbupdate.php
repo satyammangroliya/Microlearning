@@ -18,3 +18,9 @@
 <?php
 \srag\Plugins\SrTile\Repository::getInstance()->installTables();
 ?>
+<#5>
+<?php
+\srag\Plugins\SrTile\Repository::getInstance()->installTables();
+?>
+
+

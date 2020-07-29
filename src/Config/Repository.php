@@ -82,6 +82,7 @@ final class Repository extends AbstractRepository
             ConfigFormGUI::KEY_ENABLED_OBJECT_LINKS             => [Config::TYPE_BOOLEAN, false],
             ConfigFormGUI::KEY_ENABLED_OBJECT_LINKS_ONCE_SELECT => [Config::TYPE_BOOLEAN, false],
             ConfigFormGUI::BAG_IMAGE                   => [Config::TYPE_STRING, ""],
+            ConfigFormGUI::BACK_COLOR                   => [Config::TYPE_STRING, ""],
         ];
     }
    

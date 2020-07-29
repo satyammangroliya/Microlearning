@@ -9,6 +9,7 @@ config_umfrage_object#:#Ref ID zum Umfrage-Objekt
 config_was_sind#:# Ref ID zum 'Was Sind Lernsnacks'-
 config_bag_image#:#Rücksack
 config_save#:#Speichern
+config_back_color#:# Hintergrundfarbe: Header
 favorites_add_to_favorites#:#Zu den Favoriten legen
 favorites_added_to_favorites#:#Das Objekt wurde zu den Favoriten gelegt
 favorites_remove_from_favorites#:#Aus den Favoriten entfernen
