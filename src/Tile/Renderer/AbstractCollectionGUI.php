@@ -360,7 +360,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         //$link.="&by=".$item_type;
         //return $link."&filter_by=".$filter_item;
         //return "branch";
-        $this->$test_link=$item_link;
+        //$this->$test_link=$item_link;
         return $item_link;
 
     }

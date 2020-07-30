@@ -6,7 +6,8 @@ use srag\DIC\SrTile\DICTrait;
 use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
 use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
-use ilPropertyFormGUI;
+
+
 
 /**
  * Class ilSrTileConfigGUI
