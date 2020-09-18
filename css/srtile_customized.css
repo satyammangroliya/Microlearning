@@ -609,6 +609,7 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacek
   #ilLSTopNav .navbar-header{
     background-color: transparent;
   }
+
   #ilLsTopNav .dropdown-menu{
     background-color:#F9F9F9;
     margin-left: 5px;
@@ -617,14 +618,14 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacek
     background-color: white !important;
     border:0;
   }
-  #ilLsMainMenuEntries.navbar-collapse.collapse.in{
-    background-color: white;
-  }
+
   #ilLSMainMenuEntries{
     position:absolute;
     right: 0;
     z-index: 120;
     width: 100%;
+    background-color: white !important;
+    box-shadow: 3px 9px 9px 0 rgba(0, 0, 0, 0.3);
   }
 
 }
