@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\LearningProgress;
 
 use ilPanelGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
@@ -19,7 +19,7 @@ class LearningProgressLegendGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
 
 
     /**

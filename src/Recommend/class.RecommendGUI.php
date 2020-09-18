@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\Recommend;
 
 use ilPropertyFormGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Tile\Tile;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -22,7 +22,7 @@ class RecommendGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_ADD_RECOMMEND = "addRecommend";
     const CMD_NEW_RECOMMEND = "newRecommend";
     const GET_PARAM_REF_ID = "ref_id";
@@ -94,7 +94,7 @@ class RecommendGUI
      */
     public function getModal() : string
     {
-        self::dic()->ui()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/recommend.js");
+        //self::dic()->ui()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/recommend.js");
 
         $modal = self::output()->getHTML(self::dic()->ui()->factory()->modal()->roundtrip("", self::dic()->ui()->factory()->legacy("")));
 

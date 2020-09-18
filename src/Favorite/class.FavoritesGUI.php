@@ -4,8 +4,8 @@ namespace srag\Plugins\SrTile\Favorite;
 
 use ilLink;
 use ilPersonalDesktopGUI;
-use ilSrTilePlugin;
-use ilSrTileUIHookGUI;
+use ilToGoPlugin;
+use ilToGoUIHookGUI;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Tile\Tile;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -24,7 +24,7 @@ class FavoritesGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_ADD_TO_FAVORITES = "addToFavorites";
     const CMD_REMOVE_FROM_FAVORITES = "removeFromFavorites";
     const GET_PARAM_PARENT_REF_ID = "parent_ref_id";
@@ -102,7 +102,7 @@ class FavoritesGUI
     {
         self::srTile()->favorites(self::dic()->user())->addToFavorites($this->tile->getObjRefId());
 
-        ilSrTileUIHookGUI::askAndDisplayAlertMessage("added_to_favorites", self::LANG_MODULE);
+        ilToGoUIHookGUI::askAndDisplayAlertMessage("added_to_favorites", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
             self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
@@ -119,7 +119,7 @@ class FavoritesGUI
     {
         self::srTile()->favorites(self::dic()->user())->removeFromFavorites($this->tile->getObjRefId());
 
-        ilSrTileUIHookGUI::askAndDisplayAlertMessage("removed_from_favorites", self::LANG_MODULE);
+        ilToGoUIHookGUI::askAndDisplayAlertMessage("removed_from_favorites", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
             self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));

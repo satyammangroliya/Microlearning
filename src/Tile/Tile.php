@@ -12,8 +12,8 @@ use ilObjectFactory;
 use ilObjSAHSLearningModule;
 use ilObjSCORMLearningModuleGUI;
 use ilSAHSPresentationGUI;
-use ilSrTilePlugin;
-use ilSrTileUIHookGUI;
+use ilToGoPlugin;
+use ilToGoUIHookGUI;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
@@ -29,8 +29,8 @@ class Tile extends ActiveRecord
 
     use DICTrait;
     use SrTileTrait;
-    const TABLE_NAME = "ui_uihk_" . ilSrTilePlugin::PLUGIN_ID . "_tile";
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_tile";
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const IMAGE_PREFIX = "tile_";
     const COLOR_BLACK = "0,0,0";
     const COLOR_WHITE = "255,255,255";
@@ -135,7 +135,7 @@ class Tile extends ActiveRecord
     const DEFAULT_BACKGROUND_COLOR_TYPE = self::COLOR_TYPE_SET;
     const DEFAULT_BORDER_SIZE = 1;
     const DEFAULT_BORDER_SIZE_TYPE = self::SIZE_TYPE_PX;
-    const DEFAULT_BORDER_COLOR_TYPE = self::COLOR_BLACK;
+    const DEFAULT_BORDER_COLOR_TYPE = self::COLOR_TYPE_SET;
     const DEFAULT_COLUMNS = 290;
     const DEFAULT_COLUMNS_TYPE = self::SIZE_TYPE_PX;
     const DEFAULT_ENABLE_RATING = Tile::SHOW_TRUE;
@@ -1787,7 +1787,9 @@ class Tile extends ActiveRecord
 
         if (!empty($border_size)) {
             $css .= "border-width:" . $border_size . "px!important;";
+            $css.="border-style: solid";
         }
+
 
         return $css;
     }
@@ -1846,7 +1848,7 @@ class Tile extends ActiveRecord
      */
     public function getImagePathAsRelative(bool $append_filename = true) : string
     {
-        $path = ilSrTilePlugin::WEB_DATA_FOLDER . "/" . static::IMAGE_PREFIX . $this->getTileId() . "/";
+        $path = ilToGoPlugin::WEB_DATA_FOLDER . "/" . static::IMAGE_PREFIX . $this->getTileId() . "/";
 
         if ($append_filename) {
             $path .= $this->getImage();
@@ -1911,7 +1913,7 @@ class Tile extends ActiveRecord
      */
     public function getBagImagePathAsRelative(bool $append_filename = true) : string
     {
-        $path = ilSrTilePlugin::WEB_DATA_FOLDER . "/" . static::BAG_IMAGE_PREFIX . $this->getTileId() . "/";
+        $path = ilToGoPlugin::WEB_DATA_FOLDER . "/" . static::BAG_IMAGE_PREFIX . $this->getTileId() . "/";
 
         if ($append_filename) {
             $path .= $this->getBagImage();
@@ -2081,7 +2083,7 @@ class Tile extends ActiveRecord
 
         switch (true) {
             case ($tile->il_object->getType() === "sahs"):
-                self::dic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilSrTileUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
+                self::dic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
 
                 if ($only_link) {
                     return ILIAS_HTTP_PATH . '/goto.php?target=cat_' . $this->getObjRefId() . '_opensahs_' . $tile->getObjRefId() . '&client_id='
@@ -2102,7 +2104,7 @@ class Tile extends ActiveRecord
                         }
                     }
 
-                    self::dic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilSrTileUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
+                    self::dic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
 
                     return ' onclick="startSAHS(\'' . self::dic()->ctrl()->getLinkTargetByClass(ilSAHSPresentationGUI::class, '') . "','ilContObj"
                         . $slm_gui->object->getId() . "'," . $om . "," . $width . "," . $height . ');"';

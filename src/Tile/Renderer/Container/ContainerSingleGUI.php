@@ -31,7 +31,7 @@ class ContainerSingleGUI extends AbstractSingleGUI
         if (!self::$reset_file_upload_gui) {
             // The generated HTML/OnLoadCode of ilFileUploadGUI is incompatible with this Plugin - try to reset it once ...
 
-            // Main HTML was removed through ilSrTileUIHookGUI - Force it again
+            // Main HTML was removed through ilToGoUIHookGUI - Force it again
             Closure::bind(function () {
                 ilFileUploadGUI::$shared_code_loaded = false;
             }, null, ilFileUploadGUI::class)();

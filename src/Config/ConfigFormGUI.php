@@ -3,8 +3,8 @@
 namespace srag\Plugins\SrTile\Config;
 
 use ilCheckboxInputGUI;
-use ilSrTileConfigGUI;
-use ilSrTilePlugin;
+use ilToGoConfigGUI;
+use ilToGoPlugin;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 use srag\Plugins\SrTile\Config\Repository as Conf;
@@ -26,12 +26,12 @@ class ConfigFormGUI extends PropertyFormGUI
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const KEY_ENABLED_OBJECT_LINKS = "enabled_object_links";
     const KEY_ENABLED_OBJECT_LINKS_ONCE_SELECT = "enabled_object_links_once_select";
     const KEY_ENABLED_ON_FAVORITES = "enabled_on_favorites";
     const KEY_ENABLED_ON_REPOSITORY = "enabled_on_repository";
-    const LANG_MODULE = ilSrTileConfigGUI::LANG_MODULE;
+    const LANG_MODULE = ilToGoConfigGUI::LANG_MODULE;
     const KEY_BASE_CONTAINER="base_container";
     const KEY_UMFRAGE_OBJECT="umfrage_object";
     const KEY_WAS_SIND_LINK="was_sind";
@@ -42,9 +42,9 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * ConfigFormGUI constructor
      *
-     * @param ilSrTileConfigGUI $parent
+     * @param ilToGoConfigGUI $parent
      */
-    public function __construct(ilSrTileConfigGUI $parent)
+    public function __construct(ilToGoConfigGUI $parent)
     {
         parent::__construct($parent);
     }
@@ -72,7 +72,7 @@ class ConfigFormGUI extends PropertyFormGUI
      */
     protected function initCommands()/*: void*/
     {
-        $this->addCommandButton(ilSrTileConfigGUI::CMD_UPDATE_CONFIGURE, $this->txt("save"));
+        $this->addCommandButton(ilToGoConfigGUI::CMD_UPDATE_CONFIGURE, $this->txt("save"));
     }
 
 
@@ -88,7 +88,7 @@ class ConfigFormGUI extends PropertyFormGUI
             self::KEY_ENABLED_ON_REPOSITORY => [
                 self::PROPERTY_CLASS => ilCheckboxInputGUI::class
             ],
-            self::KEY_ENABLED_ON_FAVORITES  => [
+            /*self::KEY_ENABLED_ON_FAVORITES  => [
                 self::PROPERTY_CLASS => ilCheckboxInputGUI::class
             ],
             self::KEY_ENABLED_OBJECT_LINKS  => [
@@ -98,17 +98,17 @@ class ConfigFormGUI extends PropertyFormGUI
                         self::PROPERTY_CLASS => ilCheckboxInputGUI::class
                     ]
                 ]
-            ],
+            ],*/
             self::KEY_UMFRAGE_OBJECT => [
                 self::PROPERTY_CLASS => ilTextInputGUI::class
             ],
             self::KEY_WAS_SIND_LINK => [
                 self::PROPERTY_CLASS => ilTextInputGUI::class
             ],
-            self::BAG_IMAGE =>[
+            /*self::BAG_IMAGE =>[
                 self::PROPERTY_CLASS    => ilImageFileInputGUI::class,
                 self::PROPERTY_REQUIRED => false
-            ],
+            ],*/
             self::BACK_COLOR =>[
                 self::PROPERTY_CLASS    => ilTextInputGUI::class
             ],

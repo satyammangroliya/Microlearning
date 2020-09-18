@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\ObjectLink;
 
 use ilSelectInputGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -19,7 +19,7 @@ class ObjectLinkFormGUI extends PropertyFormGUI
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = ObjectLinksGUI::LANG_MODULE;
     /**
      * @var ObjectLink

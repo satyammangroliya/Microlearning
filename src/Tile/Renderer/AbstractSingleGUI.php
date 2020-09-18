@@ -7,8 +7,8 @@ use ILIAS\UI\Component\Legacy\Legacy;
 use ilObject;
 use ilObjRootFolderGUI;
 use ilRepositoryGUI;
-use ilSrTilePlugin;
-use ilSrTileUIHookGUI;
+use ilToGoPlugin;
+use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
 use srag\CustomInputGUIs\SrTile\CustomInputGUIsTrait;
 use srag\DIC\SrTile\DICTrait;
@@ -38,7 +38,7 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
     use DICTrait;
     use SrTileTrait;
     use CustomInputGUIsTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var Tile
      */
@@ -61,11 +61,11 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
      */
     public function render() : string
     {
-        if (self::srTile()->tiles()->getInstanceForObjRefId(ilSrTileUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID)->getShowLearningProgressFilter()
+        if (self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID)->getShowLearningProgressFilter()
             === Tile::SHOW_TRUE
         ) {
 
-            $lp_filters = self::srTile()->learningProgressFilters(self::dic()->user())->getFilter(intval(ilSrTileUIHookGUI::filterRefId()));
+            $lp_filters = self::srTile()->learningProgressFilters(self::dic()->user())->getFilter(intval(ilToGoUIHookGUI::filterRefId()));
 
             if (count($lp_filters) > 0) {
                 if (!in_array(self::srTile()->ilias()->learningProgress(self::dic()->user())->getStatus($this->tile->getObjRefId()), $lp_filters)) {
@@ -74,11 +74,11 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
             }
         }
 
-        self::dic()->ctrl()->setParameterByClass(FavoritesGUI::class, FavoritesGUI::GET_PARAM_PARENT_REF_ID, ilSrTileUIHookGUI::filterRefId());
+        self::dic()->ctrl()->setParameterByClass(FavoritesGUI::class, FavoritesGUI::GET_PARAM_PARENT_REF_ID, ilToGoUIHookGUI::filterRefId());
         self::dic()->ctrl()->setParameterByClass(FavoritesGUI::class, FavoritesGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
-        self::dic()->ctrl()->setParameterByClass(OnlineStatusGUI::class, FavoritesGUI::GET_PARAM_PARENT_REF_ID, ilSrTileUIHookGUI::filterRefId());
+        self::dic()->ctrl()->setParameterByClass(OnlineStatusGUI::class, FavoritesGUI::GET_PARAM_PARENT_REF_ID, ilToGoUIHookGUI::filterRefId());
         self::dic()->ctrl()->setParameterByClass(OnlineStatusGUI::class, FavoritesGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
-        self::dic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_PARENT_REF_ID, ilSrTileUIHookGUI::filterRefId());
+        self::dic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_PARENT_REF_ID, ilToGoUIHookGUI::filterRefId());
         self::dic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
         self::dic()->ctrl()->setParameterByClass(RecommendGUI::class, RecommendGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
 
@@ -209,7 +209,7 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
 
           /*
 	  Custom views GUI 
-	  author: minervis(jephte.abijuruæminervis.com)
+	  author: minervis(jephte.abijuru@minervis.com)
 
 
           */
@@ -223,20 +223,20 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
 	   $tpl->setVariable("VIEWS", self::output()->getHTML($tpl_views));
 
 
-            //Devices
-           
-           $tpl_devices=self::plugin()->template("Devices/devices.html");
-           if($this->tile->getShowPhone()===1){
-	      $tpl_devices->setVariableEscaped("PHONE", self::plugin()->directory() ."/templates/images/devices/Smartphone_A.svg"); 
-           }else{
-	      $tpl_devices->setVariableEscaped("PHONE", self::plugin()->directory() ."/templates/images/devices/Smartphone_NA.svg");
-           }
+        //Devices
+
+        $tpl_devices=self::plugin()->template("Devices/devices.html");
+        if($this->tile->getShowPhone()===1){
+            $tpl_devices->setVariableEscaped("PHONE", self::plugin()->directory() ."/templates/images/devices/Smartphone_A.svg"); 
+        }else{
+            $tpl_devices->setVariableEscaped("PHONE", self::plugin()->directory() ."/templates/images/devices/Smartphone_NA.svg");
+        }
 
 	   if($this->tile->getShowTablet()===1){
               $tpl_devices->setVariableEscaped("TABLET", self::plugin()->directory() ."/templates/images/devices/Tablet_A.svg");
 	   }else{
 	      $tpl_devices->setVariableEscaped("TABLET", self::plugin()->directory() ."/templates/images/devices/Tablet_NA.svg");
-           }
+        }
 
 	   if($this->tile->getShowLaptop()===1){
               $tpl_devices->setVariableEscaped("LAPTOP", self::plugin()->directory() ."/templates/images/devices/Laptop_A.svg");           
@@ -465,11 +465,11 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
      */
     public function getActionAsyncUrl() : string
     {
-        self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilSrTileUIHookGUI::GET_PARAM_REF_ID, (ilSrTileUIHookGUI::filterRefId() ?: 1));
+        self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, (ilToGoUIHookGUI::filterRefId() ?: 1));
         self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, "cmdrefid", $this->tile->getObjRefId());
 
-        if (!empty(ilSrTileUIHookGUI::filterRefId())) {
-            self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilSrTileUIHookGUI::GET_RENDER_EDIT_TILE_ACTION, 1);
+        if (!empty(ilToGoUIHookGUI::filterRefId())) {
+            self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilToGoUIHookGUI::GET_RENDER_EDIT_TILE_ACTION, 1);
         }
 
         $async_url = self::dic()->ctrl()->getLinkTargetByClass([
@@ -477,9 +477,9 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
             ilObjRootFolderGUI::class
         ], "getAsynchItemList", "", true, false);
 
-        self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilSrTileUIHookGUI::GET_PARAM_REF_ID, null);
+        self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, null);
         self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, "cmdrefid", null);
-        self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilSrTileUIHookGUI::GET_RENDER_EDIT_TILE_ACTION, null);
+        self::dic()->ctrl()->setParameterByClass(ilObjRootFolderGUI::class, ilToGoUIHookGUI::GET_RENDER_EDIT_TILE_ACTION, null);
 
         return $async_url;
     }
@@ -490,9 +490,8 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
       reads views
    */
    public function getViewsCount(int $a_obj_id) {
+       $logger=self::dic()->logger()->root();
 
-    // change event
-        //$a_obj=$this->tile->_getIlObject()->getId();
         $count_users = 0;
         $count_members = 0;
         $count_user_reads = 0;
@@ -501,36 +500,34 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
 
         require_once './Services/Tracking/classes/class.ilChangeEvent.php';
         $event_active=\ilChangeEvent::_isActive();
+       
         if(!$event_active){
             
             \ilChangeEvent::_activate();
             $activated_by_the_plugin=true;
+            \ilChangeEvent::_activate();
         }
         if ($event_active) {
-            /*if ($ilUser->getId() != ANONYMOUS_USER_ID) {*/
              if (true) {
                 $readEvents = \ilChangeEvent::_lookupReadEvents($a_obj_id);
 
                 foreach ($readEvents as $evt) {
+                    $logger->info("The Event user id: ".$evt['usr_id']);
                     if ($evt['usr_id'] == ANONYMOUS_USER_ID) {
                         $count_anonymous_reads += $evt['read_count'];
                         $count_users++;
+                        
                     } else {
                         $count_user_reads += $evt['read_count'];
                         $count_users++;
 
                     }
+                    if($count_anonymous_reads>0){
+                        $count_users+=$count_anonymous_reads;
+                    }
                 }
-               /* if ($count_anonymous_reads > 0) {
-                    $this->addProperty($this->lng->txt("readcount_anonymous_users"), $count_anonymous_reads);
-                }
-                if ($count_user_reads > 0) {
-                    $this->addProperty($this->lng->txt("readcount_users"), $count_user_reads);
-                }
-                if ($count_users > 0) {
-                    $this->addProperty($this->lng->txt("accesscount_registered_users"), $count_users);
-                }
-             */
+               
+             
             }
         }
         // END ChangeEvent: Display change event info

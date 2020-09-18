@@ -5,7 +5,7 @@ namespace srag\Plugins\SrTile\LearningProgress;
 use ilLink;
 use ilLPStatus;
 use ilPersonalDesktopGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilSubmitButton;
 use ilUIPluginRouterGUI;
 use srag\CustomInputGUIs\SrTile\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
@@ -27,7 +27,7 @@ class LearningProgressFilterGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_SET_FILTER = "setFilter";
     const GET_PARAM_REF_ID = "ref_id";
     const POST_VAR = "lp_filter";

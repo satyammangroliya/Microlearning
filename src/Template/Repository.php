@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\Template;
 
 use Closure;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Tile\Tile;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -20,7 +20,7 @@ final class Repository
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const TYPE_OTHER = "_other";
     /**
      * @var self|null

@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\ObjectLink;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\SrTile\TableGUI\TableGUI;
 use srag\CustomInputGUIs\SrTile\Waiter\Waiter;
@@ -20,7 +20,7 @@ class ObjectLinksTableGUI extends TableGUI
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = ObjectLinksGUI::LANG_MODULE;
 
 
@@ -139,7 +139,7 @@ class ObjectLinksTableGUI extends TableGUI
      */
     protected function initId()/*: void*/
     {
-        $this->setId(ilSrTilePlugin::PLUGIN_ID . "_object_links");
+        $this->setId(ilToGoPlugin::PLUGIN_ID . "_object_links");
     }
 
 

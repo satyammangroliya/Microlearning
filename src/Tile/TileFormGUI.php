@@ -12,7 +12,7 @@ use ilNumberInputGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilSelectInputGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
 use srag\Notifications4Plugin\SrTile\Notification\NotificationInterface;
@@ -22,11 +22,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
 // Customized
 use ilCheckboxInputGUI;
 use ilTextInputGUI;
-use ilFormPropertyGUI;
-use ilAdvSelectInputGUI;
-use ilRepositorySelector2InputGUI;
-use ilRepositorySearchGUI;
-use ilLinkInputGUI;
 use ilUIPluginRouterGUI;
 
 /**
@@ -44,7 +39,7 @@ class TileFormGUI extends PropertyFormGUI
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = TileGUI::LANG_MODULE;
     /**
      * @var Tile
@@ -106,6 +101,11 @@ class TileFormGUI extends PropertyFormGUI
         $this->addCommandButton(TileGUI::CMD_UPDATE_TILE, $this->txt("save"));
     }
 
+    private function  shouldHideItem(){
+        
+
+    }
+
 
     /**
      * @inheritDoc
@@ -113,25 +113,21 @@ class TileFormGUI extends PropertyFormGUI
     protected function initFields()/*: void*/
     {
         $this->fields = [
-       /*"base_object" =>[
-            self::PROPERTY_CLASS  =>ilLinkInputGUI::class,
-            "setTitle"            =>"Base Object"
-        ],*/
 	    "branch_topic"=>[
 	        self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
 	        "setTitle"            =>$this->txt("branches_and_topics")
-	     ],
-	     "branch"     =>[
+	    ],
+	    "branch"     =>[
                 self::PROPERTY_CLASS=>ilTextInputGUI::class,
                 "setTitle"            =>$this->txt("branches")
 	      ],
-             "topic"      =>[
+        "topic"      =>[
 		self::PROPERTY_CLASS=>ilTextInputGUI::class,
 		"setTitle"            =>$this->txt("topics")
          ],            
 	    "general_settings"=>[
 		self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
-		"setTitle"            =>"General Settings"
+		"setTitle"            =>$this->txt("general_settings")
 	     ],
             "view"                        => [
                 self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
@@ -215,6 +211,8 @@ class TileFormGUI extends PropertyFormGUI
                     ]
                 ]
             ],
+            /*
+            
             "apply_colors_to_global_skin" => [
                 self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                 self::PROPERTY_REQUIRED => false,
@@ -229,6 +227,7 @@ class TileFormGUI extends PropertyFormGUI
                     ]
                 ]
             ],
+            */
 
             "tile"                           => [
                 self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
@@ -845,8 +844,45 @@ class TileFormGUI extends PropertyFormGUI
           ],
 
         ];
+            /**
+     * Hide Items from srTile 
+     */
+    $this->fields=$this->hideItems();
     }
+    
 
+    
+    private function hideItems(){
+        $items=[
+            "object_icon_position",
+            "label_horizontal_align", 
+            "label_vertical_align", 
+            "border", "border_color_type","border_size_type",
+            "actions","actions_position", "actions_vertical_align", 
+            "show_actions" , "online_status",
+            "show_online_status_icon","recommendation" ,
+            "show_recommend_icon", "recommend_mail_template_type",
+            "learning_progress" , "learning_progress_disabled_hint", 
+            "show_learning_progress" ,"learning_progress_position",
+            "show_learning_progress_legend","show_learning_progress_filter" ,
+            "preconditions" , "show_preconditions", "certificate",
+            "certificate_hint" ,"show_download_certificate","language" ,
+            "show_language_flag","language_flag_position"
+        ];
+
+
+
+        if(self::srTile()->config()->getHomeRefId()==$this->tile->getObjRefId()){
+            array_push($items,"image_header","image","image_position","show_image_as_background", "branch_topic","branch","topic");
+        }
+        
+        foreach($items as $item){
+            unset($this->fields[$item]);
+        }
+
+
+        return $this->fields;
+    }
 
     /**
      * @inheritDoc

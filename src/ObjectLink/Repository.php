@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\ObjectLink;
 
 use ilObjectFactory;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilUtil;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Config\ConfigFormGUI;
@@ -21,7 +21,7 @@ final class Repository
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */

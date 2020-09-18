@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\Tile\Renderer;
 
 use ilObjUser;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Tile\Renderer\Container\ContainerCollectionGUI;
 use srag\Plugins\SrTile\Tile\Renderer\Desktop\DesktopCollectionGUI;
@@ -22,7 +22,7 @@ final class CollectionGUIFactory
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */

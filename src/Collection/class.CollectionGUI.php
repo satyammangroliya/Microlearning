@@ -4,8 +4,8 @@ namespace srag\Plugins\SrTile\Collection;
 
 use ilLink;
 use ilPersonalDesktopGUI;
-use ilSrTilePlugin;
-use ilSrTileUIHookGUI;
+use ilToGoPlugin;
+use ilToGoUIHookGUI;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Tile\Tile;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -24,7 +24,7 @@ class CollectionGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_LIKE = "";
     const CMD_UNLIKE = "unlike";
     const GET_PARAM_PARENT_REF_ID = "parent_ref_id";
@@ -111,7 +111,7 @@ class CollectionGUI
     {
         self::srTile()->ratings(self::dic()->user())->like($this->tile->getObjRefId());
 
-        ilSrTileUIHookGUI::askAndDisplayAlertMessage("liked", self::LANG_MODULE);
+        ilToGoUIHookGUI::askAndDisplayAlertMessage("liked", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
             self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
@@ -128,7 +128,7 @@ class CollectionGUI
     {
         self::srTile()->ratings(self::dic()->user())->unlike($this->tile->getObjRefId());
 
-        ilSrTileUIHookGUI::askAndDisplayAlertMessage("unliked", self::LANG_MODULE);
+        ilToGoUIHookGUI::askAndDisplayAlertMessage("unliked", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
             self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));

@@ -6,22 +6,21 @@ use srag\DIC\SrTile\DICTrait;
 use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
 use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
-
-
+//use ilPropertyFormGUI;
 
 /**
- * Class ilSrTileConfigGUI
+ * Class ilToGoConfigGUI
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl: ilSrTileConfigGUI
+ * @ilCtrl_isCalledBy srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl: ilToGoConfigGUI
  */
-class ilSrTileConfigGUI extends ilPluginConfigGUI
+class ilToGoConfigGUI extends ilPluginConfigGUI
 {
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_CONFIGURE = "configure";
     const CMD_UPDATE_CONFIGURE = "updateConfigure";
     const LANG_MODULE = "config";
@@ -29,7 +28,7 @@ class ilSrTileConfigGUI extends ilPluginConfigGUI
 
 
     /**
-     * ilSrTileConfigGUI constructor
+     * ilToGoConfigGUI constructor
      */
     public function __construct()
     {
@@ -89,7 +88,7 @@ class ilSrTileConfigGUI extends ilPluginConfigGUI
         self::dic()->tabs()->addTab(NotificationsCtrl::TAB_NOTIFICATIONS, self::plugin()->translate("notifications", NotificationsCtrl::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTargetByClass(NotificationsCtrl::class, NotificationsCtrl::CMD_LIST_NOTIFICATIONS));
         */
-        self::dic()->locator()->addItem(ilSrTilePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTarget($this, self::CMD_CONFIGURE));
+        self::dic()->locator()->addItem(ilToGoPlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTarget($this, self::CMD_CONFIGURE));
     }
 
 

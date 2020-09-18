@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\Tile;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -19,7 +19,7 @@ final class Factory
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */

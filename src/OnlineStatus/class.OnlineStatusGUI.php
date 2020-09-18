@@ -4,8 +4,8 @@ namespace srag\Plugins\SrTile\OnlineStatus;
 
 use ilLink;
 use ilPersonalDesktopGUI;
-use ilSrTilePlugin;
-use ilSrTileUIHookGUI;
+use ilToGoPlugin;
+use ilToGoUIHookGUI;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Config\ConfigFormGUI;
 use srag\Plugins\SrTile\ObjectLink\ObjectLink;
@@ -25,7 +25,7 @@ class OnlineStatusGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_SET_OFFLINE = "setOffline";
     const CMD_SET_ONLINE = "setOnline";
     const GET_PARAM_PARENT_REF_ID = "parent_ref_id";
@@ -111,7 +111,7 @@ class OnlineStatusGUI
             foreach ($this->object_ref_ids as $object_ref_id) {
                 self::srTile()->onlineStatus()->setOnline($object_ref_id, false);
 
-                ilSrTileUIHookGUI::askAndDisplayAlertMessage("setted_offline", self::LANG_MODULE);
+                ilToGoUIHookGUI::askAndDisplayAlertMessage("setted_offline", self::LANG_MODULE);
             }
         }
 
@@ -132,7 +132,7 @@ class OnlineStatusGUI
             foreach ($this->object_ref_ids as $object_ref_id) {
                 self::srTile()->onlineStatus()->setOnline($object_ref_id, true);
 
-                ilSrTileUIHookGUI::askAndDisplayAlertMessage("setted_online", self::LANG_MODULE);
+                ilToGoUIHookGUI::askAndDisplayAlertMessage("setted_online", self::LANG_MODULE);
             }
         }
 

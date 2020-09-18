@@ -8,18 +8,18 @@ use srag\Plugins\SrTile\Tile\TileGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
 /**
- * Class ilSrTileUIHookGUI
+ * Class ilToGoUIHookGUI
  *
  * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * 
- * @ilCtrl_isCalledBy ilSrTileUIHookGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy ilToGoUIHookGUI: ilUIPluginRouterGUI
  */
-class ilSrTileUIHookGUI extends ilUIHookPluginGUI
+class ilToGoUIHookGUI extends ilUIHookPluginGUI
 {
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const PAR_TABS = "tabs";
     const TEMPLATE_GET = "template_get";
     const TOOLBAR_LOADER = "tile_toolbar_loader";
@@ -72,7 +72,7 @@ class ilSrTileUIHookGUI extends ilUIHookPluginGUI
 
 
     /**
-     * ilSrTileUIHookGUI constructor
+     * ilToGoUIHookGUI constructor
      */
     public function __construct()
     {
@@ -285,7 +285,7 @@ class ilSrTileUIHookGUI extends ilUIHookPluginGUI
     {
         $should_not_display = [];
 
-        self::dic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilSrTilePlugin::PLUGIN_NAME, ilSrTilePlugin::EVENT_SHOULD_NOT_DISPLAY_ALERT_MESSAGE, [
+        self::dic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilToGoPlugin::PLUGIN_NAME, ilToGoPlugin::EVENT_SHOULD_NOT_DISPLAY_ALERT_MESSAGE, [
             "lang_module"        => $module,
             "lang_key"           => $key,
             "alert_type"         => $alert_type,

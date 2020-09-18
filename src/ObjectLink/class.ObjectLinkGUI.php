@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\ObjectLink;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilUtil;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -21,7 +21,7 @@ class ObjectLinkGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_ADD_OBJECT_LINK = "addObjectLink";
     const CMD_BACK = "back";
     const CMD_CREATE_OBJECT_LINK = "createObjectLink";

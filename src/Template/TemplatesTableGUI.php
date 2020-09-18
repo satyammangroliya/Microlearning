@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\Template;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\SrTile\TableGUI\TableGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -18,7 +18,7 @@ class TemplatesTableGUI extends TableGUI
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = TemplatesConfigGUI::LANG_MODULE;
 
 
@@ -112,7 +112,7 @@ class TemplatesTableGUI extends TableGUI
      */
     protected function initId()/*: void*/
     {
-        $this->setId(ilSrTilePlugin::PLUGIN_ID . "_templates");
+        $this->setId(ilToGoPlugin::PLUGIN_ID . "_templates");
     }
 
 

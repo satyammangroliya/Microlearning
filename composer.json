@@ -1,23 +1,23 @@
 {
-  "name": "srag/plugins/srtile",
-  "description": "",
+  "name": "minervis/togo",
+  "description": " A fork of the Project srtile by studeraimann",
   "type": "project",
   "keywords": [
     "ILIAS",
     "Plugin"
   ],
-  "homepage": "https://github.com/studer-raimann/SrTile",
+  "homepage": "https://github.com/Minervis-GmbH/Microlearning",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "minervis GMbH",
+      "email": "ilias-service@minervis.com",
+      "homepage": "https://minervis.com",
       "role": "Developer"
     }
   ],
   "support": {
-    "issues": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLSRTILE"
+    "issues": "https://github.com/Minervis-GmbH/Microlearning/issues"
   },
   "require": {
     "php": ">=7.0",

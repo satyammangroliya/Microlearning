@@ -6,7 +6,7 @@ use Closure;
 use ilContainerReference;
 use ilObjectFactory;
 use ilObjOrgUnit;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Config\ConfigFormGUI;
 use srag\Plugins\SrTile\Tile\Renderer\Repository as RendererRepository;
@@ -26,7 +26,7 @@ final class Repository
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */
@@ -250,7 +250,7 @@ final class Repository
     public function isParentAContainer($ref_id){
         $home=self::srTile()->config()->getHomeRefId();
         if($home==""){
-            return true;
+            return false;
         }
         $parent_id=self::dic()->tree()->getParentId($ref_id);
         return $home==$parent_id;
@@ -444,7 +444,7 @@ final class Repository
              //END: devices
 	    
              //Branch AND TOPIC
- 	       if($tile->getTopic()===""){
+ 	    if($tile->getTopic()===""){
 		  $tile->setTopic($parent->getTopic());
                }
 	       if($tile->getBranch()===""){

@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\OnlineStatus;
 
 use ilObjectFactory;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ReflectionMethod;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
@@ -20,7 +20,7 @@ final class Repository
 
     use SrTileTrait;
     use DICTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */

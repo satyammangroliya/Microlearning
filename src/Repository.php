@@ -4,7 +4,7 @@ namespace srag\Plugins\SrTile;
 
 use ilObject;
 use ilObjUser;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilUtil;
 use srag\DIC\SrTile\DICTrait;
 use srag\Notifications4Plugin\SrTile\RepositoryInterface as Notifications4PluginRepositoryInterface;
@@ -38,7 +38,7 @@ final class Repository
     use Notifications4PluginTrait {
         notifications4plugin as protected _notifications4plugin;
     }
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */
@@ -63,7 +63,7 @@ final class Repository
      */
     private function __construct()
     {
-        $this->notifications4plugin()->withTableNamePrefix("ui_uihk_" . ilSrTilePlugin::PLUGIN_ID)->withPlugin(self::plugin())->withPlaceholderTypes([
+        $this->notifications4plugin()->withTableNamePrefix("ui_uihk_" . ilToGoPlugin::PLUGIN_ID)->withPlugin(self::plugin())->withPlaceholderTypes([
             "link"    => "string",
             "message" => "string",
             "object"  => "object " . ilObject::class,
@@ -104,7 +104,7 @@ final class Repository
      */
     public function dropTables()/*:void*/
     {
-        ilUtil::delDir(ILIAS_WEB_DIR . "/" . CLIENT_ID . "/" . ilSrTilePlugin::WEB_DATA_FOLDER);
+        ilUtil::delDir(ILIAS_WEB_DIR . "/" . CLIENT_ID . "/" . ilToGoPlugin::WEB_DATA_FOLDER);
         $this->config()->dropTables();
         $this->colorThiefCaches()->dropTables();
         $this->favorites(self::dic()->user())->dropTables();

@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\Template;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
@@ -13,14 +13,14 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Template\TemplatesConfigGUI: ilSrTileConfigGUI
+ * @ilCtrl_isCalledBy srag\Plugins\SrTile\Template\TemplatesConfigGUI: ilToGoConfigGUI
  */
 class TemplatesConfigGUI
 {
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_LIST_TEMPLATES = "listTemplates";
     const LANG_MODULE = "template";
     const TAB_LIST_TEMPLATES = "list_templates";

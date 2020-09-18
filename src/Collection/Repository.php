@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\Collection;
 
 use ilObjUser;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 use srag\Plugins\SrTile\Tile\Tile;
@@ -21,7 +21,7 @@ final class Repository
 
     use SrTileTrait;
     use DICTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self[]
      */
@@ -68,22 +68,22 @@ final class Repository
         $collection->delete();
     }
 
-    /**
-     * @param Topic $topic
-     */
-    protected function deleteTopic(Topic $topic)/*:void*/
-    {
-        $topic->delete();
-    }
+    // /**
+    //  * @param Topic $topic
+    //  */
+    // protected function deleteTopic(Topic $topic)/*:void*/
+    // {
+    //     $topic->delete();
+    // }
 
 
-    /**
-     * @param Branch $branch
-     */
-    protected function deleteBranch(Branch $branch)/*:void*/
-    {
-        $branch->delete();
-    }
+    // /**
+    //  * @param Branch $branch
+    //  */
+    // protected function deleteBranch(Branch $branch)/*:void*/
+    // {
+    //     $branch->delete();
+    // }
 
 
     /**
@@ -101,11 +101,11 @@ final class Repository
     public function dropTables()/*:void*/
     {
         self::dic()->database()->dropTable(Collection::TABLE_NAME, false);
-        self::dic()->database()->dropTable(Topic::TABLE_NAME, false);
-        self::dic()->database()->dropTable(Branch::TABLE_NAME, false);
-        self::dic()->database()->dropTable(ArBranch::TABLE_NAME, false);
-        self::dic()->database()->dropTable(ArTopic::TABLE_NAME, false);
-        self::dic()->database()->dropTable(Filter::TABLE_NAME, false);
+        // self::dic()->database()->dropTable(Topic::TABLE_NAME, false);
+        // self::dic()->database()->dropTable(Branch::TABLE_NAME, false);
+        // self::dic()->database()->dropTable(ArBranch::TABLE_NAME, false);
+        // self::dic()->database()->dropTable(ArTopic::TABLE_NAME, false);
+         self::dic()->database()->dropTable(Filter::TABLE_NAME, false);
     }
 
 
@@ -139,83 +139,83 @@ final class Repository
         return $collection;
     }
 
-    /**
-     * @param string $topic_name
-     *
-     * @return Topic|null
-     */
-    public function getTopic(string $topic_name)/*: ?Topic*/
-    {
-        /**
-         * @var Topic|null $topic
-         */
+    // /**
+    //  * @param string $topic_name
+    //  *
+    //  * @return Topic|null
+    //  */
+    // public function getTopic(string $topic_name)/*: ?Topic*/
+    // {
+    //     /**
+    //      * @var Topic|null $topic
+    //      */
 
-        $topic = Topic::where([
-            "topic_name"  => $topic_name
-        ])->first();
+    //     $topic = Topic::where([
+    //         "topic_name"  => $topic_name
+    //     ])->first();
         
 
-        return $topic;
-    }
+    //     return $topic;
+    // }
 
-    /**
-     * @param string $branch_name
-     *
-     * @return Branch|null
-     */
-    public  function getBranch(string $branch_name)/*: ?Branch*/
-    {
-        /**
-         * @var Branch|null $branch
-         */
+    // /**
+    //  * @param string $branch_name
+    //  *
+    //  * @return Branch|null
+    //  */
+    // public  function getBranch(string $branch_name)/*: ?Branch*/
+    // {
+    //     /**
+    //      * @var Branch|null $branch
+    //      */
 
-        $branch = Branch::where([
-            "branch_name"  => $branch_name
-        ])->first();
+    //     $branch = Branch::where([
+    //         "branch_name"  => $branch_name
+    //     ])->first();
         
 
-        return $branch;
-    }
+    //     return $branch;
+    // }
 
 
 
-    /**
-     * @param string $topic_name
-     *
-     * @return Topic|null
-     */
-    public  function getAllTopics($topic_name=null)/*: ?Topic*/
-    {
-        /**
-         * @var Topic|null $topic
-         */
+    // /**
+    //  * @param string $topic_name
+    //  *
+    //  * @return Topic|null
+    //  */
+    // public  function getAllTopics($topic_name=null)/*: ?Topic*/
+    // {
+    //     /**
+    //      * @var Topic|null $topic
+    //      */
 
-        $topics = Topic::get();
+    //     $topics = Topic::get();
         
 
-        return $topics;
-    }
+    //     return $topics;
+    // }
 
-    /**
-     * @param string $branch_name
-     *
-     * @return Branch|null
-     */
-    public function getAllBranches(string $branch_name=null)/*: ?Branch*/
-    {
-        /**
-         * @var Branch|null $branch
-         */
+    // /**
+    //  * @param string $branch_name
+    //  *
+    //  * @return Branch|null
+    //  */
+    // public function getAllBranches(string $branch_name=null)/*: ?Branch*/
+    // {
+    //     /**
+    //      * @var Branch|null $branch
+    //      */
 
-        $branches = Branch::get();
+    //     $branches = Branch::get();
         
 
-        return $branches;
-    }
+    //     return $branches;
+    // }
 
-    public function isFilterItemInDB(string $filter_item_name, string $filter_item_type){
+    // public function isFilterItemInDB(string $filter_item_name, string $filter_item_type){
 
-    }
+    // }
 
     /**
      * @internal
@@ -223,13 +223,13 @@ final class Repository
     public function installTables()/*:void*/
     {
         Collection::updateDB();
-        Branch::updateDB();
-        Topic::updateDB();
-        $this->initialiseBranches();
-        $this->initialiseTopics();
-        ArTopic::updateDB();
-        ArBranch::updateDB();
-        Filter::updateDB();
+        // Branch::updateDB();
+        // Topic::updateDB();
+        // $this->initialiseBranches();
+        // $this->initialiseTopics();
+        // ArTopic::updateDB();
+        // ArBranch::updateDB();
+         Filter::updateDB();
     }
 
     /**
@@ -351,40 +351,40 @@ final class Repository
     }
 
 
-   /**
-    * @param Topic $topic
-    */
-    protected function updateTopic(Topic $topic)/*:void*/
-    {
-        $topic->update();
-    }
+//    /**
+//     * @param Topic $topic
+//     */
+//     protected function updateTopic(Topic $topic)/*:void*/
+//     {
+//         $topic->update();
+//     }
 
-   /**
-    * @param Branch $branch
-    */
-    protected function updateBranch(Branch $branch)/*:void*/
-    {
-        $branch->update();
-    }
+//    /**
+//     * @param Branch $branch
+//     */
+//     protected function updateBranch(Branch $branch)/*:void*/
+//     {
+//         $branch->update();
+//     }
 
     
     
     
-    /**
-    * @param ArTopic $ar_topic
-    */
-    protected function updateArTopic(ArTopic $ar_topic)/*:void*/
-    {
-        $ar_topic->update();
-    }
+//     /**
+//     * @param ArTopic $ar_topic
+//     */
+//     protected function updateArTopic(ArTopic $ar_topic)/*:void*/
+//     {
+//         $ar_topic->update();
+//     }
 
-   /**
-    * @param ArBranch $ar_branch
-    */
-    protected function updateArBranch(ArBranch $ar_branch)/*:void*/
-    {
-        $ar_branch->update();
-    }
+//    /**
+//     * @param ArBranch $ar_branch
+//     */
+//     protected function updateArBranch(ArBranch $ar_branch)/*:void*/
+//     {
+//         $ar_branch->update();
+//     }
 
 
     /**
@@ -404,37 +404,37 @@ final class Repository
     }
 
 
-    /**
-     * @param Topic $topic
-     */
-    protected function storeTopic(Topic $topic)/*:void*/
-    {
-        $topic->store();
-    }
+    // /**
+    //  * @param Topic $topic
+    //  */
+    // protected function storeTopic(Topic $topic)/*:void*/
+    // {
+    //     $topic->store();
+    // }
 
-    /**
-     * @param Branch $branch
-     */
-    protected function storeBranch(Branch $branch)/*:void*/
-    {
-        $branch->store();
-    }
+    // /**
+    //  * @param Branch $branch
+    //  */
+    // protected function storeBranch(Branch $branch)/*:void*/
+    // {
+    //     $branch->store();
+    // }
 
-        /**
-     * @param ArTopic $ar_topic
-     */
-    protected function storeArTopic(ArTopic $ar_topic)/*:void*/
-    {
-        $ar_topic->store();
-    } 
+    //     /**
+    //  * @param ArTopic $ar_topic
+    //  */
+    // protected function storeArTopic(ArTopic $ar_topic)/*:void*/
+    // {
+    //     $ar_topic->store();
+    // } 
 
-    /**
-     * @param ArBranch $ar_branch
-     */
-    protected function storeArBranch(ArBranch $ar_branch)/*:void*/
-    {
-        $ar_branch->store();
-    }
+    // /**
+    //  * @param ArBranch $ar_branch
+    //  */
+    // protected function storeArBranch(ArBranch $ar_branch)/*:void*/
+    // {
+    //     $ar_branch->store();
+    // }
 
     public function getTopics(){
         $all_tiles=Tile::get();
@@ -489,11 +489,6 @@ final class Repository
             default:
                 $query_result=Tile::get();
         }
-        //return $query_result->count();
-        // if (!is_array($query_result)){
-        //     $query_result=array($query_result);
-        // }
-        //echo "".self::debug(gettype($query_result));
        
        foreach($query_result as $result){
            

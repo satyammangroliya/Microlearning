@@ -4,7 +4,7 @@ namespace srag\Plugins\SrTile\Access;
 
 use ilObject;
 use ilObjUser;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Certificate\Certificates;
 use srag\Plugins\SrTile\LearningProgress\LearningProgress;
@@ -25,7 +25,7 @@ final class Ilias
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */

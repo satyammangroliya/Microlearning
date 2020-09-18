@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\ObjectLink;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilUIPluginRouterGUI;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Config\ConfigFormGUI;
@@ -23,7 +23,7 @@ class ObjectLinksGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_LIST_OBJECT_LINKS = "listObjectLinks";
     const GET_PARAM_GROUP_ID = "group_id";
     const LANG_MODULE = "object_links";

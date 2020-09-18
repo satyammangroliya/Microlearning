@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\Template;
 
 use ilConfirmationGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilUtil;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Tile\TileGUI;
@@ -24,7 +24,7 @@ class TemplateConfigGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_BACK = "back";
     const CMD_CONFIRM_OVERRIDE = "confirmOverride";
     const CMD_EDIT_TEMPLATE = "editTemplate";

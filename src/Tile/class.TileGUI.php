@@ -3,13 +3,13 @@
 namespace srag\Plugins\SrTile\Tile;
 
 use ilLink;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilUIPluginRouterGUI;
 use ilUtil;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\ObjectLink\ObjectLinksGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
-use ilSrTileUIHookGUI;
+use ilToGoUIHookGUI;
 
 use srag\Plugins\SrTile\Collection\Collection;
 use srag\Plugins\SrTile\Collection\Filter;
@@ -27,7 +27,7 @@ class TileGUI
 
     use DICTrait;
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_BACK_TO_OBJECT = "backToObject";
     const CMD_BACK_TO_PARENT = "backToParent";
     const CMD_EDIT_TILE = "editTile";
@@ -119,10 +119,14 @@ class TileGUI
      */
     public static function addTabs(int $obj_ref_id)/*:void*/
     {
+        
         self::dic()->ctrl()->setParameterByClass(self::class, self::GET_PARAM_REF_ID, $obj_ref_id);
         
+
+
+        
         if(self::srTile()->tiles()->isParentAContainer($obj_ref_id)|| self::srTile()->config()->getHomeRefId()==$obj_ref_id){
-            self::dic()->tabs()->addTab(self::TAB_TILE, ilSrTilePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
+            self::dic()->tabs()->addTab(self::TAB_TILE, ilToGoPlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
                 ilUIPluginRouterGUI::class,
                 self::class
             ], self::CMD_EDIT_TILE));  

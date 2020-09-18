@@ -4,7 +4,7 @@ namespace srag\Plugins\SrTile\Metadata;
 
 use ilMD;
 use ilObject;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
@@ -20,7 +20,7 @@ class Metadata
 
     use SrTileTrait;
     use DICTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self[]
      */

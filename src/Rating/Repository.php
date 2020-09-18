@@ -3,7 +3,7 @@
 namespace srag\Plugins\SrTile\Rating;
 
 use ilObjUser;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
@@ -19,7 +19,7 @@ final class Repository
 
     use SrTileTrait;
     use DICTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self[]
      */

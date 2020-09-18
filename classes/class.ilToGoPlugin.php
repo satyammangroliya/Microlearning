@@ -9,17 +9,17 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
 use srag\RemovePluginDataConfirm\SrTile\PluginUninstallTrait;
 
 /**
- * Class ilSrTilePlugin
+ * Class ilToGoPlugin
  *
  * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ilSrTilePlugin extends ilUserInterfaceHookPlugin
+class ilToGoPlugin extends ilUserInterfaceHookPlugin
 {
 
     use PluginUninstallTrait;
     use SrTileTrait;
     const PLUGIN_ID = "tiles";
-    const PLUGIN_NAME = "SrTile";
+    const PLUGIN_NAME = "ToGo";
     const PLUGIN_CLASS_NAME = self::class;
     const WEB_DATA_FOLDER = self::PLUGIN_ID . "_data";
     const EVENT_CHANGE_TILE_BEFORE_RENDER = "change_title_before_render";
@@ -44,7 +44,7 @@ class ilSrTilePlugin extends ilUserInterfaceHookPlugin
 
 
     /**
-     * ilSrTilePlugin constructor
+     * ilToGoPlugin constructor
      */
     public function __construct()
     {

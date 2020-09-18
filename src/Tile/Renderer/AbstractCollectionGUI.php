@@ -3,8 +3,8 @@
 namespace srag\Plugins\SrTile\Tile\Renderer;
 
 use ilLink;
-use ilSrTilePlugin;
-use ilSrTileUIHookGUI;
+use ilToGoPlugin;
+use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\LearningProgress\LearningProgressFilterGUI;
@@ -30,7 +30,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
     use SrTileTrait;
     use DICTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     private $test_link="";
     /**
      * @var CollectionInterface $collection
@@ -55,6 +55,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     protected function initJS()/*: void*/
     {
+        self::dic()->ui()->mainTemplate()->addJavascript(self::plugin()->directory() . "/js/tiles.js");
         self::dic()->ui()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/@iconfu/svg-inject/dist/svg-inject.min.js");
     }
 
@@ -64,40 +65,31 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     public function render() : string
     {
+        
         $this->initJS();
 
         $collection_html = "";
 
         if (count($this->collection->getTiles()) > 0) {
 
-            $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilSrTileUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
-            self::dic()->ui()->mainTemplate()->addJavascript(self::plugin()->directory() . "/js/tabs.js");
+            $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
+            
             self::dic()->ui()->mainTemplate()->addCss(self::plugin()->directory() . "/css/srtile_customized.css");
 
             $tpl = self::plugin()->template("TileCollection/collection.html");
 
-            self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, intval(ilSrTileUIHookGUI::filterRefId()));
+            self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, intval(ilToGoUIHookGUI::filterRefId()));
 
             $tpl->setVariableEscaped("HEADER",self::plugin()->directory() ."/templates/images/headerImage.png");
             $tpl->setVariableEscaped("HEADER_RESPONSIVE",self::plugin()->directory() ."/templates/images/headerImage.png");
-            $tpl->setVariable("REPOSITORY","#" );
+            
             
 
             $home_link=ilLink::_getStaticLink(intval(self::srTile()->config()->getHomeRefId()));
 
-
-            //criterium
-            $coll=self::srTile()->collections(self::dic()->user());
-            //$criterium=$coll->getCollection($parent_tile->_getIlObject()->getId())->getSortCriterion();
-
-
-            $tpl_sort=self::plugin()->template("TileCollection/sort_links.html");
-            $tpl_sort->setVariable("BACK_HOME_LINK", $home_link);
-            $tpl_sort->setVariable("SORT_TOPIC_LINK", $coll->getTopic("Lärmschutz")->getTopicName());
             
-
-
-
+            
+            $coll=self::srTile()->collections(self::dic()->user());
             $tpl->setVariableEscaped("VIEW", $parent_tile->getView());
 
             $tile_html = self::output()->getHTML(array_map(function (Tile $tile) : SingleGUIInterface {
@@ -110,19 +102,13 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
-            // $tpl->setVariable("TABS",self::dic()->tabs()->getHTML());
-            // $tpl->setVariable("SUBTABS",self::dic()->tabs()->getSubTabHTML());
-            // self::dic()->mainmenu()->setMode(3);
-
 
             /**
-             * 
-             * Patch
-
-            */
+             * Bag Image was cancelled
+             */
             $tpl_ls_mainmenu=self::plugin()->template("MainMenu/header_menu.html");
             $tpl_ls_mainmenu->setVariable("LOGO_IMAGE",self::plugin()->directory() ."/templates/images/HeaderIcon.png");
-            $tpl_ls_mainmenu->setVariable("TOGO_IMAGE",self::plugin()->directory() ."/templates/images/BGNtogo.png");
+            $tpl_ls_mainmenu->setVariable("TOGO_IMAGE",self::plugin()->directory() ."/templates/images/BGN_togo.png");
             $bag_image_path=ConfigFormGUI::getImagePathWithCheck();
             if(!empty($bag_image_path)){
                 $tpl_ls_mainmenu->setVariable("BAG_IMAGE","./".$bag_image_path);
@@ -148,21 +134,17 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             $tpl_ls_mainmenu->setVariable("LS_UMFRAGE",self::output()->getHTML($this->generateLinks("Umfrage",$umfrage_link)));
 
             $was_sind_obj_ref_id=self::srTile()->config()->getWasSindObjRefId();
-            $was_sind_link="Was sind die Lernsnacks?";
+            $was_sind_link="Was sind die Lern-Snacks?";
             if($was_sind_obj_ref_id){
                 $was_sind_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
                 $was_sind_link=str_replace("href=","",$was_sind_link);
                 $was_sind_link=str_replace('"',"",$was_sind_link);
             }
-            // $tpl->setVariable("TEST_LINKS",self::dic()->tabs()->getHTML());
+           
 
 
-            $tpl_ls_mainmenu->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lernsnacks?",$was_sind_link)));
-
-            
-            $tpl_ls_mainmenu->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Lernsnacks",$home_link)));
-            
-            
+            $tpl_ls_mainmenu->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lern-Snacks?",$was_sind_link)));
+            $tpl_ls_mainmenu->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Angebot",$home_link)));
             $tpl_ls_mainmenu->setVariable("LS_FILTER_TOPIC",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())) );
             $tpl_ls_mainmenu->setVariable("LS_FILTER_BRANCH",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
 
@@ -174,7 +156,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
 
             if (!self::dic()->ctrl()->isAsynch() && $parent_tile->getShowLearningProgressFilter() === Tile::SHOW_TRUE) {
-                LearningProgressFilterGUI::initToolbar(intval(ilSrTileUIHookGUI::filterRefId()));
+                LearningProgressFilterGUI::initToolbar(intval(ilToGoUIHookGUI::filterRefId()));
             }
 
             if (!self::dic()->ctrl()->isAsynch() && $parent_tile->getShowLearningProgressLegend() === Tile::SHOW_TRUE) {
@@ -197,14 +179,14 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
     {
         $css = '';
 
-        $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilSrTileUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
+        $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
 
         $css .= '.tile';
         $css .= '{' . $parent_tile->_getLayout() . '}';
 
         $is_parent_css_rendered = false;
         foreach ($this->collection->getTiles() as $tile) {
-            self::dic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilSrTilePlugin::PLUGIN_NAME, ilSrTilePlugin::EVENT_CHANGE_TILE_BEFORE_RENDER, [
+            self::dic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilToGoPlugin::PLUGIN_NAME, ilToGoPlugin::EVENT_CHANGE_TILE_BEFORE_RENDER, [
                 "tile" => $tile
             ]);
 
@@ -266,36 +248,35 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         $ui=self::dic()->ui()->factory();
         $renderer =self::dic()->ui()->renderer();
         $topics=array();
-        $items=array();
         $item_link=self::dic()->ctrl()->getLinkTargetByClass([
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_FILTER);
 
-        foreach ($init_topics as $topic){
-            //$topics[]=$ui->input()->field()->checkbox($topic);
-            $items[]=$ui->button()->shy($topic, $this->editLink($item_link, $topic));
-            
-        }
+
 
         foreach ($all_topics as $topic){
             $topics[]=$ui->button()->shy($topic, $this->editLink($item_link, $topic));
             
         }
 
-        echo "".$this->debug("Link");
-        /*$group=$ui->input()->field()->group($topics);
-        $form=$ui->input()->container()->form()->standard(
-            self::dic()->ctrl()->getFormActionByClass("ilrepositorygui"),
-            ["custom_group"=>$group]
-        );
-        return $renderer->render($form);*/
+        if(count($all_topics)==0){
+            $actions=array("Kein Thema"=>"#");
+            $labels="Kein Thema";
+            $topics[]=$ui->viewControl()->mode($actions,$labels);
+
+        }
+
         return $renderer->render($ui->dropdown()->standard($topics)->withLabel("Nach Thema"));
 
     }
 
-    public function renderBranchDropdown($all_topics=array()){
-        $init_topics=array(
+    public function renderBranchDropdown($all_branches=array()){
+
+        /**
+         * Branches have moved to the tiles table and the initialzationmis not necessary
+         */
+        $init_branches=array(
             'Lärmschutz',
             'Leitern und Tritte',
             'KommMitMensch',
@@ -307,46 +288,33 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         );
         $ui=self::dic()->ui()->factory();
         $renderer =self::dic()->ui()->renderer();
-        $topics=array();
-        $items=array();
+        $branches=array();
         $item_link=self::dic()->ctrl()->getLinkTargetByClass([
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_FILTER);
 
+        
 
-        foreach ($all_topics as $topic){
-            //$topic="branch";
-            $topics[]=$ui->button()->shy($topic, $this->editLink($item_link, $topic, $item_type="branch"));
+
+        foreach ($all_branches as $branch){
+            $branches[]=$ui->button()->shy($branch, $this->editLink($item_link, $branch, $item_type="branch"));
             
         }
-        echo "".$this->debug("Link");
-        /*$group=$ui->input()->field()->group($topics);
-        $form=$ui->input()->container()->form()->standard(
-            self::dic()->ctrl()->getFormActionByClass("ilrepositorygui"),
-            ["custom_group"=>$group]
-        );
-        return $renderer->render($form);*/
-        return $renderer->render($ui->dropdown()->standard($topics)->withLabel("Nach Branche"));
-
-    }
+        
+        if(count($all_branches)==0){
+            $actions=array("Keine Branche"=>"#");
+            $labels="Keine Branche";
+            $branches[]=$ui->viewControl()->mode($actions,$labels);
 
 
-    public function debug($input){
-        $log="<script type='text/javascript'> console.log('";
-        if (is_array($input)){
-            foreach($input as $item){
-                $log.=$item."\n";
-            }
-        }else{
-            $log.=$item;
         }
-        return $log."')</script>";
+        return $renderer->render($ui->dropdown()->standard($branches)->withLabel("Nach Branche"));
 
     }
+
 
     private function editLink($link, $filter_item, $item_type="topic"){
-        //echo "".$this->debug("FUnktioniert");
 
         self::dic()->ctrl()->saveParameterByClass(TileGUI::class,TileGUI::GET_FILTER_BY);
         self::dic()->ctrl()->saveParameterByClass(TileGUI::class,TileGUI::GET_FILTER_ITEM);
@@ -356,27 +324,9 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_FILTER);
-        
-        //$link.="&by=".$item_type;
-        //return $link."&filter_by=".$filter_item;
-        //return "branch";
-        //$this->$test_link=$item_link;
+
         return $item_link;
 
-    }
-
-    /*private function checkHomeLink(string $link){
-        $home_link=ilLink::_getStaticLink(intval(self::srTile()->config()->getHomeRefId()));
-
-    }*/
-
-
-    private function getTopics($arTopicList){
-        $all_topics=array();
-        foreach($arTopicList as $topic){
-            $all_topics[]=$topic->getName();
-        }
-        return $all_topics;
     }
 
 

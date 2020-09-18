@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\SrTile\Config;
 
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\ActiveRecordConfig\SrTile\Config\AbstractFactory;
 use srag\ActiveRecordConfig\SrTile\Config\AbstractRepository;
 use srag\ActiveRecordConfig\SrTile\Config\Config;
@@ -19,7 +19,7 @@ final class Repository extends AbstractRepository
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
      */
@@ -64,7 +64,7 @@ final class Repository extends AbstractRepository
      */
     protected function getTableName() : string
     {
-        return "ui_uihk_" . ilSrTilePlugin::PLUGIN_ID . "_config";
+        return "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_config";
     }
 
 
@@ -114,7 +114,7 @@ final class Repository extends AbstractRepository
     public static function getImagePathAsRelative(bool $append_filename = true) : string
     {
         $image_prefix="bag_image";
-        $path = ilSrTilePlugin::WEB_DATA_FOLDER . "/" .$image_prefix . "/";
+        $path = ilToGoPlugin::WEB_DATA_FOLDER . "/" .$image_prefix . "/";
 
         if ($append_filename) {
             $path .= self::srTile()->config()->getValue(ConfigFormGUI::BAG_IMAGE);

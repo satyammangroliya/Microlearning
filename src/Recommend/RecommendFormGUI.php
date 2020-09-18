@@ -4,7 +4,7 @@ namespace srag\Plugins\SrTile\Recommend;
 
 use ilEMailInputGUI;
 use ilNonEditableValueGUI;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use ilTextAreaInputGUI;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
@@ -21,7 +21,7 @@ class RecommendFormGUI extends PropertyFormGUI
 {
 
     use SrTileTrait;
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = RecommendGUI::LANG_MODULE;
     /**
      * @var Recommend

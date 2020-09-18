@@ -4,7 +4,7 @@ namespace srag\Plugins\SrTile\Collection;
 
 use ActiveRecord;
 use arConnector;
-use ilSrTilePlugin;
+use ilToGoPlugin;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
@@ -20,8 +20,8 @@ class Collection extends ActiveRecord
 
     use DICTrait;
     use SrTileTrait;
-    const TABLE_NAME = "ui_uihk_" . ilSrTilePlugin::PLUGIN_ID . "_coll";
-    const PLUGIN_CLASS_NAME = ilSrTilePlugin::class;
+    const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_coll";
+    const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
 
     const SORT_BY_BRANCH=1;
     const SORT_BY_TOPIC=2;

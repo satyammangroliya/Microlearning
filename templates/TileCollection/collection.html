@@ -15,3 +15,16 @@
 {LP_LEGEND}
 <div hidden><a id="backHome" href="{BACK_HOME_LINK}" ></a></div>
 
+<script>
+	$(document).ready(function () {
+		var heights=[];
+		$(".card_title").each(function(index){
+			
+			heights.push($(this).height());
+		});
+		var largestTitle=Math.max(...heights);
+		console.log(heights);
+		$(".card_title").css("height", largestTitle);
+	
+	});
+</script>
