@@ -2,8 +2,8 @@
 
 require_once __DIR__ . "/vendor/srag/dic/src/PHPVersionChecker.php";
 
-$id = "tiles";
-$version = "1.0.6";
+$id = "togo";
+$version = "1.0.0";
 $ilias_min_version = "5.4.0";
 $ilias_max_version = "5.4.999";
 $responsible = "Minervis";
