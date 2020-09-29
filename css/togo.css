@@ -629,5 +629,11 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacek
   }
 
 }
+a.ilTreeView #ilSideBarIcon{
+  top: 189px;
+}
 
+.ilMainHeader> header, .ilLeftNav{
+  background: unset !important;
+}
 

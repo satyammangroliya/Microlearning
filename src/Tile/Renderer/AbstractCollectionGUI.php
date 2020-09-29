@@ -74,7 +74,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
             $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
             
-            self::dic()->ui()->mainTemplate()->addCss(self::plugin()->directory() . "/css/srtile_customized.css");
+            self::dic()->ui()->mainTemplate()->addCss(self::plugin()->directory() . "/css/togo.css");
 
             $tpl = self::plugin()->template("TileCollection/collection.html");
 
@@ -119,7 +119,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             if (!empty($colors)){
                 $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#".$colors);
             }else{
-                $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#d4edfc"); 
+                $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#EAF3F2"); 
             }
             
             

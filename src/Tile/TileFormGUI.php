@@ -867,7 +867,7 @@ class TileFormGUI extends PropertyFormGUI
             "show_learning_progress_legend","show_learning_progress_filter" ,
             "preconditions" , "show_preconditions", "certificate",
             "certificate_hint" ,"show_download_certificate","language" ,
-            "show_language_flag","language_flag_position"
+            "show_language_flag","language_flag_position",
         ];
 
 

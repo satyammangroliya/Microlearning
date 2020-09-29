@@ -136,7 +136,7 @@ class Tile extends ActiveRecord
     const DEFAULT_BORDER_SIZE = 1;
     const DEFAULT_BORDER_SIZE_TYPE = self::SIZE_TYPE_PX;
     const DEFAULT_BORDER_COLOR_TYPE = self::COLOR_TYPE_SET;
-    const DEFAULT_COLUMNS = 290;
+    const DEFAULT_COLUMNS = 260;
     const DEFAULT_COLUMNS_TYPE = self::SIZE_TYPE_PX;
     const DEFAULT_ENABLE_RATING = Tile::SHOW_TRUE;
     const DEFAULT_FONT_COLOR_TYPE = self::COLOR_TYPE_CONTRAST;
