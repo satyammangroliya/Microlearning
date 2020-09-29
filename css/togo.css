@@ -633,7 +633,18 @@ a.ilTreeView #ilSideBarIcon{
   top: 189px;
 }
 
-.ilMainHeader> header, .ilLeftNav{
+/*BGN Style issues*/
+.ilMainHeader> header{
   background: unset !important;
 }
+.customHeaderContainer{
+  position: relative !important;
+  top: 11px !important;
+}
 
+#ilSideBarIcon{
+  left:-30px !important;
+}
+.ilLeftNav{
+  top: 190px !important;
+}
