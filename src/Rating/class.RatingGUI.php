@@ -104,7 +104,7 @@ class RatingGUI
     {
         self::srTile()->ratings(self::dic()->user())->like($this->tile->getObjRefId());
 
-        ilToGoUIHookGUI::askAndDisplayAlertMessage("liked", self::LANG_MODULE);
+        //ilToGoUIHookGUI::askAndDisplayAlertMessage("liked", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
             self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
@@ -121,7 +121,7 @@ class RatingGUI
     {
         self::srTile()->ratings(self::dic()->user())->unlike($this->tile->getObjRefId());
 
-        ilToGoUIHookGUI::askAndDisplayAlertMessage("unliked", self::LANG_MODULE);
+        //ilToGoUIHookGUI::askAndDisplayAlertMessage("unliked", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
             self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
