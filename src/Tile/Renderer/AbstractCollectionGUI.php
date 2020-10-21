@@ -16,6 +16,8 @@ use srag\Plugins\SrTile\Collection\Collection;
 use srag\Plugins\SrTile\Config\ConfigFormGUI;
 use srag\Plugins\SrTile\Collection\Repository;
 
+use ilGroupedListGUI;
+
 
 /**
  * Class AbstractCollectionGUI
@@ -99,6 +101,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             $tpl->setVariable("TILES", $tile_html);
             $tpl->setVariable("TOPICS",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())));
             $tpl->setVariable("BRANCHES",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
+            
 
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
@@ -131,7 +134,8 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
                 $umfrage_link=str_replace("href=","",$umfrage_link);
                 $umfrage_link=str_replace('"',"",$umfrage_link);
             }
-            $tpl_ls_mainmenu->setVariable("LS_UMFRAGE",self::output()->getHTML($this->generateLinks("Umfrage",$umfrage_link)));
+            $umfrage_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6137.html";
+            $tpl_ls_mainmenu->setVariable("LS_UMFRAGE",self::output()->getHTML($this->generateLinks("Umfrage",$umfrage_bgn_link)));
 
             $was_sind_obj_ref_id=self::srTile()->config()->getWasSindObjRefId();
             $was_sind_link="Was sind die Lern-Snacks?";
@@ -142,11 +146,13 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             }
            
 
-
-            $tpl_ls_mainmenu->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lern-Snacks?",$was_sind_link)));
+            $was_sind_lernsnacks_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6136.html";
+            $tpl_ls_mainmenu->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lern-Snacks?",$was_sind_lernsnacks_bgn_link)));
             $tpl_ls_mainmenu->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Angebot",$home_link)));
-            $tpl_ls_mainmenu->setVariable("LS_FILTER_TOPIC",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())) );
-            $tpl_ls_mainmenu->setVariable("LS_FILTER_BRANCH",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
+            // $tpl_ls_mainmenu->setVariable("LS_FILTER_TOPIC",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())) );
+            // $tpl_ls_mainmenu->setVariable("LS_FILTER_BRANCH",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
+            $tpl_ls_mainmenu->setVariable("BRANCH_SEL", $this->getBranchSelection());
+            $tpl_ls_mainmenu->setVariable("TOPIC_SEL", $this->getTopicSelection());
 
             $tpl->setVariable("LS_MAINMENU",self::output()->getHTML($tpl_ls_mainmenu));
 
@@ -270,6 +276,9 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         return $renderer->render($ui->dropdown()->standard($topics)->withLabel("Nach Thema"));
 
     }
+    /**
+     * @deprecated 
+     */
 
     public function renderBranchDropdown($all_branches=array()){
 
@@ -315,6 +324,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
 
     private function editLink($link, $filter_item, $item_type="topic"){
+        $filter_item=urlencode($filter_item);
 
         self::dic()->ctrl()->saveParameterByClass(TileGUI::class,TileGUI::GET_FILTER_BY);
         self::dic()->ctrl()->saveParameterByClass(TileGUI::class,TileGUI::GET_FILTER_ITEM);
@@ -327,6 +337,54 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
         return $item_link;
 
+    }
+
+    private function getBranchSelection(){
+
+        $init_branches=array(
+            'Gastgewerbe',
+            'Backgewerbe',
+            'Nahrungsmittelindustrie',
+            'Schausteller',
+            'Fleischwirtschaft',
+            'Getränkeindustrie'
+        );
+        $coll=self::srTile()->collections(self::dic()->user());
+        $branches=$coll->getBranches();
+
+       $branch_menu=$this->renderSelection("branch",$branches);
+       return $branch_menu;
+    }
+    private function getTopicSelection(){
+        $init_topics=array(
+            'Lärmschutz',
+            'Leitern und Tritte',
+            'KommMitMensch',
+            'Brandschutz',
+            'Stress',
+            'Sicher schneiden',
+            'Transport',
+            'Verkehrssicherheit'
+        );
+        $coll=self::srTile()->collections(self::dic()->user());
+        $topics=$coll->getTopics();
+
+       $topics_menu=$this->renderSelection("topic",$topics);
+       return $topics_menu;
+    }
+
+    private function renderSelection($sel_name="", $items=null){
+        $gr_list=new ilGroupedListGUI();
+        $gr_list->setAsDropDown(true);
+        if($items){
+            foreach($items as $item){
+                
+                $item_link=$this->editLink(null,$item,$item_type=$sel_name);
+                $gr_list->addEntry($item, $item_link);
+            }
+            return $gr_list->getHTML();
+        }
+        return "";
     }
 
 

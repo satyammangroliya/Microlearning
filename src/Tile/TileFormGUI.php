@@ -173,10 +173,10 @@ class TileFormGUI extends PropertyFormGUI
                         ],
                         "setTitle"              => $this->txt("view_tile")
                     ],
-                    Tile::VIEW_LIST     => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("view_list")
-                    ]
+                    // Tile::VIEW_LIST     => [
+                    //     self::PROPERTY_CLASS => ilRadioOption::class,
+                    //     "setTitle"           => $this->txt("view_list")
+                    // ]
                 ]
             ],
             "margin_type"                 => [
@@ -868,12 +868,14 @@ class TileFormGUI extends PropertyFormGUI
             "preconditions" , "show_preconditions", "certificate",
             "certificate_hint" ,"show_download_certificate","language" ,
             "show_language_flag","language_flag_position",
+            "image_position","show_image_as_background",
+            
         ];
 
 
 
         if(self::srTile()->config()->getHomeRefId()==$this->tile->getObjRefId()){
-            array_push($items,"image_header","image","image_position","show_image_as_background", "branch_topic","branch","topic");
+            array_push($items,"image_header","image", "branch_topic","branch","topic");
         }
         
         foreach($items as $item){

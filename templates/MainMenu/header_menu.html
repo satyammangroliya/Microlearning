@@ -51,10 +51,15 @@
 						<!-- {MAIN_MENU_LIST_ENTRIES} -->
 						<ul class="nav navbar-nav">
 							<li class="dropdown ls_link">{LS_HOME}</li>
-							<li class="dropdown">{LS_FILTER_TOPIC}</li>
-							<li class="dropdown">{LS_FILTER_BRANCH}</li>
+							<!-- <li class="dropdown">{LS_FILTER_TOPIC}</li> -->
+							<li class="dropdown ls_link"><a id="mm_topic_sel_" href="#" class="dropdown-toggle" data-toggle="dropdown">Nach Thema <span class="caret"></span></a> {TOPIC_SEL}
+							</li>
+							<!-- <li class="dropdown">{LS_FILTER_BRANCH}</li> -->
+							<li class="dropdown ls_link"><a id="mm_branch_sel_" href="#" class="dropdown-toggle" data-toggle="dropdown">Nach Branche <span class="caret"></span></a> {BRANCH_SEL}
+							</li>
 							<li class="dropdown ls_link">{LS_WAS_SIND}</li>
 							<li class="dropdown ls_link">{LS_UMFRAGE}</li>
+							
 						</ul>
 					</div><!-- /.navbar-collapse -->
 					<!-- Brand and toggle get grouped for better mobile display -->
@@ -77,7 +82,9 @@
                         <li class="dropdown">{LS_FILTER_TOPIC}</li>
                         <li class="dropdown">{LS_FILTER_BRANCH}</li>
                         <li class="dropdown ls_link">{LS_WAS_SIND}</li>
-                        <li class="dropdown ls_link">{LS_UMFRAGE}</li>
+						<li class="dropdown ls_link">{LS_UMFRAGE}</li>
+						<!-- <li class="dropdown ls_link"><a id="mm_lang_sel_" href="#" class="dropdown-toggle" data-toggle="dropdown">Branches <span class="caret"></span></a> {BRANCH_SEL}
+						</li> -->
                     </ul>
 
                 </div><!-- /.navbar-collapse -->

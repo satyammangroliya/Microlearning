@@ -50,7 +50,7 @@
 }
 .tile .card .card_top {
   cursor: pointer;
-  height: 250px;
+  height: 220px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -71,8 +71,8 @@
   background-size: cover;
   height: 200px;
 /*  width: 80%;*/
-  margin: 20px;
-  border: 1px solid black;
+  /*margin: 20px;
+  border: 1px solid black;*/
 }
 .tile .card .card_top .tile_object_icon > img {
   height: 32px;
@@ -555,8 +555,16 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacek
     margin-left: 0;
   }
 
-  .logo .header_image{
+   /* .header_image{
     height: 45px;
+
+  } */
+  .header_image_container.logo .header_image{
+    height: 41px;
+
+  }
+  .header_image_container.togo .header_image{
+    height: 49px;
 
   }
   .right_header{

@@ -274,9 +274,10 @@ class TileGUI
     }
 
     protected function filter(){
-        echo "<script type='text/javascript'> console.log('".self::dic()->user()->getId() .  "')</script>";
+       
         $item_type=filter_input(INPUT_GET, self::GET_FILTER_BY);
         $item_name=filter_input(INPUT_GET, self::GET_FILTER_ITEM);
+        $item_name=urldecode($item_name);
         if($item_type==null||$item_type=="" ||$item_name==null||$item_name==""){
             $item_type="all";
         }
