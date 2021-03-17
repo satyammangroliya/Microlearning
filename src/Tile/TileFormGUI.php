@@ -30,14 +30,13 @@ use ilUIPluginRouterGUI;
  * @package srag\Plugins\srTile\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * 
+ *
  * @ilCtrl_isCalledBy TileFormGUI: ilUIPluginRouterGUI, PropertyFormGUI
  * @ilCtrl_Calls ilUIPluginRouterGUI: TileFormGUI, ilLinkInputGUI
- * 
+ *
  */
 class TileFormGUI extends PropertyFormGUI
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = TileGUI::LANG_MODULE;
@@ -84,6 +83,11 @@ class TileFormGUI extends PropertyFormGUI
                     return "./" . $this->tile->getImagePath();
                 }
                 break;
+            case "background_image":
+                if (!empty(Items::getter($this->tile, $key))) {
+                    return "./" . $this->tile->getBackgroundImagePath();
+                }
+                break;
 
             default:
                 return Items::getter($this->tile, $key);
@@ -101,9 +105,8 @@ class TileFormGUI extends PropertyFormGUI
         $this->addCommandButton(TileGUI::CMD_UPDATE_TILE, $this->txt("save"));
     }
 
-    private function  shouldHideItem(){
-        
-
+    private function shouldHideItem()
+    {
     }
 
 
@@ -113,22 +116,26 @@ class TileFormGUI extends PropertyFormGUI
     protected function initFields()/*: void*/
     {
         $this->fields = [
-	    "branch_topic"=>[
-	        self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
-	        "setTitle"            =>$this->txt("branches_and_topics")
-	    ],
-	    "branch"     =>[
+        "branch_topic"=>[
+            self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
+            "setTitle"            =>$this->txt("branches_and_topics")
+        ],
+        "branch"     =>[
                 self::PROPERTY_CLASS=>ilTextInputGUI::class,
                 "setTitle"            =>$this->txt("branches")
-	      ],
+          ],
         "topic"      =>[
-		self::PROPERTY_CLASS=>ilTextInputGUI::class,
-		"setTitle"            =>$this->txt("topics")
-         ],            
-	    "general_settings"=>[
-		self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
-		"setTitle"            =>$this->txt("general_settings")
-	     ],
+        self::PROPERTY_CLASS=>ilTextInputGUI::class,
+        "setTitle"            =>$this->txt("topics")
+         ],
+        "general_settings"=>[
+        self::PROPERTY_CLASS  =>ilFormSectionHeaderGUI::class,
+        "setTitle"            =>$this->txt("general_settings")
+         ],
+            "background_image"                    => [
+                self::PROPERTY_CLASS    => ilImageFileInputGUI::class,
+                self::PROPERTY_REQUIRED => false
+            ],
             "view"                        => [
                 self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                 self::PROPERTY_REQUIRED => false,
@@ -173,10 +180,6 @@ class TileFormGUI extends PropertyFormGUI
                         ],
                         "setTitle"              => $this->txt("view_tile")
                     ],
-                    // Tile::VIEW_LIST     => [
-                    //     self::PROPERTY_CLASS => ilRadioOption::class,
-                    //     "setTitle"           => $this->txt("view_list")
-                    // ]
                 ]
             ],
             "margin_type"                 => [
@@ -211,23 +214,6 @@ class TileFormGUI extends PropertyFormGUI
                     ]
                 ]
             ],
-            /*
-            
-            "apply_colors_to_global_skin" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-            */
 
             "tile"                           => [
                 self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
@@ -291,91 +277,8 @@ class TileFormGUI extends PropertyFormGUI
                 self::PROPERTY_CLASS    => ilImageFileInputGUI::class,
                 self::PROPERTY_REQUIRED => false
             ],
-            "image_position"           => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::POSITION_TOP    => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_top")
-                    ],
-                    Tile::POSITION_BOTTOM => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_bottom")
-                    ]
-                ],
-                "setTitle"              => $this->txt("position")
-            ],
-            "show_image_as_background" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-            "object_icon_position"     => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::POSITION_NONE         => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_none")
-                    ],
-                    Tile::POSITION_LEFT_TOP     => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left_top")
-                    ],
-                    Tile::POSITION_LEFT_BOTTOM  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left_bottom")
-                    ],
-                    Tile::POSITION_RIGHT_TOP    => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right_top")
-                    ],
-                    Tile::POSITION_RIGHT_BOTTOM => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right_bottom")
-                    ]
-                ]
-            ],
-
             "label" => [
                 self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-
-            "font_color_type"        => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::COLOR_TYPE_CONTRAST        => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("color_contrast")
-                    ],
-                    Tile::COLOR_TYPE_AUTO_FROM_IMAGE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("color_auto_from_image")
-                    ],
-                    Tile::COLOR_TYPE_SET             => [
-                        self::PROPERTY_CLASS    => ilRadioOption::class,
-                        self::PROPERTY_SUBITEMS => [
-                            "font_color" => [
-                                self::PROPERTY_CLASS    => ilColorPickerInputGUI::class,
-                                self::PROPERTY_REQUIRED => false,
-                                "setDefaultColor"       => ""
-                            ]
-                        ],
-                        "setTitle"              => $this->txt("set")
-                    ]
-                ],
-                "setTitle"              => $this->txt("font_color")
             ],
             "font_size_type"         => [
                 self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
@@ -395,192 +298,6 @@ class TileFormGUI extends PropertyFormGUI
                 ],
                 "setTitle"              => $this->txt("font_size")
             ],
-            "label_horizontal_align" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::HORIZONTAL_ALIGN_LEFT   => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("horizontal_align_left")
-                    ],
-                    Tile::HORIZONTAL_ALIGN_CENTER => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("horizontal_align_center")
-                    ],
-                    Tile::HORIZONTAL_ALIGN_RIGHT  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("horizontal_align_right")
-                    ]
-                ],
-                "setTitle"              => $this->txt("horizontal_align")
-            ],
-            "label_vertical_align"   => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::VERTICAL_ALIGN_TOP    => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("vertical_align_top")
-                    ],
-                    Tile::VERTICAL_ALIGN_CENTER => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("vertical_align_center")
-                    ],
-                    Tile::VERTICAL_ALIGN_BOTTOM => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("vertical_align_bottom")
-                    ]
-                ],
-                "setTitle"              => $this->txt("vertical_align")
-            ],
-
-            "border"            => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "border_color_type" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::COLOR_TYPE_BACKGROUND      => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("color_background")
-                    ],
-                    Tile::COLOR_TYPE_AUTO_FROM_IMAGE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("color_auto_from_image")
-                    ],
-                    Tile::COLOR_TYPE_SET             => [
-                        self::PROPERTY_CLASS    => ilRadioOption::class,
-                        self::PROPERTY_SUBITEMS => [
-                            "border_color" => [
-                                self::PROPERTY_CLASS    => ilColorPickerInputGUI::class,
-                                self::PROPERTY_REQUIRED => false,
-                                "setDefaultColor"       => ""
-                            ]
-                        ],
-                        "setTitle"              => $this->txt("set")
-                    ]
-                ],
-                "setTitle"              => $this->txt("border_color")
-            ],
-            "border_size_type"  => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SIZE_TYPE_PX => [
-                        self::PROPERTY_CLASS    => ilRadioOption::class,
-                        self::PROPERTY_SUBITEMS => [
-                            "border_size" => [
-                                self::PROPERTY_CLASS    => ilNumberInputGUI::class,
-                                self::PROPERTY_REQUIRED => false,
-                                "setSuffix"             => "px"
-                            ]
-                        ],
-                        "setTitle"              => $this->txt("set")
-                    ]
-                ],
-                "setTitle"              => $this->txt("border_size")
-            ],
-
-            "actions"                => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "actions_position"       => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::POSITION_LEFT  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left")
-                    ],
-                    Tile::POSITION_RIGHT => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right")
-                    ]
-                ],
-                "setTitle"              => $this->txt("position")
-            ],
-            "actions_vertical_align" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::VERTICAL_ALIGN_TOP    => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("vertical_align_top")
-                    ],
-                    Tile::VERTICAL_ALIGN_CENTER => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("vertical_align_center")
-                    ],
-                    Tile::VERTICAL_ALIGN_BOTTOM => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("vertical_align_bottom")
-                    ]
-                ],
-                "setTitle"              => $this->txt("vertical_align")
-            ],
-            "show_actions"           => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_ACTIONS_NONE                        => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_ACTIONS_ONLY_WITH_WRITE_PERMISSIONS => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_only_write_permissions")
-                    ],
-                    Tile::SHOW_ACTIONS_ALWAYS                      => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-
-            "online_status"           => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "show_online_status_icon" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-
-            "favorites"               => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "favorites_disabled_hint" => [
-                self::PROPERTY_CLASS   => ilNonEditableValueGUI::class,
-                self::PROPERTY_VALUE   => $this->txt("disabled_hint"),
-                self::PROPERTY_NOT_ADD => self::srTile()->favorites(self::dic()->user())->enabled(),
-                "setTitle"             => ""
-            ],
-            "show_favorites_icon"     => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ],
-                self::PROPERTY_NOT_ADD  => (!self::srTile()->favorites(self::dic()->user())->enabled())
-            ],
-
             "rating"           => [
                 self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
             ],
@@ -612,257 +329,42 @@ class TileFormGUI extends PropertyFormGUI
                     ]
                 ]
             ],
-
-            "recommendation"               => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "show_recommend_icon"          => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-            "recommend_mail_template_type" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::MAIL_TEMPLATE_SET => [
-                        self::PROPERTY_CLASS    => ilRadioOption::class,
-                        self::PROPERTY_SUBITEMS =>
-                            [
-                                "recommend_mail_template" => [
-                                    self::PROPERTY_CLASS    => ilSelectInputGUI::class,
-                                    self::PROPERTY_REQUIRED => false,
-                                    self::PROPERTY_OPTIONS  => ["" => ""] + array_combine(array_map(function (NotificationInterface $notification) : string {
-                                            return $notification->getName();
-                                        }, self::srTile()->notifications4plugin()->notifications()
-                                            ->getNotifications()), array_map(function (NotificationInterface $notification) : string {
-                                            return $notification->getTitle();
-                                        }, self::srTile()->notifications4plugin()->notifications()
-                                            ->getNotifications())),
-                                    "setTitle"              => self::plugin()->translate("template_selection", NotificationsCtrl::LANG_MODULE)
-                                ]
-                            ],
-                        "setTitle"              => $this->txt("set")
-                    ]
-                ],
-                "setTitle"              => $this->txt("recommend_mail_template")
-            ],
-
-            "learning_progress"               => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "learning_progress_disabled_hint" => [
-                self::PROPERTY_CLASS   => ilNonEditableValueGUI::class,
-                self::PROPERTY_VALUE   => $this->txt("disabled_hint"),
-                self::PROPERTY_NOT_ADD => self::srTile()->ilias()->learningProgress(self::dic()->user())->enabled(),
-                "setTitle"             => ""
-            ],
-            "show_learning_progress"          => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::LEARNING_PROGRESS_NONE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_none")
-                    ],
-                    Tile::LEARNING_PROGRESS_ICON  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_learning_progress_icon")
-                    ],
-                    Tile::LEARNING_PROGRESS_METER => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_learning_progress_meter")
-                    ]
-                ],
-                self::PROPERTY_NOT_ADD  => (!self::srTile()->ilias()->learningProgress(self::dic()->user())->enabled())
-            ],
-            "learning_progress_position"      => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::POSITION_LEFT_TOP     => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left_top")
-                    ],
-                    Tile::POSITION_LEFT_BOTTOM  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left_bottom")
-                    ],
-                    Tile::POSITION_RIGHT_TOP    => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right_top")
-                    ],
-                    Tile::POSITION_RIGHT_BOTTOM => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right_bottom")
-                    ],
-                    Tile::POSITION_ON_THE_ICONS => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_on_the_icons")
-                    ]
-                ],
-                self::PROPERTY_NOT_ADD  => (!self::srTile()->ilias()->learningProgress(self::dic()->user())->enabled())
-            ],
-            "show_learning_progress_legend"   => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ],
-                self::PROPERTY_NOT_ADD  => (!self::srTile()->ilias()->learningProgress(self::dic()->user())->enabled())
-            ],
-            "show_learning_progress_filter"   => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ],
-                self::PROPERTY_NOT_ADD  => (!self::srTile()->ilias()->learningProgress(self::dic()->user())->enabled())
-            ],
-
-            "preconditions"      => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "show_preconditions" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-
-            "certificate"               => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "certificate_hint"          => [
-                self::PROPERTY_CLASS   => ilNonEditableValueGUI::class,
-                self::PROPERTY_VALUE   => $this->txt("disabled_hint"),
-                self::PROPERTY_NOT_ADD => self::srTile()->ilias()->certificates(self::dic()->user(), $this->tile)->enabled(),
-                "setTitle"             => ""
-            ],
-            "show_download_certificate" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ],
-                self::PROPERTY_NOT_ADD  => (!self::srTile()->ilias()->certificates(self::dic()->user(), $this->tile)->enabled())
-            ],
-
-            "language"               => [
-                self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class
-            ],
-            "show_language_flag"     => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::SHOW_FALSE => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_false")
-                    ],
-                    Tile::SHOW_TRUE  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("show_true")
-                    ]
-                ]
-            ],
-            "language_flag_position" => [
-                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => [
-                    Tile::POSITION_LEFT_TOP     => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left_top")
-                    ],
-                    Tile::POSITION_LEFT_BOTTOM  => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_left_bottom")
-                    ],
-                    Tile::POSITION_RIGHT_TOP    => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right_top")
-                    ],
-                    Tile::POSITION_RIGHT_BOTTOM => [
-                        self::PROPERTY_CLASS => ilRadioOption::class,
-                        "setTitle"           => $this->txt("position_right_bottom")
-                    ]
-                ],
-                "setTitle"              => $this->txt("position")
-            ],
-	   "devices"		    =>[
+       "devices"		    =>[
              self::PROPERTY_CLASS => ilFormSectionHeaderGUI::class,
             
-	   ],
+       ],
           "show_tablet"               =>[
               self::PROPERTY_CLASS=>ilCheckboxInputGUI::class,
                 "setTitle"             =>"Tablet"
           ],
          "show_phone"               =>[
               self::PROPERTY_CLASS=>ilCheckboxInputGUI::class,
-                "setTitle"             =>"Phone" 
+                "setTitle"             =>"Phone"
           ],
-	"show_laptop"               =>[
+    "show_laptop"               =>[
               self::PROPERTY_CLASS=>ilCheckboxInputGUI::class,
-                "setTitle"             =>"Laptop" 
+                "setTitle"             =>"Laptop"
           ],
 
         ];
-            /**
-     * Hide Items from srTile 
-     */
-    $this->fields=$this->hideItems();
+
+        $this->fields=$this->hideItems();
     }
     
 
     
-    private function hideItems(){
+    private function hideItems()
+    {
         $items=[
             "object_icon_position",
-            "label_horizontal_align", 
-            "label_vertical_align", 
+            "label_horizontal_align",
+            "label_vertical_align",
             "border", "border_color_type","border_size_type",
-            "actions","actions_position", "actions_vertical_align", 
+            "actions","actions_position", "actions_vertical_align",
             "show_actions" , "online_status",
             "show_online_status_icon","recommendation" ,
             "show_recommend_icon", "recommend_mail_template_type",
-            "learning_progress" , "learning_progress_disabled_hint", 
+            "learning_progress" , "learning_progress_disabled_hint",
             "show_learning_progress" ,"learning_progress_position",
             "show_learning_progress_legend","show_learning_progress_filter" ,
             "preconditions" , "show_preconditions", "certificate",
@@ -870,16 +372,20 @@ class TileFormGUI extends PropertyFormGUI
             "show_language_flag","language_flag_position",
             "image_position","show_image_as_background",
             
+            
         ];
 
 
 
-        if(self::srTile()->config()->getHomeRefId()==$this->tile->getObjRefId()){
-            array_push($items,"image_header","image", "branch_topic","branch","topic");
+        if (self::srTile()->config()->getHomeRefId()==$this->tile->getObjRefId()) {
+            array_push($items, "image_header", "image", "branch_topic", "branch", "topic");
         }
         
-        foreach($items as $item){
+        foreach ($items as $item) {
             unset($this->fields[$item]);
+        }
+        if (self::srTile()->config()->getHomeRefId()!=$this->tile->getObjRefId()) {
+            unset($this->fields["background_image"]);
         }
 
 
@@ -981,6 +487,28 @@ class TileFormGUI extends PropertyFormGUI
                 Items::setter($this->tile, $key, $file_name);
 
                 $this->tile->_getImageDominantColor();
+                break;
+            case "background_image":
+                if (!self::dic()->upload()->hasBeenProcessed()) {
+                    self::dic()->upload()->process();
+                }
+
+                /** @var UploadResult $result */
+                $result = array_pop(self::dic()->upload()->getResults());
+                if ($this->getInput("image_delete") || $result->getSize() > 0) {
+                    $this->tile->applyNewBackgroundImage("");
+                }
+                if (intval($result->getSize()) === 0) {
+                    $logger=self::dic()->logger()->root();
+                    $logger->info("image Not found...");
+                    break;
+                }
+
+                $file_name = "background_image." . pathinfo($result->getName(), PATHINFO_EXTENSION);
+
+                self::dic()->upload()->moveOneFileTo($result, $this->tile->getBackgroundImagePathAsRelative(false), Location::WEB, $file_name, true);
+
+                Items::setter($this->tile, $key, $file_name);
                 break;
 
             default:

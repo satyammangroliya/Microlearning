@@ -31,14 +31,7 @@
 .tiles[data-view="2"] .tile .card .card_title {
   min-height: unset;
 }
-.tile {
-  /* clear: none !important;
-  float: none !important;
-  margin: 0 !important;
-  padding: 0 !important; */
-}
 .tile .card {
-  /* border: 0 solid transparent; */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -59,20 +52,15 @@
   cursor: default;
 }
 .tile .card .card_top .tile_image_container {
-  /*bottom:-5px;*/
   left: 0;
   position: absolute;
   right: 0;
- /* top: 0;*/
 }
 .tile .card .card_top .tile_image_container .tile_image {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 200px;
-/*  width: 80%;*/
-  /*margin: 20px;
-  border: 1px solid black;*/
 }
 .tile .card .card_top .tile_object_icon > img {
   height: 32px;
@@ -152,11 +140,7 @@
 .tile .card .card_bottom .card_title {
   color: inherit;
   cursor: pointer;
-  color:#F39200;
-/*  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  font-size: inherit;*/
+  color:rgb(1,74,148);
   line-height: 1.2em;
   min-height: 50px;
   overflow: hidden;
@@ -164,6 +148,10 @@
   text-decoration: none;
   text-overflow: ellipsis;
   word-break: break-word;
+  font-weight: bold;
+}
+.tile .card .card_bottom a.card_title:hover,.tile .card .card_bottom a.card_title:focus {
+  color: rgb(232,99,11);
 }
 .tile .card .card_bottom .card_title:not([href]) {
   cursor: default;
@@ -279,7 +267,7 @@
   align-self: flex-end;
 }
 .tile .badge {
-  color: #F39100;
+  color: rgb(232,99,11);
   background-color: transparent;
  /* border: 1px solid currentColor;*/
 }
@@ -312,22 +300,18 @@ author: jephte.abijuru@minervis.com
 .ls_counter{
   position: absolute;
   margin-top: 3px;
-  color: #F39100;
+  color: rgb(1,74,148);
+  font-weight: bold;
+}
+a .ls_counter:hover, a .ls_counter:focus{
+  color: rgb(232,99,11);
 }
 
-.devices{
-            
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-	    
-	    margin: 15px;
-
-}
-
-.devices img{
-            width: 30px;
-            height: 30px;
+.devices{     
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px;
 }
 
 div .card_title{
@@ -345,7 +329,7 @@ div .card_title{
 }
 
 .card_icons .badge{
-color: #F39100 !important;
+color: rgb(232,99,11) !important;
 font-size:10px;
 }
 .badge{
@@ -360,39 +344,6 @@ background-color:none !important;
   color: black;
 }
 
-
-a#il_mhead_t_focus{
-  /*display:none;*/
-}
-
-#standard_object_header{
-  display:none;
-}
-
-.breadcrumb.hidden-print, 
-div[id^='dropzone_'], 
-#ilTopBar,
-.ilMainHeader.ilTopFixed.hidden-print,
-.media.il_HeaderInner,
-.ilMainMenu.ilTopFixed.hidden-print{
-  display: none !important;
-  cursor: default;
-}
-#filterBlock{
-  display: none;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 250px;
-}
-.ilMainHeader{
-  /* background-color: #A1DAF8 !important; */
-  border-bottom: 0 !important;
-}
-/* .lsHeader{
-  background-color: #d4edfc !important;
-} */
-
 #ilLSTopNav .collapsing {
   position: relative;
   height: 0;
@@ -404,7 +355,6 @@ div[id^='dropzone_'],
   transition-duration: 0.35s;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
-  /* background-color: white; */
 }
 
 
@@ -412,9 +362,12 @@ div[id^='dropzone_'],
 #ilLSTopNav .navbar-nav > li > a,
 #ilLSMainMenuEntries .btn.btn-default{
   background-color: transparent !important;
-  color: #3c3c3c !important; /*Grau 1*/
+  color: rgb(1,74,148); 
   border-color: transparent !important;
   font-weight: 500;
+}
+#ilLSTopNav .navbar-nav > li > a:hover, #ilLSTopNav .navbar-nav > li > a:focus{
+  color: rgb(232,99,11);
 }
 #ilLSMainMenuEntries .btn.btn-default{
   background-color: transparent !important;
@@ -450,9 +403,6 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer{
 #ilLSMainMenuEntries button.btn.btn-default.dropdown-toggle{
   margin-top: 10px;
 }
-.ilLSMainMenu .ilContainerWidth{
-  /* padding: 0 0; */
-}
 
 .header_image{
   height: 100%;
@@ -480,9 +430,7 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer{
 	padding-left: 200px;
 }
 
-.ilMainHeader{
-  height: unset !important;
-}
+
 .right_header{
   float: right;
 }
@@ -495,18 +443,13 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer{
 #ilLSMainMenuEntries .btn-default:active.focus, 
 #ilLSMainMenuEntries .btn-default.active.focus, 
 #ilLSMainMenuEntries .open > .dropdown-toggle.btn-default.focus {
-	/* color: #557196 !important;
-	background-color: #d3d3d3 !important;
-  border-color: #909090 !important; */
   font-weight: 700;
 }
 
-.ilUserHidden{
+.togo-hidden{
   display: none;
 }
-.ilFixedTopSpacerBarOnly {
-	/* padding-top: 0px; */
-}
+
 div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacekeeper_padding{
   padding-top: 3px !important;
 }
@@ -518,10 +461,7 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacek
   .right_header{
     float: right;
   }
-  .header_image_container{
-   /* height: 100px; */
-    /* width: 200px; */
-  }
+
   .header_image_container.horizontal-space.before-go{
     width: 40px;
     height: 1px;
@@ -637,22 +577,37 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacek
   }
 
 }
-a.ilTreeView #ilSideBarIcon{
-  top: 189px;
+#imgtree{
+  display: none;
 }
 
 /*BGN Style issues*/
-.ilMainHeader> header{
-  background: unset !important;
-}
 .customHeaderContainer{
   position: relative !important;
   top: 11px !important;
 }
 
-#ilSideBarIcon{
-  left:-30px !important;
+.device.laptop{
+  background-image: url('../templates/images/devices/laptop.svg');
 }
-.ilLeftNav{
-  top: 190px !important;
+.device.mobile{
+  background-image: url('../templates/images/devices/smartphone.svg');
 }
+.device.tablet{
+  background-image: url('../templates/images/devices/tablet.svg');
+}
+.device{
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  text-align: center;
+}
+.device.disabled{
+  filter: invert(70%);
+}
+.header-background img{
+  max-width: 100%;
+  max-height: 100%;
+}
+

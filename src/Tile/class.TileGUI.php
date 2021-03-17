@@ -13,6 +13,7 @@ use ilToGoUIHookGUI;
 
 use srag\Plugins\SrTile\Collection\Collection;
 use srag\Plugins\SrTile\Collection\Filter;
+
 /**
  * Class TileGUI
  *
@@ -24,7 +25,6 @@ use srag\Plugins\SrTile\Collection\Filter;
  */
 class TileGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -61,7 +61,6 @@ class TileGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -74,13 +73,9 @@ class TileGUI
 
         if (!self::srTile()->access()->hasWriteAccess($this->tile->getObjRefId())) {
             //die();
-            
         }
 
         self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_REF_ID);
-        //self::dic()->ctrl()->saveParameter($this, self::GET_FILTER_ITEM);
-        //self::dic()->ctrl()->saveParameter($this, self::GET_FILTER_BY);
-
 
         $this->setTabs();
 
@@ -102,7 +97,7 @@ class TileGUI
                     case self::CMD_UPDATE_TILE:
                     case self::CMD_SORT_TOPIC:
                     case self::CMD_SORT_BRANCH:
-                    case self::CMD_FILTER;
+                    case self::CMD_FILTER:
                         $this->{$cmd}();
                         break;
 
@@ -119,31 +114,23 @@ class TileGUI
      */
     public static function addTabs(int $obj_ref_id)/*:void*/
     {
-        
         self::dic()->ctrl()->setParameterByClass(self::class, self::GET_PARAM_REF_ID, $obj_ref_id);
-        
-
-
-        
-        if(self::srTile()->tiles()->isParentAContainer($obj_ref_id)|| self::srTile()->config()->getHomeRefId()==$obj_ref_id){
+        if (self::srTile()->tiles()->isParentAContainer($obj_ref_id)|| self::srTile()->config()->getHomeRefId()==$obj_ref_id) {
             self::dic()->tabs()->addTab(self::TAB_TILE, ilToGoPlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
                 ilUIPluginRouterGUI::class,
                 self::class
-            ], self::CMD_EDIT_TILE));  
+            ], self::CMD_EDIT_TILE));
 
-            if (!self::srTile()->access()->hasWriteAccess($obj_ref_id)){
+            if (!self::srTile()->access()->hasWriteAccess($obj_ref_id)) {
                 self::dic()->tabs()->clearTabs();
             }
         }
-        
-       
-
     }
 
-    public static function addFilterItem(string $item){
+    public static function addFilterItem(string $item)
+    {
         self::dic()->ctrl()->setParameterByClass(self::class, self::GET_FILTER_ITEM, $item);
         self::dic()->ctrl()->saveParameterByClass(self::class, self::GET_FILTER_ITEM);
-
     }
 
 
@@ -168,8 +155,6 @@ class TileGUI
             self::class
         ], self::CMD_EDIT_TILE));
 
-      //  self::dic()->tabs()->addNonTabbedLink(self::TAB_SORT, "Nach Branch", self::dic()->ctrl()->getLinkTarget($this, self::CMD_SORT_BRANCH));
-
         ObjectLinksGUI::addTabs();
     }
 
@@ -191,11 +176,7 @@ class TileGUI
      *
      */
     protected function backToObject()/*: void*/
-
     {
-        
-
-
         self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
     }
 
@@ -257,34 +238,28 @@ class TileGUI
      */
     protected function sortTopic()/*: void*/
     {
-
-      //self::srTile()->collections(self::dic()->user())->setSortCriterion(Collection::SORT_BY_TOPIC);
-      self::srTile()->collections(self::dic()->user())->sortBy($this->tile->getObjRefId(),Collection::SORT_BY_TOPIC);
-      $this->backToObject();
-
+        self::srTile()->collections(self::dic()->user())->sortBy($this->tile->getObjRefId(), Collection::SORT_BY_TOPIC);
+        $this->backToObject();
     }
 
-   protected function sortBranch()/*: void*/
+    protected function sortBranch()/*: void*/
     {
-       //echo "<script type='text/javascript'>". "SortTOpic".  "</script>";
-       //self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
-      self::srTile()->collections(self::dic()->user())->sortBy($this->tile->getObjRefId(),Collection::SORT_BY_BRANCH);
-      $this->backToObject();
-
+        self::srTile()->collections(self::dic()->user())->sortBy($this->tile->getObjRefId(), Collection::SORT_BY_BRANCH);
+        $this->backToObject();
     }
 
-    protected function filter(){
-       
+    protected function filter()
+    {
         $item_type=filter_input(INPUT_GET, self::GET_FILTER_BY);
         $item_name=filter_input(INPUT_GET, self::GET_FILTER_ITEM);
         $item_name=urldecode($item_name);
-        if($item_type==null||$item_type=="" ||$item_name==null||$item_name==""){
+        if ($item_type==null||$item_type=="" ||$item_name==null||$item_name=="") {
             $item_type="all";
         }
 
         //check wether we have items with  this particular item_name
-        if ($item_type!="all"){
-            $collection=self::srTile()->collections(self::dic()->user()); 
+        if ($item_type!="all") {
+            $collection=self::srTile()->collections(self::dic()->user());
             $items=$item_type=="branch"?$collection->getBranches():$collection->getTopics();
             //TODO
         }
@@ -293,10 +268,9 @@ class TileGUI
         $user_id=self::dic()->user()->getId();
 
         $filter=Filter::where(["user_id"=>$user_id])->first();
-        if($filter===null){
+        if ($filter===null) {
             $filter=Filter();
             $filter->setUserId($user_id);
-            
         }
         $filter->setItemType($item_type);
         $filter->setItemName($item_name);
@@ -306,5 +280,4 @@ class TileGUI
 
         self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
     }
-
 }

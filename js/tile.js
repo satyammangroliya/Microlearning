@@ -5,7 +5,6 @@ $(document).ready(function () {
         heights.push($(this).heights);
     });
     var largestTitle=Math.max(...heights);
-    console.log(heights);
     $(".card_title").css("height", largestTitle);
 
 });

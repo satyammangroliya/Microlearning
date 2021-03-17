@@ -19,7 +19,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class ObjectLink extends ActiveRecord
 {
-
     use DICTrait;
     use SrTileTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_obln";

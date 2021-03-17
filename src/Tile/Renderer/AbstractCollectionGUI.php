@@ -7,17 +7,12 @@ use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
 use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\LearningProgress\LearningProgressFilterGUI;
-use srag\Plugins\SrTile\LearningProgress\LearningProgressLegendGUI;
 use srag\Plugins\SrTile\Tile\Tile;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 use srag\Plugins\SrTile\Tile\TileGUI;
-use srag\Plugins\SrTile\Collection\Collection;
 use srag\Plugins\SrTile\Config\ConfigFormGUI;
-use srag\Plugins\SrTile\Collection\Repository;
 
 use ilGroupedListGUI;
-
 
 /**
  * Class AbstractCollectionGUI
@@ -25,11 +20,10 @@ use ilGroupedListGUI;
  * @package srag\Plugins\SrTile\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch> * 
+ * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch> *
  */
 abstract class AbstractCollectionGUI implements CollectionGUIInterface
 {
-
     use SrTileTrait;
     use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -67,13 +61,11 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     public function render() : string
     {
-        
         $this->initJS();
 
         $collection_html = "";
 
         if (count($this->collection->getTiles()) > 0) {
-
             $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
             
             self::dic()->ui()->mainTemplate()->addCss(self::plugin()->directory() . "/css/togo.css");
@@ -82,8 +74,8 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
             self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, intval(ilToGoUIHookGUI::filterRefId()));
 
-            $tpl->setVariableEscaped("HEADER",self::plugin()->directory() ."/templates/images/headerImage.png");
-            $tpl->setVariableEscaped("HEADER_RESPONSIVE",self::plugin()->directory() ."/templates/images/headerImage.png");
+            $tpl->setVariableEscaped("HEADER", self::plugin()->directory() ."/templates/images/headerImage.png");
+            $tpl->setVariableEscaped("HEADER_RESPONSIVE", self::plugin()->directory() ."/templates/images/headerImage.png");
             
             
 
@@ -99,76 +91,56 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             }, $this->collection->getTiles()));
 
             $tpl->setVariable("TILES", $tile_html);
-            $tpl->setVariable("TOPICS",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())));
-            $tpl->setVariable("BRANCHES",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
+            $tpl->setVariable("TOPICS", self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())));
+            $tpl->setVariable("BRANCHES", self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
             
 
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
-
-            /**
-             * Bag Image was cancelled
-             */
-            $tpl_ls_mainmenu=self::plugin()->template("MainMenu/header_menu.html");
-            $tpl_ls_mainmenu->setVariable("LOGO_IMAGE",self::plugin()->directory() ."/templates/images/HeaderIcon.png");
-            $tpl_ls_mainmenu->setVariable("TOGO_IMAGE",self::plugin()->directory() ."/templates/images/BGN_togo.png");
-            $bag_image_path=ConfigFormGUI::getImagePathWithCheck();
-            if(!empty($bag_image_path)){
-                $tpl_ls_mainmenu->setVariable("BAG_IMAGE","./".$bag_image_path);
-            }else{
-                $tpl_ls_mainmenu->setVariable("BAG_IMAGE",self::plugin()->directory() ."/templates/images/Rucksack.jpg");
+            if ($parent_tile) {
+                $background_image=$parent_tile->getBackgroundImagePathWithCheck();
+                if ($background_image) {
+                    $tpl->setVariable("BACKGROUND_IMAGE", "./".$background_image);
+                }
             }
+            
             $colors=self::srTile()->config()->getValue(ConfigFormGUI::BACK_COLOR);
-            if (!empty($colors)){
-                $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#".$colors);
-            }else{
-                $tpl_ls_mainmenu->setVariable("BACK_COLOR", "#EAF3F2"); 
+            if (!empty($colors)) {
+                $tpl->setVariable("BACK_COLOR", "#".$colors);
+            } else {
+                $tpl->setVariable("BACK_COLOR", "#FFFFFF");
             }
             
             
 
             $umfrage_obj_ref_id=self::srTile()->config()->getUmfrageObjRefId();
-            $umfrage_link="Umfrage";
-            if($umfrage_obj_ref_id){
+            $umfrage_link="";
+            if ($umfrage_obj_ref_id) {
                 $umfrage_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($umfrage_obj_ref_id))->_getAdvancedLink();
-                $umfrage_link=str_replace("href=","",$umfrage_link);
-                $umfrage_link=str_replace('"',"",$umfrage_link);
+                $umfrage_link=str_replace("href=", "", $umfrage_link);
+                $umfrage_link=str_replace('"', "", $umfrage_link);
+            } else {
+                $umfrage_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6137.html";
             }
-            $umfrage_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6137.html";
-            $tpl_ls_mainmenu->setVariable("LS_UMFRAGE",self::output()->getHTML($this->generateLinks("Umfrage",$umfrage_bgn_link)));
+            
+            $tpl->setVariable("LS_UMFRAGE", self::output()->getHTML($this->generateLinks("Umfrage", $umfrage_link)));
 
             $was_sind_obj_ref_id=self::srTile()->config()->getWasSindObjRefId();
-            $was_sind_link="Was sind die Lern-Snacks?";
-            if($was_sind_obj_ref_id){
-                $was_sind_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
-                $was_sind_link=str_replace("href=","",$was_sind_link);
-                $was_sind_link=str_replace('"',"",$was_sind_link);
+            $was_sind_lernsnacks_bgn_link="Was sind die Lern-Snacks?";
+            if ($was_sind_obj_ref_id) {
+                $was_sind_lernsnacks_bgn_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
+                $was_sind_lernsnacks_bgn_link=str_replace("href=", "", $was_sind_lernsnacks_bgn_link);
+                $was_sind_lernsnacks_bgn_link=str_replace('"', "", $was_sind_lernsnacks_bgn_link);
+            } else {
+                $was_sind_lernsnacks_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6136.html";
             }
            
 
-            $was_sind_lernsnacks_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6136.html";
-            $tpl_ls_mainmenu->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lern-Snacks?",$was_sind_lernsnacks_bgn_link)));
-            $tpl_ls_mainmenu->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Angebot",$home_link)));
-            // $tpl_ls_mainmenu->setVariable("LS_FILTER_TOPIC",self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())) );
-            // $tpl_ls_mainmenu->setVariable("LS_FILTER_BRANCH",self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
-            $tpl_ls_mainmenu->setVariable("BRANCH_SEL", $this->getBranchSelection());
-            $tpl_ls_mainmenu->setVariable("TOPIC_SEL", $this->getTopicSelection());
-
-            $tpl->setVariable("LS_MAINMENU",self::output()->getHTML($tpl_ls_mainmenu));
-
-
-
             
-
-
-            if (!self::dic()->ctrl()->isAsynch() && $parent_tile->getShowLearningProgressFilter() === Tile::SHOW_TRUE) {
-                LearningProgressFilterGUI::initToolbar(intval(ilToGoUIHookGUI::filterRefId()));
-            }
-
-            if (!self::dic()->ctrl()->isAsynch() && $parent_tile->getShowLearningProgressLegend() === Tile::SHOW_TRUE) {
-                $tpl->setVariable("LP_LEGEND", self::output()->getHTML(new LearningProgressLegendGUI()));
-            }
-
+            $tpl->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lern-Snacks?", $was_sind_lernsnacks_bgn_link)));
+            $tpl->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Angebot", $home_link)));
+            $tpl->setVariable("BRANCH_SEL", $this->getBranchSelection());
+            $tpl->setVariable("TOPIC_SEL", $this->getTopicSelection());
             $collection_html = self::output()->getHTML($tpl);
 
             $this->hideOriginalRowsOfTiles();
@@ -231,16 +203,18 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         self::dic()->ui()->mainTemplate()->addInlineCss($css);
     }
 
-    public function generateLinks(string $label, string $obj_link){
+    public function generateLinks(string $label, string $obj_link)
+    {
         //cut the href out
         
         $ui=self::dic()->ui()->factory();
         $renderer=self::dic()->ui()->renderer();
-        return $renderer->render($ui->link()->standard($label,$obj_link));
+        return $renderer->render($ui->link()->standard($label, $obj_link));
     }
 
 
-    public function renderTopicDropdown($all_topics=array()){
+    public function renderTopicDropdown($all_topics=array())
+    {
         $init_topics=array(
             'Lärmschutz',
             'Leitern und Tritte',
@@ -261,26 +235,24 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
 
 
-        foreach ($all_topics as $topic){
+        foreach ($all_topics as $topic) {
             $topics[]=$ui->button()->shy($topic, $this->editLink($item_link, $topic));
-            
         }
 
-        if(count($all_topics)==0){
+        if (count($all_topics)==0) {
             $actions=array("Kein Thema"=>"#");
             $labels="Kein Thema";
-            $topics[]=$ui->viewControl()->mode($actions,$labels);
-
+            $topics[]=$ui->viewControl()->mode($actions, $labels);
         }
 
         return $renderer->render($ui->dropdown()->standard($topics)->withLabel("Nach Thema"));
-
     }
     /**
-     * @deprecated 
+     * @deprecated
      */
 
-    public function renderBranchDropdown($all_branches=array()){
+    public function renderBranchDropdown($all_branches=array())
+    {
 
         /**
          * Branches have moved to the tiles table and the initialzationmis not necessary
@@ -306,41 +278,37 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         
 
 
-        foreach ($all_branches as $branch){
+        foreach ($all_branches as $branch) {
             $branches[]=$ui->button()->shy($branch, $this->editLink($item_link, $branch, $item_type="branch"));
-            
         }
         
-        if(count($all_branches)==0){
+        if (count($all_branches)==0) {
             $actions=array("Keine Branche"=>"#");
             $labels="Keine Branche";
-            $branches[]=$ui->viewControl()->mode($actions,$labels);
-
-
+            $branches[]=$ui->viewControl()->mode($actions, $labels);
         }
         return $renderer->render($ui->dropdown()->standard($branches)->withLabel("Nach Branche"));
-
     }
 
 
-    private function editLink($link, $filter_item, $item_type="topic"){
+    private function editLink($link, $filter_item, $item_type="topic")
+    {
         $filter_item=urlencode($filter_item);
 
-        self::dic()->ctrl()->saveParameterByClass(TileGUI::class,TileGUI::GET_FILTER_BY);
-        self::dic()->ctrl()->saveParameterByClass(TileGUI::class,TileGUI::GET_FILTER_ITEM);
-        self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY,$item_type);
-        self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM,$filter_item);
+        self::dic()->ctrl()->saveParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY);
+        self::dic()->ctrl()->saveParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM);
+        self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY, $item_type);
+        self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM, $filter_item);
         $item_link=self::dic()->ctrl()->getLinkTargetByClass([
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_FILTER);
 
         return $item_link;
-
     }
 
-    private function getBranchSelection(){
-
+    private function getBranchSelection()
+    {
         $init_branches=array(
             'Gastgewerbe',
             'Backgewerbe',
@@ -352,10 +320,11 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         $coll=self::srTile()->collections(self::dic()->user());
         $branches=$coll->getBranches();
 
-       $branch_menu=$this->renderSelection("branch",$branches);
-       return $branch_menu;
+        $branch_menu=$this->renderSelection("branch", $branches);
+        return $branch_menu;
     }
-    private function getTopicSelection(){
+    private function getTopicSelection()
+    {
         $init_topics=array(
             'Lärmschutz',
             'Leitern und Tritte',
@@ -369,23 +338,21 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         $coll=self::srTile()->collections(self::dic()->user());
         $topics=$coll->getTopics();
 
-       $topics_menu=$this->renderSelection("topic",$topics);
-       return $topics_menu;
+        $topics_menu=$this->renderSelection("topic", $topics);
+        return $topics_menu;
     }
 
-    private function renderSelection($sel_name="", $items=null){
+    private function renderSelection($sel_name="", $items=null)
+    {
         $gr_list=new ilGroupedListGUI();
         $gr_list->setAsDropDown(true);
-        if($items){
-            foreach($items as $item){
-                
-                $item_link=$this->editLink(null,$item,$item_type=$sel_name);
+        if ($items) {
+            foreach ($items as $item) {
+                $item_link=$this->editLink(null, $item, $item_type=$sel_name);
                 $gr_list->addEntry($item, $item_link);
             }
             return $gr_list->getHTML();
         }
         return "";
     }
-
-
 }

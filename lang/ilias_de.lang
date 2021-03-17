@@ -86,6 +86,7 @@ tile_horizontal_align_center#:#Mitte
 tile_horizontal_align_left#:#Links
 tile_horizontal_align_right#:#Rechts
 tile_image#:#Bild
+tile_background_image#:#Hintergrundbild
 tile_label#:#Beschriftung
 tile_language#:#Sprache
 tile_learning_progress#:#Lernfortschritt

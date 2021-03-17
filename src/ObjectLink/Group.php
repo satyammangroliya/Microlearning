@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class Group extends ActiveRecord
 {
-
     use DICTrait;
     use SrTileTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_oblngr";

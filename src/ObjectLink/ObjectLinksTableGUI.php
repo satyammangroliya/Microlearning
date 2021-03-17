@@ -18,7 +18,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class ObjectLinksTableGUI extends TableGUI
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = ObjectLinksGUI::LANG_MODULE;

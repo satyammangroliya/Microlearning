@@ -16,7 +16,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class LearningProgressLegendGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -27,7 +26,6 @@ class LearningProgressLegendGUI
      */
     public function __construct()
     {
-
     }
 
 

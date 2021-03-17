@@ -21,7 +21,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class RatingGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -45,7 +44,6 @@ class RatingGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -93,7 +91,6 @@ class RatingGUI
      */
     protected function setTabs()/*:void*/
     {
-
     }
 
 

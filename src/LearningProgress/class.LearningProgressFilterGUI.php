@@ -24,7 +24,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class LearningProgressFilterGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -42,7 +41,6 @@ class LearningProgressFilterGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -113,7 +111,6 @@ class LearningProgressFilterGUI
      */
     protected function setTabs()/*:void*/
     {
-
     }
 
 

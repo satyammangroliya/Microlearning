@@ -21,7 +21,6 @@ use ilUIPluginRouterGUI;
  */
 class TemplateConfigGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -43,7 +42,6 @@ class TemplateConfigGUI
      */
     public function __construct()
     {
-
     }
 
 

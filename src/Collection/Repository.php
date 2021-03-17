@@ -18,7 +18,6 @@ use srag\Plugins\SrTile\Collection\Filter;
  */
 final class Repository
 {
-
     use SrTileTrait;
     use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -105,7 +104,7 @@ final class Repository
         // self::dic()->database()->dropTable(Branch::TABLE_NAME, false);
         // self::dic()->database()->dropTable(ArBranch::TABLE_NAME, false);
         // self::dic()->database()->dropTable(ArTopic::TABLE_NAME, false);
-         self::dic()->database()->dropTable(Filter::TABLE_NAME, false);
+        self::dic()->database()->dropTable(Filter::TABLE_NAME, false);
     }
 
 
@@ -229,14 +228,15 @@ final class Repository
         // $this->initialiseTopics();
         // ArTopic::updateDB();
         // ArBranch::updateDB();
-         Filter::updateDB();
+        Filter::updateDB();
     }
 
     /**
-     * 
+     *
      */
-    protected function initialiseTopics(){/*:void*/
-        foreach(Topic::get() as $topic){
+    protected function initialiseTopics()
+    {/*:void*/
+        foreach (Topic::get() as $topic) {
             $this->deleteTopic($topic);
         }
         $init_topics=array(
@@ -251,20 +251,19 @@ final class Repository
         );
 
 
-        foreach ($init_topics as $topic_name){
+        foreach ($init_topics as $topic_name) {
             $topic_query=$this->getTopic($topic_name);
-            if($topic_query===null){
+            if ($topic_query===null) {
                 $topic=new Topic();
                 $topic->setTopicName($topic_name);
                 $this->storeTopic($topic);
             }
-            
         }
-
     }
 
-    protected function initialiseBranches(){/*:void*/
-        foreach(Branch::get() as $branch){
+    protected function initialiseBranches()
+    {/*:void*/
+        foreach (Branch::get() as $branch) {
             $this->deleteBranch($branch);
         }
         $init_branches=array(
@@ -276,29 +275,25 @@ final class Repository
             'Getränkeindustrie'
         );
 
-        foreach ($init_branches as $branch_name){
+        foreach ($init_branches as $branch_name) {
             //check if the element is new
             $branch_query=$this->getBranch($branch_name);
-            if ($branch_query===null){
+            if ($branch_query===null) {
                 $branch=new Branch();
                 $branch->setBranchName($branch_name);
                 $this->storeBranch($branch);
-
             }
-            
         }
-
     }
-    public static function getFilter(){
-
+    public static function getFilter()
+    {
         $user_id=self::dic()->user()->getId();
         $filter= Filter::where(['user_id'=>$user_id])->first();
-        if($filter==null){
+        if ($filter==null) {
             $filter=new Filter();
             $filter->setUserId($user_id);
             $filter->setFlag(0);
             $filter->save();
-            
         }
         return $filter;
     }
@@ -320,31 +315,30 @@ final class Repository
 
             $collection->setUserId($this->user->getId());
 
-	    $collection->setCollectionId();
+            $collection->setCollectionId();
 
-	    $collection->setSortCriterion($criterium);
+            $collection->setSortCriterion($criterium);
 
             $this->storeCollection($collection);
-        }else{
+        } else {
+            $collection->setSortCriterion($criterium);
 
-	    $collection->setSortCriterion($criterium);
-
-	    $this->updateCollection($collection);
+            $this->updateCollection($collection);
         }
     }
 
 
-   /**
-    * @param Collection $collection
-    */
+    /**
+     * @param Collection $collection
+     */
     protected function updateCollection(Collection $collection)/*:void*/
     {
         $collection->update();
     }
 
-   /**
-    * @param Filter $filter
-    */
+    /**
+     * @param Filter $filter
+     */
     protected function updateFilter(Filter $filter)/*:void*/
     {
         $filter->update();
@@ -426,7 +420,7 @@ final class Repository
     // protected function storeArTopic(ArTopic $ar_topic)/*:void*/
     // {
     //     $ar_topic->store();
-    // } 
+    // }
 
     // /**
     //  * @param ArBranch $ar_branch
@@ -436,38 +430,42 @@ final class Repository
     //     $ar_branch->store();
     // }
 
-    public function getTopics(){
+    public function getTopics()
+    {
         $all_tiles=Tile::get();
         $all_topics=[];
-        foreach ($all_tiles as $tile){
+        foreach ($all_tiles as $tile) {
             $topic=$tile->getTopic();
-            //check if the topic contains 
-            if ($topic==null || $topic=="") continue;
-            array_push($all_topics,$topic);
+            //check if the topic contains
+            if ($topic==null || $topic=="") {
+                continue;
+            }
+            array_push($all_topics, $topic);
         }
 
         
         return array_unique($all_topics);
     }
 
-    public function getBranches(){
+    public function getBranches()
+    {
         $all_tiles=Tile::get();
         $all_branches=[];
-        foreach ($all_tiles as $tile){
+        foreach ($all_tiles as $tile) {
             $branches=$tile->getBranch();
             
-            if ($branches==null || $branches=="") continue;
-            $extended_branches=explode(",",$branches);
-            foreach($extended_branches as $ext_branch){
-                array_push($all_branches,$ext_branch);
+            if ($branches==null || $branches=="") {
+                continue;
             }
-            
+            $extended_branches=explode(",", $branches);
+            foreach ($extended_branches as $ext_branch) {
+                array_push($all_branches, $ext_branch);
+            }
         }
         //remove empty words
         //$this->debug($all_branches);
 
         return array_unique($all_branches);
-
     }
 
     
@@ -476,10 +474,11 @@ final class Repository
 
     
 
-    public static function getTileIds( $item_type="all", $item_name=""){
+    public static function getTileIds($item_type="all", $item_name="")
+    {
         $ids=[];
         $query_result=[];
-        switch($item_type){
+        switch ($item_type) {
             case "topic":
                 $query_result=Tile::where(['topic'=>$item_name])->get();
                 break;
@@ -490,15 +489,14 @@ final class Repository
                 $query_result=Tile::get();
         }
        
-       foreach($query_result as $result){
-           
-           $ids[]=$result->getTileId();
-       }
+        foreach ($query_result as $result) {
+            $ids[]=$result->getTileId();
+        }
         return $ids;
     }
 
-    public function setFilter(string $item_type, string $item_name){
-        
+    public function setFilter(string $item_type, string $item_name)
+    {
     }
 
 
@@ -519,19 +517,16 @@ final class Repository
 
 
 
-    public function debug($input){
+    public function debug($input)
+    {
         $log="<script type='text/javascript'> console.log('";
-        if (is_array($input)){
-            foreach($input as $item){
+        if (is_array($input)) {
+            foreach ($input as $item) {
                 $log.=$item."\n";
             }
-        }else{
+        } else {
             $log.=$item;
         }
         return $log."')</script>";
-
     }
-    
-    
 }
-

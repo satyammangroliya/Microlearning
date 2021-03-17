@@ -22,7 +22,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class OnlineStatusGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -46,7 +45,6 @@ class OnlineStatusGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -98,7 +96,6 @@ class OnlineStatusGUI
      */
     protected function setTabs()/*:void*/
     {
-
     }
 
 

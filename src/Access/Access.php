@@ -20,7 +20,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Access
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -66,7 +65,6 @@ final class Access
      */
     private function __construct()
     {
-
     }
 
 

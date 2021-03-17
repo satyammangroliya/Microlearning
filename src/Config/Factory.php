@@ -16,7 +16,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Factory extends AbstractFactory
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**

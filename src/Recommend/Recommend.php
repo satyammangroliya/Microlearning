@@ -17,7 +17,6 @@ use Throwable;
  */
 class Recommend
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;

@@ -6,6 +6,7 @@ use srag\DIC\SrTile\DICTrait;
 use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
 use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
+
 //use ilPropertyFormGUI;
 
 /**
@@ -17,7 +18,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class ilToGoConfigGUI extends ilPluginConfigGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -32,7 +32,6 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -104,7 +103,8 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
         self::output()->output($form);
     }
 
-    private function selectObj(){
+    private function selectObj()
+    {
         // link input
         include_once 'Services/Form/classes/class.ilLinkInputGUI.php';
         $ac = new ilLinkInputGUI($this->lng->txt('cont_link'), 'link');
@@ -115,7 +115,6 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
             $this->getPageConfig()->getIntLinkHelpDefaultType(),
             $this->getPageConfig()->getIntLinkHelpDefaultId()
         );*/
-
     }
 
 

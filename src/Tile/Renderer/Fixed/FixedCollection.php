@@ -33,6 +33,5 @@ class FixedCollection extends AbstractCollection
      */
     protected function initObjRefIds() /*: void*/
     {
-
     }
 }

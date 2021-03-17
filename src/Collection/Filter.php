@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class Filter extends ActiveRecord
 {
-
     use DICTrait;
     use SrTileTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_filter";
@@ -195,6 +194,5 @@ class Filter extends ActiveRecord
     public function setFlag(int $flag)/*: void*/
     {
         $this->flag = $flag;
-    }    
-
+    }
 }

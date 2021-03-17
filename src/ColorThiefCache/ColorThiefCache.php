@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class ColorThiefCache extends ActiveRecord
 {
-
     use DICTrait;
     use SrTileTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_c_t_c";

@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class TemplatesConfigGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -31,7 +30,6 @@ class TemplatesConfigGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -80,7 +78,6 @@ class TemplatesConfigGUI
      */
     protected function setTabs()/*: void*/
     {
-
     }
 
 

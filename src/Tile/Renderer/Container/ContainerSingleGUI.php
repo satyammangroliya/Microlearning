@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Tile\Renderer\AbstractSingleGUI;
  */
 class ContainerSingleGUI extends AbstractSingleGUI
 {
-
     protected static $reset_file_upload_gui = false;
 
 
@@ -49,7 +48,6 @@ class ContainerSingleGUI extends AbstractSingleGUI
         }
 
         if (ilFileUploadUtil::isUploadAllowed($this->tile->getObjRefId())) {
-
             $html = self::output()->getHTML([
                 $html,
                 new ilFileUploadGUI("sr_tile_" . $this->tile->getTileId(), $this->tile->getObjRefId()) // ... and generate new ilFileUploadGUI

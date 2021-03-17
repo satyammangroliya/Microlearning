@@ -11,12 +11,11 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  * Class ilToGoUIHookGUI
  *
  * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * 
+ *
  * @ilCtrl_isCalledBy ilToGoUIHookGUI: ilUIPluginRouterGUI
  */
 class ilToGoUIHookGUI extends ilUIHookPluginGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -76,7 +75,6 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -85,9 +83,7 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
      */
     public function getHTML(/*string*/ $a_comp, /*string*/ $a_part, $a_par = []) : array
     {
-
         if ($this->matchRepository($a_part, $a_par)) {
-
             return [
                 "mode" => self::REPLACE,
                 "html" => self::output()->getHTML(self::srTile()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]))
@@ -95,7 +91,6 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         }
 
         if ($this->matchFavorites($a_part, $a_par)) {
-
             return [
                 "mode" => self::REPLACE,
                 "html" => self::output()->getHTML(self::srTile()->tiles()->renderer()->factory()->newCollectionGUIInstance()->desktop(self::dic()->user()))
@@ -103,7 +98,6 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         }
 
         if ($this->matchRecommendModal($a_part, $a_par)) {
-
             return [
                 "mode" => self::APPEND,
                 "html" => (new RecommendGUI())->getModal()
@@ -111,21 +105,16 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         }
 
         if ($a_par["tpl_id"] === self::ACTIONS_MENU_TEMPLATE && $a_part === self::TEMPLATE_GET) {
-
             if (!empty(filter_input(INPUT_GET, self::GET_RENDER_EDIT_TILE_ACTION))) {
-
                 $html = $a_par["html"];
 
                 $matches = [];
                 preg_match('/id="act_([0-9]+)/', $html, $matches);
                 if (is_array($matches) && count($matches) >= 2) {
-
                     $obj_ref_id = intval($matches[1]);
 
                     if (self::srTile()->tiles()->isObject($obj_ref_id)) {
-
                         if (self::srTile()->access()->hasWriteAccess($obj_ref_id)) {
-
                             self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, $obj_ref_id);
 
                             $actions = [
@@ -133,17 +122,22 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
                             ];
 
                             $actions_html = self::output()->getHTML(array_map(function (array $action) : string {
-                                return '<li>' . self::output()->getHTML(self::dic()->ui()->factory()->link()->standard('<span class="xsmall">' . self::plugin()
+                                return '<li>' . self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(
+                                    '<span class="xsmall">' . self::plugin()
                                             ->translate($action[1], $action[0]) . '</span>',
-                                        self::dic()->ctrl()->getLinkTargetByClass([
+                                    self::dic()->ctrl()->getLinkTargetByClass([
                                             ilUIPluginRouterGUI::class,
                                             $action[2]
-                                        ], $action[3]))) . '</li>';
+                                        ], $action[3])
+                                )) . '</li>';
                             }, $actions));
 
                             $matches = [];
-                            preg_match('/<ul\s+class="dropdown-menu pull-right"\s+role="menu"\s+id="ilAdvSelListTable_.*"\s*>/',
-                                $html, $matches);
+                            preg_match(
+                                '/<ul\s+class="dropdown-menu pull-right"\s+role="menu"\s+id="ilAdvSelListTable_.*"\s*>/',
+                                $html,
+                                $matches
+                            );
                             if (is_array($matches) && count($matches) >= 1) {
                                 $html = str_ireplace($matches[0], $matches[0] . $actions_html, $html);
                             } else {
@@ -169,34 +163,26 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         $obj_ref_id = self::filterRefId();
 
         if ($this->matchToolbar($a_part)) {
-
             if (!self::srTile()->access()->hasWriteAccess($obj_ref_id)) {
-
                 if (self::srTile()->tiles()->getInstanceForObjRefId($obj_ref_id)->getShowObjectTabs() === Tile::SHOW_FALSE) {
                     self::dic()->tabs()->clearTargets();
                     self::dic()->tabs()->clearSubTabs();
-                    
-
                 }
 
                 
 
 
-               return;
+                return;
             }
  
 
 
             if (count(array_filter(self::dic()->tabs()->target, function (array $tab) : bool {
-                    return (strpos($tab["id"], self::TAB_PERM_ID) !== false);
-                })) > 0
+                return (strpos($tab["id"], self::TAB_PERM_ID) !== false);
+            })) > 0
             ) {
-
                 TileGUI::addTabs($obj_ref_id);
-                //self::dic()->tabs()->target[count(self::dic()->tabs()->target) - 1]["cmd"] = [];
             }
-
-
         }
     }
 

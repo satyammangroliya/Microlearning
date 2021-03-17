@@ -1,19 +1,68 @@
 
-{LS_MAINMENU}
-<!-- {TABS} -->
-<!-- {SUBTABS} -->
-<!-- <div id="filterBlock" hidden>
-	<div class="filter_dropdowns" id="topics">{TOPICS}</div>
-	<div class="filter_dropdowns" id="branches">{BRANCHES}</div>
-</div> -->
+<span class="ilFixedTopSpacer"></span>
+<div id="HeaderContainer" class="lsHeader" style="background-color:{BACK_COLOR} !important">
+	<div class="ilLSMainMenu">
+		<div class="container-fluid ilContainerWidth">
+			<div class="row">
+				<nav id="ilLSTopNav" class="navbar navbar-default" role="navigation">
+	
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ilLSMainMenuEntries">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="ilLSMainMenuEntries">
+						<ul class="nav navbar-nav">
+							<li class="dropdown ls_link">{LS_HOME}</li>
+							<li class="dropdown ls_link"><a id="mm_topic_sel_" href="#" class="dropdown-toggle" data-toggle="dropdown">Nach Thema <span class="caret"></span></a> {TOPIC_SEL}
+							</li>
+							<li class="dropdown ls_link"><a id="mm_branch_sel_" href="#" class="dropdown-toggle" data-toggle="dropdown">Nach Branche <span class="caret"></span></a> {BRANCH_SEL}
+							</li>
+							<li class="dropdown ls_link">{LS_WAS_SIND}</li>
+							<li class="dropdown ls_link">{LS_UMFRAGE}</li>
+							
+						</ul>
+					</div><!-- /.navbar-collapse -->
+					<!-- Brand and toggle get grouped for better mobile display -->
+	
+				</nav>
+				<!-- BEGIN top_section --><!-- END top_section -->
+			</div>
+		</div>
+		<div  class="header-background">
+			<img src="{BACKGROUND_IMAGE}">
+		</div>
+	</div>
+</div>
+<script type="text/javascript" >
+	detectUserAdmin();
+	function detectUserAdmin(){
+        if($("#mm_adm").length!=0){
+            return true;
+        }else{
+			$("#ilTab, .breadcrumb").addClass("togo-hidden");
+			//resize the mainskeeper
+			if($("#mainspacekeeper").length!=0){
+				var item="#mainspacekeeper";
+				if($(item)[0].classList==undefined){
+					$(item)[0].classList=[];
+				}
+				$(item)[0].classList.add("mainspacekeeper_padding");
+			}
+
+        }
+        return false;      
+    }
+
+</script>
 <div class="tiles" data-view="{VIEW}">
 	{TILES}
 </div>
-{SORT}
 
-{TEST_LINKS}
-{LP_LEGEND}
-<div hidden><a id="backHome" href="{BACK_HOME_LINK}" ></a></div>
 
 <script>
 	$(document).ready(function () {

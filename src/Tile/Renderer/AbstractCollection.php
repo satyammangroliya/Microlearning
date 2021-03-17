@@ -9,7 +9,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
 
 use srag\Plugins\SrTile\Collection\Repository;
 
-
 /**
  * Class AbstractCollection
  *
@@ -20,7 +19,6 @@ use srag\Plugins\SrTile\Collection\Repository;
  */
 abstract class AbstractCollection implements CollectionInterface
 {
-
     use DICTrait;
     use SrTileTrait;
     /**
@@ -36,13 +34,13 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      *  @var array
      */
-    private  $order_by=array("item_type"=>"all", "item_name"=>"0","flag"=>0);
+    private $order_by=array("item_type"=>"all", "item_name"=>"0","flag"=>0);
 
 
     /**
      *  @var int
      */
-    private  $order=-1;
+    private $order=-1;
 
     /**
      * AbstractCollection constructor
@@ -83,16 +81,16 @@ abstract class AbstractCollection implements CollectionInterface
         $coll=null;
         
         $this->setOrder();
-        if($this->order_by['flag']==1){
+        if ($this->order_by['flag']==1) {
             $ids=[];
             //$this->order_by['item_type']="all";
         
-            $ids=Repository::getTileIds($item_type=$this->order_by['item_type'], $item_name=$this->order_by['item_name']);            
+            $ids=Repository::getTileIds($item_type=$this->order_by['item_type'], $item_name=$this->order_by['item_name']);
             
 
-            foreach($this->tiles as $tile){
+            foreach ($this->tiles as $tile) {
                 $tile_id=$tile->getTileId();
-                if(!in_array($tile_id,$ids)){
+                if (!in_array($tile_id, $ids)) {
                     $this->removeTile($tile_id);
                 }
             }
@@ -102,19 +100,18 @@ abstract class AbstractCollection implements CollectionInterface
         return $this->tiles;
     }
 
-    private function filterItems($order=array("by"=>"topic", "item"=>"all")){
-
+    private function filterItems($order=array("by"=>"topic", "item"=>"all"))
+    {
     }
 
-    public function setOrder(){
+    public function setOrder()
+    {
         $filter_item=Repository::getFilter();
-        if($filter_item===null){
-            
+        if ($filter_item===null) {
             $this->order_by["item_type"]="all";
             $this->order_by["item_name"]="";
             $this->order_by["flag"]=0;
-
-        }else{
+        } else {
             $this->order_by["item_type"]=$filter_item->getItemType();
             $this->order_by["item_name"]=$filter_item->getItemName();
             $this->order_by["flag"]=$filter_item->getFlag();
@@ -122,22 +119,22 @@ abstract class AbstractCollection implements CollectionInterface
         
         $filter_item->setItemType("all");
         $filter_item->save();
-        
     }
-    private function sortTiles($arr,$order){/* order(criterium, order) */
-        switch ($order[1]){
+    private function sortTiles($arr, $order)
+    {/* order(criterium, order) */
+        switch ($order[1]) {
             case "asc":
                 $this->order=1;
                 break;
-            case "desc": 
+            case "desc":
                 $this->order=-1;
         }
-        switch($order[0]){
+        switch ($order[0]) {
             case "branch":
-                usort($this->tiles,array($this,"compareTilesBranch"));
+                usort($this->tiles, array($this,"compareTilesBranch"));
                 break;
             case "topic":
-                usort($this->tiles,array($this,"compareTilesBranch"));
+                usort($this->tiles, array($this,"compareTilesBranch"));
                 break;
             default:
             
@@ -145,11 +142,13 @@ abstract class AbstractCollection implements CollectionInterface
     }
 
 
-    private  function compareTilesThema(Tile $a, Tile $b){
-        return $this->order*strcmp( strtolower($a->_getIlObject()->getTitle()),strtolower($b->_getIlObject()->getTitle()));
+    private function compareTilesThema(Tile $a, Tile $b)
+    {
+        return $this->order*strcmp(strtolower($a->_getIlObject()->getTitle()), strtolower($b->_getIlObject()->getTitle()));
     }
-    private  function compareTilesBranch(Tile $a, Tile $b){
-        return $this->order*strcmp( strtolower($a->getBranch()),strtolower($b->getBranch()));
+    private function compareTilesBranch(Tile $a, Tile $b)
+    {
+        return $this->order*strcmp(strtolower($a->getBranch()), strtolower($b->getBranch()));
     }
 
 
@@ -166,7 +165,6 @@ abstract class AbstractCollection implements CollectionInterface
 
 
         foreach ($this->obj_ref_ids as $obj_ref_id) {
-
             $tile = self::srTile()->tiles()->getInstanceForObjRefId($obj_ref_id);
 
             if (self::srTile()->access()->hasVisibleAccess($tile->getObjRefId())) {
@@ -179,19 +177,20 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      *
      */
-    protected abstract function initObjRefIds() /*: void*/
+    abstract protected function initObjRefIds() /*: void*/
     ;
   
-   private function _sortBy(){
-   }
+    private function _sortBy()
+    {
+    }
 
 
-   private function filterIds($obj_ref_id=null){
-       $ids=[];
-       $tiles=Tile::innerJoin('ui_uihk_srtile_topic', 'topic_name','topic');
-       $ids=array_map(function (Tile $tile){
-           return $tile->getObjRefId();
-       },$tiles);
-   }
-
+    private function filterIds($obj_ref_id=null)
+    {
+        $ids=[];
+        $tiles=Tile::innerJoin('ui_uihk_srtile_topic', 'topic_name', 'topic');
+        $ids=array_map(function (Tile $tile) {
+            return $tile->getObjRefId();
+        }, $tiles);
+    }
 }

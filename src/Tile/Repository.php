@@ -23,7 +23,6 @@ use Throwable;
  */
 final class Repository
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -75,7 +74,6 @@ final class Repository
      */
     private function __construct()
     {
-
     }
 
 
@@ -247,17 +245,18 @@ final class Repository
         return self::$parent_tile_cache[$tile->getObjRefId()];
     }
 
-    public function isParentAContainer($ref_id){
+    public function isParentAContainer($ref_id)
+    {
         $home=self::srTile()->config()->getHomeRefId();
-        if($home==""){
+        if ($home=="") {
             return false;
         }
         $parent_id=self::dic()->tree()->getParentId($ref_id);
         return $home==$parent_id;
-
     }
     
-    public function getParentId($ref_id){
+    public function getParentId($ref_id)
+    {
         return self::dic()->tree()->getParentId($ref_id);
     }
 
@@ -276,7 +275,6 @@ final class Repository
 
             $parent = $this->getParentTile($tile);
             if ($parent !== null) {
-
                 if ($tile->getActionsPosition() === Tile::POSITION_PARENT) {
                     $tile->setActionsPosition($parent->getActionsPosition());
                 }
@@ -428,30 +426,30 @@ final class Repository
                 if ($tile->getView() === Tile::VIEW_PARENT) {
                     $tile->setView($parent->getView());
                 }
-               //devices
+                //devices
 
-               if($tile->getShowPhone()===1){
-                  $tile->setShowPhone($parent->getShowPhone());
+                if ($tile->getShowPhone()===1) {
+                    $tile->setShowPhone($parent->getShowPhone());
                 }
 
-               if($tile->getShowTablet()===1){
-		  $tile->setShowTablet($parent->getShowTablet());
-		}
+                if ($tile->getShowTablet()===1) {
+                    $tile->setShowTablet($parent->getShowTablet());
+                }
 
-	       if($tile->getShowLaptop()===1){
-                 $tile->setShowLaptop($parent->getShowLaptop());
-		}
-             //END: devices
-	    
-             //Branch AND TOPIC
- 	    if($tile->getTopic()===""){
-		  $tile->setTopic($parent->getTopic());
-               }
-	       if($tile->getBranch()===""){
-		 $tile->setBranch($parent->getBranch());
-		}
+                if ($tile->getShowLaptop()===1) {
+                    $tile->setShowLaptop($parent->getShowLaptop());
+                }
+                //END: devices
+        
+                //Branch AND TOPIC
+                if ($tile->getTopic()==="") {
+                    $tile->setTopic($parent->getTopic());
+                }
+                if ($tile->getBranch()==="") {
+                    $tile->setBranch($parent->getBranch());
+                }
 
-            //END: branch_and_topic
+                //END: branch_and_topic
             }
 
             if (isset($tile->tile_enabled_children) && !boolval($tile->tile_enabled_children)) {
@@ -482,26 +480,26 @@ final class Repository
                 $tile->setLanguageFlagPosition(Tile::DEFAULT_LANGUAGE_FLAG_POSITION);
             }
 
-	   //Devices
-            if(empty($tile->getShowPhone())){
-	        $tile->setShowPhone(1);
-             }
+            //Devices
+            if (empty($tile->getShowPhone())) {
+                $tile->setShowPhone(1);
+            }
 
-            if(empty($tile->getShowTablet())){ 
+            if (empty($tile->getShowTablet())) {
                 $tile->setShowTablet(1);
-             }
+            }
 
-            if(empty($tile->getShowLaptop())){ 
+            if (empty($tile->getShowLaptop())) {
                 $tile->setShowLaptop(1);
-             }
-	 //END: Devices
-	 //Branch and Topic
-	   if(empty($tile->getTopic())){
-		$tile->setTopic("");
-	   }
-           if(empty($tile->getBranch())){
-		$tile->setBranch("");
-	   }
+            }
+            //END: Devices
+            //Branch and Topic
+            if (empty($tile->getTopic())) {
+                $tile->setTopic("");
+            }
+            if (empty($tile->getBranch())) {
+                $tile->setBranch("");
+            }
 
             self::srTile()->notifications4plugin()->notifications()->migrateFromOldGlobalPlugin($tile->getRecommendMailTemplate());
 

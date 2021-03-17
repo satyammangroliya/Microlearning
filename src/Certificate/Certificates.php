@@ -29,7 +29,6 @@ use srCertificateUserGUI;
  */
 class Certificates
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -140,7 +139,6 @@ class Certificates
 
                                 // The certificate must be active and be generated
                                 if ($cert->getActive() && intval($cert->getStatus()) === srCertificate::STATUS_PROCESSED) {
-
                                     self::dic()->ctrl()->setParameterByClass(srCertificateUserGUI::class, "cert_id", $cert->getId());
 
                                     return self::dic()->ctrl()->getLinkTargetByClass([

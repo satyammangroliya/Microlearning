@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class Metadata
 {
-
     use SrTileTrait;
     use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;

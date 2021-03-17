@@ -19,7 +19,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class RecommendFormGUI extends PropertyFormGUI
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = RecommendGUI::LANG_MODULE;
@@ -58,7 +57,7 @@ class RecommendFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected final function initAction()/*: void*/
+    final protected function initAction()/*: void*/
     {
         $this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
     }
@@ -102,7 +101,7 @@ class RecommendFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected final function initId()/*: void*/
+    final protected function initId()/*: void*/
     {
         $this->setId("tile_recommend_modal_form");
     }
@@ -111,7 +110,7 @@ class RecommendFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected final function initTitle()/*: void*/
+    final protected function initTitle()/*: void*/
     {
         $this->setTitle(self::plugin()->translate("recommendation", self::LANG_MODULE, [
             $this->recommend->getTile()->_getTitle()

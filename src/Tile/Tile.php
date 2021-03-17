@@ -26,7 +26,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class Tile extends ActiveRecord
 {
-
     use DICTrait;
     use SrTileTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_tile";
@@ -173,20 +172,20 @@ class Tile extends ActiveRecord
     const SHOW_ACTIONS_ALWAYS = 3;
 
 
-   /**
-    *@var int
-    *
-    *
-    */
+    /**
+     *@var int
+     *
+     *
+     */
     const SHOW_PHONE=1;
     const SHOW_TABLET=1;
     const SHOW_LAPTOP=1;
 
-/**
-    *@var string
-    *
-    *
-    */
+    /**
+        *@var string
+        *
+        *
+        */
     const BRANCH="";
     const TOPIC="";
    
@@ -254,6 +253,15 @@ class Tile extends ActiveRecord
      * @con_is_notnull  true
      */
     protected $image = "";
+    /**
+     * @var string
+     *
+     * @con_has_field   true
+     * @con_fieldtype   text
+     * @con_length      256
+     * @con_is_notnull  true
+     */
+    protected $background_image = "";
     /**
      * @var string
      *
@@ -731,8 +739,8 @@ class Tile extends ActiveRecord
             case "show_tablet":
             case "show_laptop":
                 return intval($field_value);
-	    case "topic":
-	    case "branch":
+        case "topic":
+        case "branch":
                 return $field_value;
 
             default:
@@ -793,6 +801,24 @@ class Tile extends ActiveRecord
     public function setImage(string $image)/*: void*/
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return string
+     *
+     */
+    public function getBackgroundImage() : string
+    {
+        return $this->background_image;
+    }
+
+
+    /**
+     * @param string $image
+     */
+    public function setBackgroundImage(string $background_image)/*: void*/
+    {
+        $this->background_image = $background_image;
     }
 
 
@@ -1516,7 +1542,7 @@ class Tile extends ActiveRecord
     }
 
 
- // customized: 
+    // customized:
 
 
     /**
@@ -1583,7 +1609,7 @@ class Tile extends ActiveRecord
      */
     public function setTopic(string $topic)/*: void*/
     {
-        $first_topic=explode(",",trim($topic));
+        $first_topic=explode(",", trim($topic));
         $this->topic = $first_topic[0];
         //$this->topic = $topic;
     }
@@ -1594,7 +1620,6 @@ class Tile extends ActiveRecord
      */
     public function getBranch() : string
     {
-        
         return $this->branch;
     }
 
@@ -1602,27 +1627,27 @@ class Tile extends ActiveRecord
      * @param string $branch
      */
     public function setBranch(string $branch)/*: void*/
-
-    {   $branch=trim($branch);
-        $branch=trim($branch,",");
+    {
+        $branch=trim($branch);
+        $branch=trim($branch, ",");
         $branch=trim($branch);
         $this->branch = $branch;
     }
 
 
     /**
-     * 
-     * 
+     *
+     *
      */
-    public function getHome(){
+    public function getHome()
+    {
         $fields=self::srTile()->config()->getValue("base_container");
         return $fields;
-
     }
 
 
 
-//END OF CUSTOMIZATION BY @min
+    //END OF CUSTOMIZATION BY @min
 
 
     /**
@@ -1906,17 +1931,17 @@ class Tile extends ActiveRecord
             }
         }
     }
-/**
-     * @param bool $append_filename
-     *
-     * @return string
-     */
-    public function getBagImagePathAsRelative(bool $append_filename = true) : string
+    /**
+         * @param bool $append_filename
+         *
+         * @return string
+         */
+    public function getBackgroundImagePathAsRelative(bool $append_filename = true) : string
     {
-        $path = ilToGoPlugin::WEB_DATA_FOLDER . "/" . static::BAG_IMAGE_PREFIX . $this->getTileId() . "/";
+        $path = ilToGoPlugin::WEB_DATA_FOLDER . "/background_" . $this->getTileId() . "/";
 
         if ($append_filename) {
-            $path .= $this->getBagImage();
+            $path .= $this->getBackgroundImage();
         }
 
         return $path;
@@ -1926,20 +1951,20 @@ class Tile extends ActiveRecord
     /**
      * @return string
      */
-    public function getBagImagePath() : string
+    public function getBackgroundImagePath() : string
     {
-        return ILIAS_WEB_DIR . "/" . CLIENT_ID . "/" . $this->getBagImagePathAsRelative();
+        return ILIAS_WEB_DIR . "/" . CLIENT_ID . "/" . $this->getBackgroundImagePathAsRelative();
     }
 
 
     /**
      * @return string
      */
-    public function getBagImagePathWithCheck() : string
+    public function getBackgroundImagePathWithCheck() : string
     {
-        if (!empty($this->getBagImage())) {
-            if (file_exists($bag_image_path = $this->getBagImagePath())) {
-                return $bag_image_path;
+        if (!empty($this->getBackgroundImage())) {
+            if (file_exists($background_image_path = $this->getBackgroundImagePath())) {
+                return $background_image_path;
             }
         }
 
@@ -1950,24 +1975,24 @@ class Tile extends ActiveRecord
     /**
      * @param string $path_of_new_image
      */
-    public function applyNewBagImage(string $path_of_new_image)/*: void*/
+    public function applyNewBackgroundImage(string $path_of_new_image)/*: void*/
     {
-        if (!empty($this->getBagImage())) {
-            if (file_exists($image_old_path = $this->getBagImagePath())) {
+        if (!empty($this->getBackgroundImage())) {
+            if (file_exists($image_old_path = $this->getBackgroundImagePath())) {
                 unlink($image_old_path);
             }
-            $this->setBagImage("");
+            $this->setBackgroundImage("");
 
             self::srTile()->colorThiefCaches()->delete($image_old_path);
         }
 
         if (!empty($path_of_new_image)) {
             if (file_exists($path_of_new_image)) {
-                $this->setBagImage($this->getTileId() . "." . pathinfo($path_of_new_image, PATHINFO_EXTENSION));
+                $this->setBackgroundImage($this->getTileId() . "." . pathinfo($path_of_new_image, PATHINFO_EXTENSION));
 
-                self::dic()->filesystem()->web()->createDir($this->getBagImagePathAsRelative(false));
+                self::dic()->filesystem()->web()->createDir($this->getBackgroundImagePathAsRelative(false));
 
-                copy($path_of_new_image, $this->getBagImagePath());
+                copy($path_of_new_image, $this->getBackgroundImagePath());
             }
         }
     }
@@ -2021,7 +2046,6 @@ class Tile extends ActiveRecord
 
         //open directly the one object if it's only one AND as READ ACCESS
         if ($this->getOpenObjWithOneChildDirect() === Tile::OPEN_TRUE && self::srTile()->access()->hasReadAccess($this->getObjRefId())) {
-
             switch (true) {
                 case ($this->il_object->getType() === "crs"):
                 case ($this->il_object->getType() === "cat"):
@@ -2110,6 +2134,7 @@ class Tile extends ActiveRecord
                         . $slm_gui->object->getId() . "'," . $om . "," . $width . "," . $height . ');"';
                 }
 
+                // no break
             case ($tile->il_object->getType() === "webr"):
                 if (intval(ilLinkResourceItems::lookupNumberOfLinks($tile->il_object->getId())) === 1) {
                     $link_arr = ilLinkResourceItems::_getFirstLink($tile->il_object->getId());

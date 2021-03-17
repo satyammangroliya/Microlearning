@@ -15,6 +15,7 @@ use ilTextInputGUI;
 use ILIAS\FileUpload\DTO\UploadResult;
 use ILIAS\FileUpload\Location;
 use ilImageFileInputGUI;
+
 /**
  * Class ConfigFormGUI
  *
@@ -24,7 +25,6 @@ use ilImageFileInputGUI;
  */
 class ConfigFormGUI extends PropertyFormGUI
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const KEY_ENABLED_OBJECT_LINKS = "enabled_object_links";
@@ -60,7 +60,7 @@ class ConfigFormGUI extends PropertyFormGUI
                 if (!empty(self::srTile()->config()->getValue(self::BAG_IMAGE))) {
                     return "./" . Conf::getImagePath();
                 }
-                break;             
+                break;
              
             default:
                 return self::srTile()->config()->getValue($key);
@@ -88,27 +88,12 @@ class ConfigFormGUI extends PropertyFormGUI
             self::KEY_ENABLED_ON_REPOSITORY => [
                 self::PROPERTY_CLASS => ilCheckboxInputGUI::class
             ],
-            /*self::KEY_ENABLED_ON_FAVORITES  => [
-                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
-            ],
-            self::KEY_ENABLED_OBJECT_LINKS  => [
-                self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
-                self::PROPERTY_SUBITEMS => [
-                    self::KEY_ENABLED_OBJECT_LINKS_ONCE_SELECT => [
-                        self::PROPERTY_CLASS => ilCheckboxInputGUI::class
-                    ]
-                ]
-            ],*/
             self::KEY_UMFRAGE_OBJECT => [
                 self::PROPERTY_CLASS => ilTextInputGUI::class
             ],
             self::KEY_WAS_SIND_LINK => [
                 self::PROPERTY_CLASS => ilTextInputGUI::class
             ],
-            /*self::BAG_IMAGE =>[
-                self::PROPERTY_CLASS    => ilImageFileInputGUI::class,
-                self::PROPERTY_REQUIRED => false
-            ],*/
             self::BACK_COLOR =>[
                 self::PROPERTY_CLASS    => ilTextInputGUI::class
             ],
@@ -121,7 +106,6 @@ class ConfigFormGUI extends PropertyFormGUI
      */
     protected function initId()/*: void*/
     {
-
     }
 
 
@@ -181,5 +165,4 @@ class ConfigFormGUI extends PropertyFormGUI
 
         return "";
     }
-
 }

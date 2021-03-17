@@ -19,7 +19,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class RecommendGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -38,7 +37,6 @@ class RecommendGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -85,7 +83,6 @@ class RecommendGUI
      */
     protected function setTabs()/*:void*/
     {
-
     }
 
 

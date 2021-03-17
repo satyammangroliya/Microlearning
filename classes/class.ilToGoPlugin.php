@@ -15,7 +15,6 @@ use srag\RemovePluginDataConfirm\SrTile\PluginUninstallTrait;
  */
 class ilToGoPlugin extends ilUserInterfaceHookPlugin
 {
-
     use PluginUninstallTrait;
     use SrTileTrait;
     const PLUGIN_ID = "togo";
@@ -103,5 +102,7 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
     {
         self::srTile()->dropTables();
     }
-    public function shouldUseOneUpdateStepOnly(){}
+    public function shouldUseOneUpdateStepOnly()
+    {
+    }
 }

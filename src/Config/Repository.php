@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Repository extends AbstractRepository
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
@@ -86,22 +85,25 @@ final class Repository extends AbstractRepository
         ];
     }
    
-    public function getUmfrageObjRefId(){
+    public function getUmfrageObjRefId()
+    {
         $obj_ref_id=self::srTile()->config()->getValue(ConfigFormGUI::KEY_UMFRAGE_OBJECT);
         return $obj_ref_id;
     }
-    public function getWasSindObjRefId(){
+    public function getWasSindObjRefId()
+    {
         $obj_ref_id=self::srTile()->config()->getValue(ConfigFormGUI::KEY_WAS_SIND_LINK);
         return $obj_ref_id;
     }
 
 
-    public function getHomeRefId(){
+    public function getHomeRefId()
+    {
         $obj_ref_id=self::srTile()->config()->getValue(ConfigFormGUI::KEY_BASE_CONTAINER);
         return $obj_ref_id;
     }
 
-    public static  function getImagePath():string
+    public static function getImagePath():string
     {
         return ILIAS_WEB_DIR . "/" . CLIENT_ID . "/" . self::getImagePathAsRelative();
     }
@@ -131,14 +133,14 @@ final class Repository extends AbstractRepository
             if (file_exists($image_old_path = self::getImagePath())) {
                 unlink($image_old_path);
             }
-            self::srTile()->config()->setValue(ConfigFormGUI::BAG_IMAGE,"");
+            self::srTile()->config()->setValue(ConfigFormGUI::BAG_IMAGE, "");
 
             self::srTile()->colorThiefCaches()->delete($image_old_path);
         }
 
         if (!empty($path_of_new_image)) {
             if (file_exists($path_of_new_image)) {
-                self::srTile()->config()->setValue(ConfigFormGUI::BAG_IMAGE,"".pathinfo($path_of_new_image, PATHINFO_EXTENSION));
+                self::srTile()->config()->setValue(ConfigFormGUI::BAG_IMAGE, "".pathinfo($path_of_new_image, PATHINFO_EXTENSION));
 
                 self::dic()->filesystem()->web()->createDir(self::getImagePathAsRelative(false));
 

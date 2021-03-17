@@ -22,7 +22,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Ilias
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -50,7 +49,6 @@ final class Ilias
      */
     private function __construct()
     {
-
     }
 
 

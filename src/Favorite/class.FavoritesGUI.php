@@ -21,7 +21,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class FavoritesGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -45,7 +44,6 @@ class FavoritesGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -91,7 +89,6 @@ class FavoritesGUI
      */
     protected function setTabs()/*:void*/
     {
-
     }
 
 

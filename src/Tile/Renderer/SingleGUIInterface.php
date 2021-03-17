@@ -19,18 +19,4 @@ interface SingleGUIInterface
      * @return string
      */
     public function render() : string;
-
-
-    /**
-     * @param ObjectLink[] $object_links
-     *
-     * @return string
-     */
-    public function getActions(array $object_links = []) : string;
-
-
-    /**
-     * @return string
-     */
-    public function getActionAsyncUrl() : string;
 }

@@ -14,5 +14,4 @@ use srag\Plugins\SrTile\Tile\Renderer\AbstractSingleGUI;
  */
 class FixedSingleGUI extends AbstractSingleGUI
 {
-
 }

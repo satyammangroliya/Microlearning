@@ -18,7 +18,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Repository
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -46,7 +45,6 @@ final class Repository
      */
     private function __construct()
     {
-
     }
 
 
@@ -196,19 +194,21 @@ final class Repository
      */
     public function getSelectableObjects(int $group_id, int $obj_ref_id) : array
     {
-        return array_reduce(array_filter(self::dic()->tree()->getChildsByType(self::dic()->tree()->getParentId($obj_ref_id),
-            self::dic()->objDataCache()->lookupType(self::dic()->objDataCache()->lookupObjId($obj_ref_id))), function (array $child) use ($group_id): bool {
-            return ($this->getObjectLink($group_id, $child["child"]) === null);
-        }), function (array $childs, array $child) : array {
-            $language_text = self::srTile()->ilias()->metadata(ilObjectFactory::getInstanceByRefId($child["child"], false))->getLanguageText();
-            if (!empty($language_text)) {
-                $language_text = " (" . $language_text . ")";
-            }
+        return array_reduce(array_filter(self::dic()->tree()->getChildsByType(
+            self::dic()->tree()->getParentId($obj_ref_id),
+            self::dic()->objDataCache()->lookupType(self::dic()->objDataCache()->lookupObjId($obj_ref_id))
+        ), function (array $child) use ($group_id): bool {
+                return ($this->getObjectLink($group_id, $child["child"]) === null);
+            }), function (array $childs, array $child) : array {
+                $language_text = self::srTile()->ilias()->metadata(ilObjectFactory::getInstanceByRefId($child["child"], false))->getLanguageText();
+                if (!empty($language_text)) {
+                    $language_text = " (" . $language_text . ")";
+                }
 
-            $childs[$child["child"]] = $child["title"] . $language_text;
+                $childs[$child["child"]] = $child["title"] . $language_text;
 
-            return $childs;
-        }, []);
+                return $childs;
+            }, []);
     }
 
 

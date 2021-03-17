@@ -20,7 +20,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class ObjectLinksGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -105,7 +104,6 @@ class ObjectLinksGUI
      */
     protected function setTabs()/*: void*/
     {
-
     }
 
 

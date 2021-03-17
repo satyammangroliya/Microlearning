@@ -15,7 +15,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Factory
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -43,7 +42,6 @@ final class Factory
      */
     private function __construct()
     {
-
     }
 
 

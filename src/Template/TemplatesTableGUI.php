@@ -16,7 +16,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class TemplatesTableGUI extends TableGUI
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = TemplatesConfigGUI::LANG_MODULE;

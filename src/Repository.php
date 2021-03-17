@@ -23,6 +23,7 @@ use srag\Plugins\SrTile\Template\Repository as TemplatesRepository;
 use srag\Plugins\SrTile\Tile\Repository as TilesRepository;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 use srag\Plugins\SrTile\Collection\Repository as CollectionsRepository;
+
 /**
  * Class Repository
  *
@@ -32,7 +33,6 @@ use srag\Plugins\SrTile\Collection\Repository as CollectionsRepository;
  */
 final class Repository
 {
-
     use DICTrait;
     use SrTileTrait;
     use Notifications4PluginTrait {
@@ -242,5 +242,4 @@ final class Repository
     {
         return CollectionsRepository::getInstance($user);
     }
-
 }

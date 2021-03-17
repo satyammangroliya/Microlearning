@@ -17,7 +17,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class ObjectLinkFormGUI extends PropertyFormGUI
 {
-
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const LANG_MODULE = ObjectLinksGUI::LANG_MODULE;
@@ -72,8 +71,10 @@ class ObjectLinkFormGUI extends PropertyFormGUI
             "obj_ref_id" => [
                 self::PROPERTY_CLASS    => ilSelectInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_OPTIONS  => ["" => ""] + self::srTile()->objectLinks()->getSelectableObjects($this->object_link->getGroupId(),
-                        $this->parent->getParent()->getParent()->getTile()->getObjRefId()),
+                self::PROPERTY_OPTIONS  => ["" => ""] + self::srTile()->objectLinks()->getSelectableObjects(
+                    $this->object_link->getGroupId(),
+                    $this->parent->getParent()->getParent()->getTile()->getObjRefId()
+                ),
                 "setTitle"              => $this->txt("object")
             ]
         ];
@@ -85,7 +86,6 @@ class ObjectLinkFormGUI extends PropertyFormGUI
      */
     protected function initId()/*: void*/
     {
-
     }
 
 

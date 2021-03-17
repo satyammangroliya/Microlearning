@@ -16,7 +16,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class Repository
 {
-
     use SrTileTrait;
     use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -72,7 +71,6 @@ final class Repository
      */
     public function dropTables()/*:void*/
     {
-
     }
 
 
@@ -134,7 +132,6 @@ final class Repository
      */
     public function installTables()/*:void*/
     {
-
     }
 
 

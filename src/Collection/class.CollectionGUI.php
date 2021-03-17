@@ -21,7 +21,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 class CollectionGUI
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -50,7 +49,6 @@ class CollectionGUI
      */
     public function __construct()
     {
-
     }
 
 
@@ -100,7 +98,6 @@ class CollectionGUI
      */
     protected function setTabs()/*:void*/
     {
-
     }
 
 

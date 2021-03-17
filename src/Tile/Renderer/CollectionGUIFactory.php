@@ -19,7 +19,6 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  */
 final class CollectionGUIFactory
 {
-
     use DICTrait;
     use SrTileTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
@@ -47,7 +46,6 @@ final class CollectionGUIFactory
      */
     private function __construct()
     {
-
     }
 
 
