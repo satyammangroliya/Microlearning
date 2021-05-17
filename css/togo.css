@@ -10,6 +10,7 @@
 .tiles[data-view="1"] {
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 
 }
 .tiles[data-view="2"] {

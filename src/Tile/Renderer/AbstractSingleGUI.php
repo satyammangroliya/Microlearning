@@ -9,6 +9,7 @@ use srag\CustomInputGUIs\SrTile\CustomInputGUIsTrait;
 use srag\DIC\SrTile\DICTrait;
 use srag\Plugins\SrTile\Rating\RatingGUI;
 use srag\Plugins\SrTile\Tile\Tile;
+use srag\Plugins\SrTile\Tile\TileGUI;
 use srag\Plugins\SrTile\Utils\SrTileTrait;
 
 /**
@@ -71,6 +72,7 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
 
             $views_count=$this->getViewsCount($this->tile->_getIlObject()->getID());
             $tpl->setVariableEscaped("VIEWS_COUNT", $views_count);
+            $tpl->setVariableEscaped("VIEWS_TEXT", self::plugin()->translate("views_text", TileGUI::LANG_MODULE));
             //Devices
             if ($this->tile->getShowPhone()===1) {
                 $tpl->setVariableEscaped("SHOW_PHONE", "enabled");
