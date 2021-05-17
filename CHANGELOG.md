@@ -11,3 +11,7 @@
 - Language update  
 - DB remodelling  
 - Many Fixes in the UI components
+
+## [1.0.3] 
+- Fix the positioning of the tiles 
+- Correct the Mousehover titles
