@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Data;
+namespace srag\DataTableUI\ToGo\Component\Data;
 
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
 
 /**
  * Interface Data
  *
- * @package srag\DataTableUI\SrTile\Component\Data
+ * @package srag\DataTableUI\ToGo\Component\Data
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

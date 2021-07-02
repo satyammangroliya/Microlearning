@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile;
+namespace srag\CustomInputGUIs\ToGo;
 
 use ILIAS\Data\Color;
-use srag\CustomInputGUIs\SrTile\LearningProgressPieUI\LearningProgressPieUI;
-use srag\CustomInputGUIs\SrTile\PieChart\Component\PieChart as PieChartInterface;
-use srag\CustomInputGUIs\SrTile\PieChart\Component\PieChartItem as PieChartItemInterface;
-use srag\CustomInputGUIs\SrTile\PieChart\Implementation\PieChart;
-use srag\CustomInputGUIs\SrTile\PieChart\Implementation\PieChartItem;
-use srag\CustomInputGUIs\SrTile\ViewControlModeUI\ViewControlModeUI;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\LearningProgressPieUI\LearningProgressPieUI;
+use srag\CustomInputGUIs\ToGo\PieChart\Component\PieChart as PieChartInterface;
+use srag\CustomInputGUIs\ToGo\PieChart\Component\PieChartItem as PieChartItemInterface;
+use srag\CustomInputGUIs\ToGo\PieChart\Implementation\PieChart;
+use srag\CustomInputGUIs\ToGo\PieChart\Implementation\PieChartItem;
+use srag\CustomInputGUIs\ToGo\ViewControlModeUI\ViewControlModeUI;
+use srag\DIC\ToGo\DICTrait;
 
 //use ILIAS\UI\Component\Chart\PieChart\PieChart as PieChartInterfaceCore;
 //use ILIAS\UI\Component\Chart\PieChart\PieChartItem as PieChartItemInterfaceCore;
@@ -19,7 +19,7 @@ use srag\DIC\SrTile\DICTrait;
 /**
  * Class CustomInputGUIs
  *
- * @package srag\CustomInputGUIs\SrTile
+ * @package srag\CustomInputGUIs\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

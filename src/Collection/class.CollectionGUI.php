@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\Plugins\SrTile\Collection;
+namespace srag\Plugins\ToGo\Collection;
 
 use ilLink;
 use ilPersonalDesktopGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class CollectionGUI1
  *
- * @package           srag\Plugins\SrTile\Collection
+ * @package           srag\Plugins\ToGo\Collection
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Collection\CollectionGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\Collection\CollectionGUI: ilUIPluginRouterGUI
  */
 class CollectionGUI
 {

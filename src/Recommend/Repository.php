@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\Plugins\SrTile\Recommend;
+namespace srag\Plugins\ToGo\Recommend;
 
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\Recommend
+ * @package srag\Plugins\ToGo\Recommend
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

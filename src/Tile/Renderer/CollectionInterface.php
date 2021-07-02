@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile\Renderer;
+namespace srag\Plugins\ToGo\Tile\Renderer;
 
-use srag\Plugins\srTile\Tile\Tile;
+use srag\Plugins\ToGo\Tile\Tile;
 
 /**
  * Interface CollectionInterface
  *
- * @package srag\Plugins\SrTile\Tile\Renderer
+ * @package srag\Plugins\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch>

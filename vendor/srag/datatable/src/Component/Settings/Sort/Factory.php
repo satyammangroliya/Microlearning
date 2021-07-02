@@ -1,11 +1,11 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Settings\Sort;
+namespace srag\DataTableUI\ToGo\Component\Settings\Sort;
 
 /**
  * Interface Factory
  *
- * @package srag\DataTableUI\SrTile\Component\Settings\Sort
+ * @package srag\DataTableUI\ToGo\Component\Settings\Sort
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

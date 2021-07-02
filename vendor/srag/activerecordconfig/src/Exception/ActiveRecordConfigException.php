@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\ActiveRecordConfig\SrTile\Exception;
+namespace srag\ActiveRecordConfig\ToGo\Exception;
 
 use ilException;
 
 /**
  * Class ActiveRecordConfigException
  *
- * @package srag\ActiveRecordConfig\SrTile\Exception
+ * @package srag\ActiveRecordConfig\ToGo\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

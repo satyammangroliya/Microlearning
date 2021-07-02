@@ -1,27 +1,27 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification\Form;
+namespace srag\Notifications4Plugin\ToGo\Notification\Form;
 
 use ILIAS\UI\Component\Input\Field\Group;
 use ILIAS\UI\Component\Input\Field\Radio;
 use ilNonEditableValueGUI;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\SrTile\FormBuilder\AbstractFormBuilder;
-use srag\CustomInputGUIs\SrTile\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\TabsInputGUI\MultilangualTabsInputGUI;
-use srag\CustomInputGUIs\SrTile\TabsInputGUI\TabsInputGUI;
-use srag\CustomInputGUIs\SrTile\TextAreaInputGUI\TextAreaInputGUI;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationCtrl;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationInterface;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
-use srag\Notifications4Plugin\SrTile\Parser\Parser;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\CustomInputGUIs\ToGo\FormBuilder\AbstractFormBuilder;
+use srag\CustomInputGUIs\ToGo\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\TabsInputGUI\MultilangualTabsInputGUI;
+use srag\CustomInputGUIs\ToGo\TabsInputGUI\TabsInputGUI;
+use srag\CustomInputGUIs\ToGo\TextAreaInputGUI\TextAreaInputGUI;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationCtrl;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationInterface;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl;
+use srag\Notifications4Plugin\ToGo\Parser\Parser;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class FormBuilder
  *
- * @package srag\Notifications4Plugin\SrTile\Notification\Form
+ * @package srag\Notifications4Plugin\ToGo\Notification\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,22 +1,22 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation;
+namespace srag\DataTableUI\ToGo\Implementation;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Implementation\Render\AbstractComponentRenderer;
 use ILIAS\UI\Implementation\Render\ResourceRegistry;
 use ILIAS\UI\Renderer as RendererInterface;
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Renderer
  *
- * @package srag\DataTableUI\SrTile\Implementation
+ * @package srag\DataTableUI\ToGo\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

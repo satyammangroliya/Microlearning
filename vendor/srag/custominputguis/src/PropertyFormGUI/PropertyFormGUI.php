@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PropertyFormGUI;
+namespace srag\CustomInputGUIs\ToGo\PropertyFormGUI;
 
 use Closure;
 use ilFormPropertyGUI;
@@ -9,18 +9,18 @@ use ilPropertyFormGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilSubEnabledFormPropertyGUI;
-use srag\CustomInputGUIs\SrTile\MultiLineInputGUI\MultiLineInputGUI;
-use srag\CustomInputGUIs\SrTile\MultiLineNewInputGUI\MultiLineNewInputGUI;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Exception\PropertyFormGUIException;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\TabsInputGUI\TabsInputGUI;
-use srag\CustomInputGUIs\SrTile\TabsInputGUI\TabsInputGUITab;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\MultiLineInputGUI\MultiLineInputGUI;
+use srag\CustomInputGUIs\ToGo\MultiLineNewInputGUI\MultiLineNewInputGUI;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Exception\PropertyFormGUIException;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\TabsInputGUI\TabsInputGUI;
+use srag\CustomInputGUIs\ToGo\TabsInputGUI\TabsInputGUITab;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class PropertyFormGUI
  *
- * @package    srag\CustomInputGUIs\SrTile\PropertyFormGUI
+ * @package    srag\CustomInputGUIs\ToGo\PropertyFormGUI
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

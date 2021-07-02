@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Format;
+namespace srag\DataTableUI\ToGo\Implementation\Format;
 
-use srag\DataTableUI\SrTile\Component\Format\Browser\Factory as BrowserFactoryInterface;
-use srag\DataTableUI\SrTile\Component\Format\Factory as FactoryInterface;
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Implementation\Format\Browser\Factory as BrowserFactory;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Format\Browser\Factory as BrowserFactoryInterface;
+use srag\DataTableUI\ToGo\Component\Format\Factory as FactoryInterface;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Implementation\Format\Browser\Factory as BrowserFactory;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Factory
  *
- * @package srag\DataTableUI\SrTile\Implementation\Format
+ * @package srag\DataTableUI\ToGo\Implementation\Format
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\TabsInputGUI;
+namespace srag\CustomInputGUIs\ToGo\TabsInputGUI;
 
 use ilFormPropertyGUI;
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class TabsInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\TabsInputGUI
+ * @package srag\CustomInputGUIs\ToGo\TabsInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

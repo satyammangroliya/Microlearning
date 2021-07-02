@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile;
+namespace srag\Plugins\ToGo\Tile;
 
 use ilContainerReference;
 use ilObjectFactory;
@@ -8,7 +8,7 @@ use ilObjectFactory;
 /**
  * Class TileReference
  *
- * @package srag\Plugins\SrTile\Tile
+ * @package srag\Plugins\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

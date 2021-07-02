@@ -1,27 +1,27 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile;
+namespace srag\Plugins\ToGo\Tile;
 
 use ilLink;
 use ilToGoPlugin;
 use ilUIPluginRouterGUI;
 use ilUtil;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\ObjectLink\ObjectLinksGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\ObjectLink\ObjectLinksGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 use ilToGoUIHookGUI;
 
-use srag\Plugins\SrTile\Collection\Collection;
-use srag\Plugins\SrTile\Collection\Filter;
+use srag\Plugins\ToGo\Collection\Collection;
+use srag\Plugins\ToGo\Collection\Filter;
 
 /**
  * Class TileGUI
  *
- * @package           srag\Plugins\SrTile\Tile
+ * @package           srag\Plugins\ToGo\Tile
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Tile\TileGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\Tile\TileGUI: ilUIPluginRouterGUI
  */
 class TileGUI
 {
@@ -47,6 +47,8 @@ class TileGUI
     const GET_FILTER_ITEM="filter_by";
     const GET_FILTER_BY="by";
     const GET_PARAM_USER_ID="aid";
+
+    const CMD_READ_ANONYMOUS = "readAnonymous";
 
     //Filter
 
@@ -98,6 +100,7 @@ class TileGUI
                     case self::CMD_SORT_TOPIC:
                     case self::CMD_SORT_BRANCH:
                     case self::CMD_FILTER:
+                    case self::CMD_READ_ANONYMOUS:
                         $this->{$cmd}();
                         break;
 
@@ -224,7 +227,23 @@ class TileGUI
         self::output()->output(self::srTile()->tiles()->renderer()->factory()->newCollectionGUIInstance()->fixed($preconditions));
     }
 
+    protected function readAnonymous($ref_id = 0){
+        self::dic()->ctrl()->setParameterByClass(self::class, self::CMD_READ_ANONYMOUS, true);
+        self::dic()->ctrl()->saveParameterByClass(self::class, self::CMD_READ_ANONYMOUS);
+        $obj_ref_id = $this->tile->getObjRefId();
+        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        self::srTile()->collections(self::dic()->user())->viewAnonymous(self::dic()->authSession()->getId(), $obj_id, 1);
+        self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($obj_ref_id));
+    }
 
+    public function getAnonymousLink(){
+        $tile_link=self::dic()->ctrl()->getLinkTargetByClass([
+            ilUIPluginRouterGUI::class,
+            TileGUI::class
+        ], TileGUI::CMD_READ_ANONYMOUS);
+
+        return $tile_link;
+    }
     /**
      * @return Tile
      */

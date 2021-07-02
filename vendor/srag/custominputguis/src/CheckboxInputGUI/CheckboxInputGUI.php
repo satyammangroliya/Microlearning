@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\CheckboxInputGUI;
+namespace srag\CustomInputGUIs\ToGo\CheckboxInputGUI;
 
 use ilCheckboxInputGUI;
 use ilTableFilterItem;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class CheckboxInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\CheckboxInputGUI
+ * @package srag\CustomInputGUIs\ToGo\CheckboxInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

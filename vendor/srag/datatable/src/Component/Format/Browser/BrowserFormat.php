@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Format\Browser;
+namespace srag\DataTableUI\ToGo\Component\Format\Browser;
 
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Table;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Table;
 
 /**
  * Interface BrowserFormat
  *
- * @package srag\DataTableUI\SrTile\Component\Format\Browser
+ * @package srag\DataTableUI\ToGo\Component\Format\Browser
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

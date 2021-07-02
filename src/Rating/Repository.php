@@ -1,16 +1,17 @@
 <?php
 
-namespace srag\Plugins\SrTile\Rating;
+namespace srag\Plugins\ToGo\Rating;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
+use srag\Plugins\ToGo\Collection\AnonymousSession;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\Rating
+ * @package srag\Plugins\ToGo\Rating
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -93,9 +94,13 @@ final class Repository
     {
         $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
 
-        return Rating::where([
+        $authenticated_count = Rating::where([
             "obj_id" => $obj_id
         ])->count();
+        $anonymous_count = AnonymousSession::where([
+            "obj_id" => $obj_id
+        ]);
+        return $authenticated_count + $anonymous_count;
     }
 
 
@@ -127,6 +132,14 @@ final class Repository
     public function hasLike(int $obj_ref_id) : bool
     {
         $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        
+        if ( $this->user->getId() == ANONYMOUS_USER_ID){
+            
+            $session = self::srTile()->collections($this->user)->getAnonymousSession(self::dic()->authSession()->getId(), $obj_id);
+            return $session->getRating() !== 0;
+        }else{
+
+        }
 
         return ($this->getRating($obj_id) !== null);
     }
@@ -147,6 +160,11 @@ final class Repository
     public function like(int $obj_ref_id)/*: void*/
     {
         $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        if($this->user->getId() == ANONYMOUS_USER_ID){
+            $sess_id = self::dic()->authSession()->getId();
+            self::srTile()->collections($this->user)->likeAnonymous($sess_id, $obj_id, 1);
+        }
+        
 
         $rating = $this->getRating($obj_id);
 
@@ -177,11 +195,27 @@ final class Repository
     public function unlike(int $obj_ref_id)/*: void*/
     {
         $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        if($this->user->getId() == ANONYMOUS_USER_ID){
+            $sess_id = self::dic()->authSession()->getId();
+            self::srTile()->collections($this->user)->likeAnonymous($sess_id, $obj_id, 0);
+            
+        }
 
         $rating = $this->getRating($obj_id);
 
         if ($rating !== null) {
             $this->deleteRating($rating);
         }
+    }
+    public function view(int $obj_ref_id)
+    {
+        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        self::dic()->logger()->root()->info("Object ID: ". $obj_id);
+        if($this->user->getId() == ANONYMOUS_USER_ID){
+            $sess_id = self::dic()->authSession()->getId();
+            self::srTile()->collections($this->user)->viewAnonymous($sess_id, $obj_id, 1);            
+        }
+
+
     }
 }

@@ -1,21 +1,21 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile\Renderer;
+namespace srag\Plugins\ToGo\Tile\Renderer;
 
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
-use srag\CustomInputGUIs\SrTile\CustomInputGUIsTrait;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Rating\RatingGUI;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Tile\TileGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\CustomInputGUIs\ToGo\CustomInputGUIsTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Rating\RatingGUI;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Tile\TileGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class AbstractSingleGUI
  *
- * @package srag\Plugins\SrTile\Tile\Renderer
+ * @package srag\Plugins\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch>
@@ -66,6 +66,13 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         $tpl->setVariableEscaped("TITLE_VERTICAL_ALIGN", $this->tile->getLabelVerticalAlign());
         
         $tpl->setVariable("LINK", $this->tile->_getAdvancedLink());
+        if (self::dic()->user()->getId() == ANONYMOUS_USER_ID) {
+            $anonymlink_link=self::dic()->ctrl()->getLinkTargetByClass([
+                ilUIPluginRouterGUI::class,
+                RatingGUI::class
+            ], RatingGUI::CMD_READ_ANONYMOUS);
+            $tpl->setVariable("LINK", ' href="' . $anonymlink_link. '"');
+        }
 
         if (self::srTile()->access()->hasOpenAccess($this->tile)) {
             $tpl->setVariableEscaped("VIEWS_IMAGE_PATH", self::plugin()->directory() . "/templates/images/eye.svg");
@@ -148,6 +155,10 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         $count_anonymous_reads = 0;
         require_once './Services/Tracking/classes/class.ilChangeEvent.php';
         $event_active=\ilChangeEvent::_isActive();
+
+
+       
+        $count_anonymous_reads += self::srTile()->collections(self::dic()->user())->getAnonymousViews($a_obj_id);
        
         if (!$event_active) {
             \ilChangeEvent::_activate();
@@ -160,15 +171,18 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
 
                 foreach ($readEvents as $evt) {
                     if ($evt['usr_id'] == ANONYMOUS_USER_ID) {
-                        $count_anonymous_reads += $evt['read_count'];
-                        $count_users++;
                     } else {
                         $count_user_reads += $evt['read_count'];
                         $count_users++;
                     }
-                    if ($count_anonymous_reads>0) {
-                        $count_users+=$count_anonymous_reads;
-                    }
+                    $count_user_reads += $evt['read_count'];
+
+                    
+                }
+                self::dic()->logger()->root()->info("Anonymous reads: ". $count_anonymous_reads);
+                self::dic()->logger()->root()->info("User  reads: ". $count_users);
+                if ($count_anonymous_reads>0) {
+                    $count_users+=$count_anonymous_reads;
                 }
             }
         }

@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Plugins\SrTile\Utils;
+namespace srag\Plugins\ToGo\Utils;
 
-use srag\Plugins\SrTile\Repository;
+use srag\Plugins\ToGo\Repository;
 
 /**
  * Trait SrTileTrait
  *
- * @package srag\Plugins\SrTile\Utils
+ * @package srag\Plugins\ToGo\Utils
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

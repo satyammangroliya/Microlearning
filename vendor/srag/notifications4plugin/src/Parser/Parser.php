@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Parser;
+namespace srag\Notifications4Plugin\ToGo\Parser;
 
 use ILIAS\UI\Component\Input\Field\Input;
-use srag\Notifications4Plugin\SrTile\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\ToGo\Exception\Notifications4PluginException;
 
 /**
  * Interface Parser
  *
- * @package srag\Notifications4Plugin\SrTile\Parser
+ * @package srag\Notifications4Plugin\ToGo\Parser
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>

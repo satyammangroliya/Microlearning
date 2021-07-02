@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Plugins\SrTile\Config;
+namespace srag\Plugins\ToGo\Config;
 
 use ilCheckboxInputGUI;
 use ilToGoConfigGUI;
 use ilToGoPlugin;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
-use srag\Plugins\SrTile\Config\Repository as Conf;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
+use srag\Plugins\ToGo\Config\Repository as Conf;
 
 use ilRepositorySearchGUI;
 use ilTextInputGUI;
@@ -19,7 +19,7 @@ use ilImageFileInputGUI;
 /**
  * Class ConfigFormGUI
  *
- * @package srag\Plugins\SrTile\Config
+ * @package srag\Plugins\ToGo\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

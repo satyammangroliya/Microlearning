@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\DIC\SrTile\Loader;
+namespace srag\DIC\ToGo\Loader;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Implementation\Render\ComponentRenderer;
 use ILIAS\UI\Implementation\Render\Loader;
 use ILIAS\UI\Implementation\Render\RendererFactory;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class AbstractLoaderDetector
  *
- * @package srag\DIC\SrTile\Loader
+ * @package srag\DIC\ToGo\Loader
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

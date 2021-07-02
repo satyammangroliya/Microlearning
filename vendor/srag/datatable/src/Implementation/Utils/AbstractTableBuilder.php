@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Utils;
+namespace srag\DataTableUI\ToGo\Implementation\Utils;
 
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Component\Utils\TableBuilder;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Component\Utils\TableBuilder;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class AbstractTableBuilder
  *
- * @package srag\DataTableUI\SrTile\Implementation\Utils
+ * @package srag\DataTableUI\ToGo\Implementation\Utils
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

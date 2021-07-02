@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\Plugins\SrTile\Metadata;
+namespace srag\Plugins\ToGo\Metadata;
 
 use ilMD;
 use ilObject;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Metadata
  *
- * @package srag\Plugins\SrTile\Metadata
+ * @package srag\Plugins\ToGo\Metadata
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

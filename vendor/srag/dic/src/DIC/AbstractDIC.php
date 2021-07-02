@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\DIC\SrTile\DIC;
+namespace srag\DIC\ToGo\DIC;
 
 use ILIAS\DI\Container;
-use srag\DIC\SrTile\Database\DatabaseDetector;
-use srag\DIC\SrTile\Database\DatabaseInterface;
+use srag\DIC\ToGo\Database\DatabaseDetector;
+use srag\DIC\ToGo\Database\DatabaseInterface;
 
 /**
  * Class AbstractDIC
  *
- * @package srag\DIC\SrTile\DIC
+ * @package srag\DIC\ToGo\DIC
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

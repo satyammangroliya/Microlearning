@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\\Notifications4Plugin\\SrTile\\": "src/"
+      "srag\\Notifications4Plugin\\ToGo\\": "src/"
     }
   },
   "config": {

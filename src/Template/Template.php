@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Plugins\SrTile\Template;
+namespace srag\Plugins\ToGo\Template;
 
 use ilToGoPlugin;
-use srag\Plugins\SrTile\Tile\Tile;
+use srag\Plugins\ToGo\Tile\Tile;
 
 /**
  * Class Template
  *
- * @package srag\Plugins\SrTile\Template
+ * @package srag\Plugins\ToGo\Template
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

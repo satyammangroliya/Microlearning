@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\UIInputComponentWrapperInputGUI;
+namespace srag\CustomInputGUIs\ToGo\UIInputComponentWrapperInputGUI;
 
 use ilFormException;
 use ilFormPropertyGUI;
@@ -9,14 +9,14 @@ use ILIAS\UI\Implementation\Component\Input\Container\Form\PostDataFromServerReq
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
 use Throwable;
 
 /**
  * Class UIInputComponentWrapperInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\UIInputComponentWrapperInputGUI
+ * @package srag\CustomInputGUIs\ToGo\UIInputComponentWrapperInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

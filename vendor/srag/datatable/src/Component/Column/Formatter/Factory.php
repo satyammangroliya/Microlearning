@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Column\Formatter;
+namespace srag\DataTableUI\ToGo\Component\Column\Formatter;
 
-use srag\DataTableUI\SrTile\Component\Column\Formatter\Actions\Factory as ActionsFactory;
+use srag\DataTableUI\ToGo\Component\Column\Formatter\Actions\Factory as ActionsFactory;
 
 /**
  * Interface Factory
  *
- * @package srag\DataTableUI\SrTile\Component\Column\Formatter
+ * @package srag\DataTableUI\ToGo\Component\Column\Formatter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

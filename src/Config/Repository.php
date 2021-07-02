@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\Plugins\SrTile\Config;
+namespace srag\Plugins\ToGo\Config;
 
 use ilToGoPlugin;
-use srag\ActiveRecordConfig\SrTile\Config\AbstractFactory;
-use srag\ActiveRecordConfig\SrTile\Config\AbstractRepository;
-use srag\ActiveRecordConfig\SrTile\Config\Config;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\ActiveRecordConfig\ToGo\Config\AbstractFactory;
+use srag\ActiveRecordConfig\ToGo\Config\AbstractRepository;
+use srag\ActiveRecordConfig\ToGo\Config\Config;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\Config
+ * @package srag\Plugins\ToGo\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

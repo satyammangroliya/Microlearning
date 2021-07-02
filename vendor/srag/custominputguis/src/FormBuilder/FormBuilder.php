@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\FormBuilder;
+namespace srag\CustomInputGUIs\ToGo\FormBuilder;
 
 use ILIAS\UI\Component\Input\Container\Form\Form;
 
 /**
  * Interface FormBuilder
  *
- * @package srag\CustomInputGUIs\SrTile\FormBuilder
+ * @package srag\CustomInputGUIs\ToGo\FormBuilder
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

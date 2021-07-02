@@ -2,10 +2,10 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
-use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl;
+use srag\Plugins\ToGo\Template\TemplatesConfigGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 //use ilPropertyFormGUI;
 
@@ -14,7 +14,7 @@ use srag\Plugins\SrTile\Utils\SrTileTrait;
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl: ilToGoConfigGUI
+ * @ilCtrl_isCalledBy srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl: ilToGoConfigGUI
  */
 class ilToGoConfigGUI extends ilPluginConfigGUI
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Exception;
+namespace srag\Notifications4Plugin\ToGo\Exception;
 
 use ilException;
 
 /**
  * Class Notifications4PluginException
  *
- * @package srag\Notifications4Plugin\SrTile\Exception
+ * @package srag\Notifications4Plugin\ToGo\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

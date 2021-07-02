@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\FormBuilder;
+namespace srag\CustomInputGUIs\ToGo\FormBuilder;
 
 use Closure;
 use Exception;
@@ -15,18 +15,18 @@ use ILIAS\UI\Implementation\Component\Input\Field\Group;
 use ILIAS\UI\Implementation\Component\Input\Field\Radio;
 use ILIAS\UI\Implementation\Component\Input\Field\SwitchableGroup;
 use ilSubmitButton;
-use srag\CustomInputGUIs\SrTile\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
+use srag\DIC\ToGo\DICTrait;
 use Throwable;
 
 /**
  * Class AbstractFormBuilder
  *
- * @package      srag\CustomInputGUIs\SrTile\FormBuilder
+ * @package      srag\CustomInputGUIs\ToGo\FormBuilder
  *
  * @author       studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_Calls srag\CustomInputGUIs\SrTile\FormBuilder\AbstractFormBuilder: ilFormPropertyDispatchGUI
+ * @ilCtrl_Calls srag\CustomInputGUIs\ToGo\FormBuilder\AbstractFormBuilder: ilFormPropertyDispatchGUI
  */
 abstract class AbstractFormBuilder implements FormBuilder
 {

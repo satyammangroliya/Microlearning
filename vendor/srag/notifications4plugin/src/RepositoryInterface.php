@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile;
+namespace srag\Notifications4Plugin\ToGo;
 
-use srag\DIC\SrTile\Plugin\Pluginable;
-use srag\Notifications4Plugin\SrTile\Notification\RepositoryInterface as NotificationRepositoryInterface;
-use srag\Notifications4Plugin\SrTile\Parser\RepositoryInterface as ParserRepositoryInterface;
-use srag\Notifications4Plugin\SrTile\Sender\RepositoryInterface as SenderRepositoryInterface;
+use srag\DIC\ToGo\Plugin\Pluginable;
+use srag\Notifications4Plugin\ToGo\Notification\RepositoryInterface as NotificationRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Parser\RepositoryInterface as ParserRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Sender\RepositoryInterface as SenderRepositoryInterface;
 
 /**
  * Interface RepositoryInterface
  *
- * @package srag\Notifications4Plugin\SrTile
+ * @package srag\Notifications4Plugin\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

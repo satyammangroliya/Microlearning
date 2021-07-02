@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification;
+namespace srag\Notifications4Plugin\ToGo\Notification;
 
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
 
 /**
  * Interface RepositoryInterface
  *
- * @package srag\Notifications4Plugin\SrTile\Notification
+ * @package srag\Notifications4Plugin\ToGo\Notification
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

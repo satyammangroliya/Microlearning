@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Format\Browser\Filter;
+namespace srag\DataTableUI\ToGo\Implementation\Format\Browser\Filter;
 
-use srag\CustomInputGUIs\SrTile\FormBuilder\FormBuilder as FormBuilderInterface;
-use srag\DataTableUI\SrTile\Component\Format\Browser\BrowserFormat;
-use srag\DataTableUI\SrTile\Component\Format\Browser\Filter\Factory as FactoryInterface;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\FormBuilder\FormBuilder as FormBuilderInterface;
+use srag\DataTableUI\ToGo\Component\Format\Browser\BrowserFormat;
+use srag\DataTableUI\ToGo\Component\Format\Browser\Filter\Factory as FactoryInterface;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Factory
  *
- * @package srag\DataTableUI\SrTile\Implementation\Format\Browser\Filter
+ * @package srag\DataTableUI\ToGo\Implementation\Format\Browser\Filter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

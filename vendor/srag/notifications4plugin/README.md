@@ -30,7 +30,7 @@ You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/li
 Your class in this you want to use Notifications4Plugin needs to use the trait `Notifications4PluginTrait`
 ```php
 ...
-use srag\Notifications4Plugin\SrTile\x\Utils\Notifications4PluginTrait;
+use srag\Notifications4Plugin\ToGo\x\Utils\Notifications4PluginTrait;
 ...
 class x {
 ...
@@ -53,7 +53,7 @@ Add an update step to your `dbupdate.php`
 ...
 <#x>
 <?php
-\srag\Notifications4Plugin\SrTile\x\Repository::getInstance()->installTables();
+\srag\Notifications4Plugin\ToGo\x\Repository::getInstance()->installTables();
 ?>
 ```
 
@@ -68,7 +68,7 @@ self::notifications4plugin()->notifications()->dropTables();
 /**
  * ...
  *
- * @ilCtrl_isCalledBy srag\Notifications4Plugin\SrTile\x\Notification\NotificationsCtrl: x
+ * @ilCtrl_isCalledBy srag\Notifications4Plugin\ToGo\x\Notification\NotificationsCtrl: x
  */
 class x
 {
@@ -94,15 +94,15 @@ Expand you plugin class for installing languages of the library to your plugin
 ## Migrate from old global plugin
 Add to your `dbupdate.php` like:
 ```php
-if (\srag\Notifications4Plugin\SrTile\x\Notification\Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
+if (\srag\Notifications4Plugin\ToGo\x\Notification\Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
 
-	$notification = \srag\Notifications4Plugin\SrTile\x\Notification\Repository::getInstance()->factory()->newInstance();
+	$notification = \srag\Notifications4Plugin\ToGo\x\Notification\Repository::getInstance()->factory()->newInstance();
 
 	$notification->setName(x::TEMPLATE_NAME);
 
 	// TODO: Fill $notification with your default values
 
-	\srag\Notifications4Plugin\SrTile\x\Notification\Repository::getInstance()->storeNotification($notification);
+	\srag\Notifications4Plugin\ToGo\x\Notification\Repository::getInstance()->storeNotification($notification);
 }
 ```
 
@@ -134,7 +134,7 @@ $sender = self::notifications4plugin()->sender()->factory()->internalMail('from_
 $sender = self::notifications4plugin()->sender()->factory()->vcalendar(...);
 
 // Implement a custom sender object
-// Your class must implement the interface `srag\Notifications4Plugin\SrTile\x\Sender\Sender`
+// Your class must implement the interface `srag\Notifications4Plugin\ToGo\x\Sender\Sender`
 ```
 
 ```php
@@ -195,7 +195,7 @@ $text = self::notifications4plugin()->parser()->parseText($parser, $notification
 ```
 
 ## Implement a custom parser
-Your class must extends `srag\Notifications4Plugin\SrTile\x\Parser\AbstractParser`
+Your class must extends `srag\Notifications4Plugin\ToGo\x\Parser\AbstractParser`
 
 You can add it
 ```php

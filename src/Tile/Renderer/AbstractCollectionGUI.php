@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile\Renderer;
+namespace srag\Plugins\ToGo\Tile\Renderer;
 
 use ilLink;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
-use srag\Plugins\SrTile\Tile\TileGUI;
-use srag\Plugins\SrTile\Config\ConfigFormGUI;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
+use srag\Plugins\ToGo\Tile\TileGUI;
+use srag\Plugins\ToGo\Config\ConfigFormGUI;
 
 use ilGroupedListGUI;
 
 /**
  * Class AbstractCollectionGUI
  *
- * @package srag\Plugins\SrTile\Tile\Renderer
+ * @package srag\Plugins\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch> *
@@ -303,7 +303,6 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_FILTER);
-
         return $item_link;
     }
 

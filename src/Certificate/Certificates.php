@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\SrTile\Certificate;
+namespace srag\Plugins\ToGo\Certificate;
 
 use ilCertificate;
 use ilCertificatePlugin;
@@ -13,9 +13,9 @@ use ilSAHSPresentationGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 use srCertificate;
 use srCertificateDefinition;
 use srCertificateUserGUI;
@@ -23,7 +23,7 @@ use srCertificateUserGUI;
 /**
  * Class Certificates
  *
- * @package srag\Plugins\SrTile\Certificate
+ * @package srag\Plugins\ToGo\Certificate
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

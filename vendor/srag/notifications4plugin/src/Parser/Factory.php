@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Parser;
+namespace srag\Notifications4Plugin\ToGo\Parser;
 
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Notifications4Plugin\SrTile\Parser
+ * @package srag\Notifications4Plugin\ToGo\Parser
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

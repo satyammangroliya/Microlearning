@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation;
+namespace srag\DataTableUI\ToGo\Implementation;
 
 use ILIAS\UI\Component\Input\Field\FilterInput;
 use ILIAS\UI\Component\Input\Field\Input as FilterInput54;
 use ILIAS\UI\Implementation\Component\ComponentHelper;
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Fetcher\DataFetcher;
-use srag\DataTableUI\SrTile\Component\Format\Browser\BrowserFormat;
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Component\Settings\Storage\SettingsStorage;
-use srag\DataTableUI\SrTile\Component\Table as TableInterface;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Plugin\PluginInterface;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Fetcher\DataFetcher;
+use srag\DataTableUI\ToGo\Component\Format\Browser\BrowserFormat;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\SettingsStorage;
+use srag\DataTableUI\ToGo\Component\Table as TableInterface;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Plugin\PluginInterface;
 
 /**
  * Class Table
  *
- * @package srag\DataTableUI\SrTile\Implementation
+ * @package srag\DataTableUI\ToGo\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

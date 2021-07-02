@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\DIC\SrTile\Database;
+namespace srag\DIC\ToGo\Database;
 
 use ilDBConstants;
 use ilDBPdoInterface;
@@ -8,7 +8,7 @@ use ilDBPdoInterface;
 /**
  * Class AbstractILIASDatabaseDetector
  *
- * @package srag\DIC\SrTile\Database
+ * @package srag\DIC\ToGo\Database
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

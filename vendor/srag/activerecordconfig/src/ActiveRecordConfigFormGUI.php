@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\ActiveRecordConfig\SrTile;
+namespace srag\ActiveRecordConfig\ToGo;
 
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\ConfigPropertyFormGUI;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\ConfigPropertyFormGUI;
 
 /**
  * Class ActiveRecordConfigFormGUI
  *
- * @package    srag\ActiveRecordConfig\SrTile
+ * @package    srag\ActiveRecordConfig\ToGo
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

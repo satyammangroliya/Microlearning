@@ -1,22 +1,22 @@
 <?php
 
-namespace srag\Plugins\SrTile\Access;
+namespace srag\Plugins\ToGo\Access;
 
 use ilObject;
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Certificate\Certificates;
-use srag\Plugins\SrTile\LearningProgress\LearningProgress;
-use srag\Plugins\SrTile\LearningProgress\LearningProgressBar;
-use srag\Plugins\SrTile\Metadata\Metadata;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Certificate\Certificates;
+use srag\Plugins\ToGo\LearningProgress\LearningProgress;
+use srag\Plugins\ToGo\LearningProgress\LearningProgressBar;
+use srag\Plugins\ToGo\Metadata\Metadata;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Ilias
  *
- * @package srag\Plugins\SrTile\Access
+ * @package srag\Plugins\ToGo\Access
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Column\Formatter;
+namespace srag\DataTableUI\ToGo\Implementation\Column\Formatter;
 
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Format\Format;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Format\Format;
 
 /**
  * Class ChainGetterFormatter
  *
- * @package srag\DataTableUI\SrTile\Implementation\Column\Formatter
+ * @package srag\DataTableUI\ToGo\Implementation\Column\Formatter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

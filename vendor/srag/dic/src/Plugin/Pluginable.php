@@ -1,11 +1,11 @@
 <?php
 
-namespace srag\DIC\SrTile\Plugin;
+namespace srag\DIC\ToGo\Plugin;
 
 /**
  * Interface Pluginable
  *
- * @package srag\DIC\SrTile\Plugin
+ * @package srag\DIC\ToGo\Plugin
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

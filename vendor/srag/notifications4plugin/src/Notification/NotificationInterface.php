@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification;
+namespace srag\Notifications4Plugin\ToGo\Notification;
 
 use ilDateTime;
 
 /**
  * Interface NotificationInterface
  *
- * @package srag\Notifications4Plugin\SrTile\Notification
+ * @package srag\Notifications4Plugin\ToGo\Notification
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\Plugins\SrTile\Template;
+namespace srag\Plugins\ToGo\Template;
 
 use ilToGoPlugin;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\TableGUI\TableGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\TableGUI\TableGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class TemplatesTableGUI
  *
- * @package srag\Plugins\SrTile\Template
+ * @package srag\Plugins\ToGo\Template
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

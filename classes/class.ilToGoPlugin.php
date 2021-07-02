@@ -5,8 +5,9 @@ if (file_exists(__DIR__ . "/../../Certificate/vendor/autoload.php")) {
     require_once __DIR__ . "/../../Certificate/vendor/autoload.php";
 }
 
-use srag\Plugins\SrTile\Utils\SrTileTrait;
-use srag\RemovePluginDataConfirm\SrTile\PluginUninstallTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
+use srag\RemovePluginDataConfirm\ToGo\PluginUninstallTrait;
+
 
 /**
  * Class ilToGoPlugin

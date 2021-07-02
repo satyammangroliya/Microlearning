@@ -1,27 +1,27 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation;
+namespace srag\DataTableUI\ToGo\Implementation;
 
-use srag\DataTableUI\SrTile\Component\Column\Factory as ColumnFactoryInterface;
-use srag\DataTableUI\SrTile\Component\Data\Factory as DataFactoryInterface;
-use srag\DataTableUI\SrTile\Component\Data\Fetcher\DataFetcher;
-use srag\DataTableUI\SrTile\Component\Factory as FactoryInterface;
-use srag\DataTableUI\SrTile\Component\Format\Factory as FormatFactoryInterface;
-use srag\DataTableUI\SrTile\Component\Settings\Factory as SettingsFactoryInterface;
-use srag\DataTableUI\SrTile\Component\Table as TableInterface;
-use srag\DataTableUI\SrTile\Implementation\Column\Factory as ColumnFactory;
-use srag\DataTableUI\SrTile\Implementation\Data\Factory as DataFactory;
-use srag\DataTableUI\SrTile\Implementation\Format\Factory as FormatFactory;
-use srag\DataTableUI\SrTile\Implementation\Settings\Factory as SettingsFactory;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Plugin\PluginInterface;
-use srag\DIC\SrTile\Util\LibraryLanguageInstaller;
+use srag\DataTableUI\ToGo\Component\Column\Factory as ColumnFactoryInterface;
+use srag\DataTableUI\ToGo\Component\Data\Factory as DataFactoryInterface;
+use srag\DataTableUI\ToGo\Component\Data\Fetcher\DataFetcher;
+use srag\DataTableUI\ToGo\Component\Factory as FactoryInterface;
+use srag\DataTableUI\ToGo\Component\Format\Factory as FormatFactoryInterface;
+use srag\DataTableUI\ToGo\Component\Settings\Factory as SettingsFactoryInterface;
+use srag\DataTableUI\ToGo\Component\Table as TableInterface;
+use srag\DataTableUI\ToGo\Implementation\Column\Factory as ColumnFactory;
+use srag\DataTableUI\ToGo\Implementation\Data\Factory as DataFactory;
+use srag\DataTableUI\ToGo\Implementation\Format\Factory as FormatFactory;
+use srag\DataTableUI\ToGo\Implementation\Settings\Factory as SettingsFactory;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Plugin\PluginInterface;
+use srag\DIC\ToGo\Util\LibraryLanguageInstaller;
 
 /**
  * Class Factory
  *
- * @package srag\DataTableUI\SrTile\Implementation
+ * @package srag\DataTableUI\ToGo\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

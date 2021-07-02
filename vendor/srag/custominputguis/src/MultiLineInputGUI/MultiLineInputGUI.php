@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\MultiLineInputGUI;
+namespace srag\CustomInputGUIs\ToGo\MultiLineInputGUI;
 
 use ilCalendarUtil;
 use ilDate;
@@ -13,14 +13,14 @@ use ilTemplate;
 use ilTextAreaInputGUI;
 use ilToolbarItem;
 use ilUtil;
-use srag\CustomInputGUIs\SrTile\GlyphGUI\GlyphGUI;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\GlyphGUI\GlyphGUI;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class MultiLineInputGUI
  *
- * @package    srag\CustomInputGUIs\SrTile\MultiLineInputGUI
+ * @package    srag\CustomInputGUIs\ToGo\MultiLineInputGUI
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author     Michael Herren <mh@studer-raimann.ch>

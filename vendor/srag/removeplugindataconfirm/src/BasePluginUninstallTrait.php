@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\RemovePluginDataConfirm\SrTile;
+namespace srag\RemovePluginDataConfirm\ToGo;
 
 use ilUIPluginRouterGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Util\LibraryLanguageInstaller;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Util\LibraryLanguageInstaller;
 
 /**
  * Trait BasePluginUninstallTrait
  *
- * @package srag\RemovePluginDataConfirm\SrTile
+ * @package srag\RemovePluginDataConfirm\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

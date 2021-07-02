@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification\Table;
+namespace srag\Notifications4Plugin\ToGo\Notification\Table;
 
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Utils\AbstractTableBuilder;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationCtrl;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Utils\AbstractTableBuilder;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationCtrl;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class TableBuilder
  *
- * @package srag\Notifications4Plugin\SrTile\Notification\Table
+ * @package srag\Notifications4Plugin\ToGo\Notification\Table
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

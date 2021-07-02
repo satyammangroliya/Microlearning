@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification;
+namespace srag\Notifications4Plugin\ToGo\Notification;
 
 use ilDateTime;
 use ilDBConstants;
-use srag\CustomInputGUIs\SrTile\TabsInputGUI\MultilangualTabsInputGUI;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Notification\Language\NotificationLanguage;
-use srag\Notifications4Plugin\SrTile\Parser\twigParser;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\CustomInputGUIs\ToGo\TabsInputGUI\MultilangualTabsInputGUI;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Notification\Language\NotificationLanguage;
+use srag\Notifications4Plugin\ToGo\Parser\twigParser;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 use stdClass;
 use Throwable;
 
 /**
  * Class Repository
  *
- * @package srag\Notifications4Plugin\SrTile\Notification
+ * @package srag\Notifications4Plugin\ToGo\Notification
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

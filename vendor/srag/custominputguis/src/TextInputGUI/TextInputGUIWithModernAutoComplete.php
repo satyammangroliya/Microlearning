@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\TextInputGUI;
+namespace srag\CustomInputGUIs\ToGo\TextInputGUI;
 
 use iljQueryUtil;
 use ilUtil;
-use srag\CustomInputGUIs\SrTile\Template\Template;
+use srag\CustomInputGUIs\ToGo\Template\Template;
 
 /**
  * Class TextInputGUIWithModernAutoComplete
  *
- * @package srag\CustomInputGUIs\SrTile\TextInputGUI
+ * @package srag\CustomInputGUIs\ToGo\TextInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

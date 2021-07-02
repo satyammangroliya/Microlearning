@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\InputGUIWrapperUIInputComponent;
+namespace srag\CustomInputGUIs\ToGo\InputGUIWrapperUIInputComponent;
 
 use ilFormPropertyGUI;
 use ILIAS\Data\Factory as DataFactory;
@@ -9,7 +9,7 @@ use ilLanguage;
 /**
  * Trait InputGUIWrapperConstraintTrait
  *
- * @package srag\CustomInputGUIs\SrTile\InputGUIWrapperUIInputComponent
+ * @package srag\CustomInputGUIs\ToGo\InputGUIWrapperUIInputComponent
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

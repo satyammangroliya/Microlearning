@@ -1,20 +1,20 @@
 <?php
 
-namespace srag\DIC\SrTile\Output;
+namespace srag\DIC\ToGo\Output;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Implementation\Render\Template;
 use ilTable2GUI;
 use ilTemplate;
 use JsonSerializable;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Exception\DICException;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Exception\DICException;
 use stdClass;
 
 /**
  * Class Output
  *
- * @package srag\DIC\SrTile\Output
+ * @package srag\DIC\ToGo\Output
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

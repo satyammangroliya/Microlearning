@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Column\Formatter;
+namespace srag\DataTableUI\ToGo\Component\Column\Formatter;
 
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Format\Format;
 
 /**
  * Interface Formatter
  *
- * @package srag\DataTableUI\SrTile\Component\Column\Formatter
+ * @package srag\DataTableUI\ToGo\Component\Column\Formatter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

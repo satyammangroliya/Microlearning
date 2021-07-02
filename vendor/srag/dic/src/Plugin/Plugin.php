@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\DIC\SrTile\Plugin;
+namespace srag\DIC\ToGo\Plugin;
 
 use Exception;
 use ilLanguage;
 use ilPlugin;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Exception\DICException;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Exception\DICException;
 
 /**
  * Class Plugin
  *
- * @package srag\DIC\SrTile\Plugin
+ * @package srag\DIC\ToGo\Plugin
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

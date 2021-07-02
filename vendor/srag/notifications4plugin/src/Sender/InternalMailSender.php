@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Sender;
+namespace srag\Notifications4Plugin\ToGo\Sender;
 
 use ilMail;
 use ilMailError;
 use ilMailException;
 use ilObjUser;
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 use Throwable;
 
 /**
@@ -16,7 +16,7 @@ use Throwable;
  *
  * Sends the notification internal in ILIAS. Based on the settings, the mail is also forwarded to the users external e-mail address
  *
- * @package srag\Notifications4Plugin\SrTile\Sender
+ * @package srag\Notifications4Plugin\ToGo\Sender
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>

@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\LearningProgressPieUI;
+namespace srag\CustomInputGUIs\ToGo\LearningProgressPieUI;
 
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class LearningProgressPieUI
  *
- * @package srag\CustomInputGUIs\SrTile\LearningProgressPieUI
+ * @package srag\CustomInputGUIs\ToGo\LearningProgressPieUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,8 +1,8 @@
 <?php
 
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Utils\AbstractTableBuilder;
-use srag\DIC\SrTile\DICStatic;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Utils\AbstractTableBuilder;
+use srag\DIC\ToGo\DICStatic;
 
 /**
  * @return string

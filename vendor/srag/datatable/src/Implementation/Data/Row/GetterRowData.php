@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Data\Row;
+namespace srag\DataTableUI\ToGo\Implementation\Data\Row;
 
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
 
 /**
  * Class GetterRowData
  *
- * @package srag\DataTableUI\SrTile\Implementation\Data\Row
+ * @package srag\DataTableUI\ToGo\Implementation\Data\Row
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

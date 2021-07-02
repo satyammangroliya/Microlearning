@@ -1,20 +1,20 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification;
+namespace srag\Notifications4Plugin\ToGo\Notification;
 
 use ilConfirmationGUI;
 use ilUtil;
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class NotificationCtrl
  *
- * @package           srag\Notifications4Plugin\SrTile\Notification
+ * @package           srag\Notifications4Plugin\ToGo\Notification
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Notifications4Plugin\SrTile\Notification\NotificationCtrl: srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl
+ * @ilCtrl_isCalledBy srag\Notifications4Plugin\ToGo\Notification\NotificationCtrl: srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl
  */
 class NotificationCtrl
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\Plugins\SrTile\Favorite;
+namespace srag\Plugins\ToGo\Favorite;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\Favorite
+ * @package srag\Plugins\ToGo\Favorite
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

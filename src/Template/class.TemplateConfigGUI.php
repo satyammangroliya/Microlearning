@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\Plugins\SrTile\Template;
+namespace srag\Plugins\ToGo\Template;
 
 use ilConfirmationGUI;
 use ilToGoPlugin;
 use ilUtil;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\TileGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\TileGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 use ilUIPluginRouterGUI;
 
 /**
  * Class TemplateConfigGUI
  *
- * @package           srag\Plugins\SrTile\Template
+ * @package           srag\Plugins\ToGo\Template
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Template\TemplateConfigGUI: srag\Plugins\SrTile\Template\TemplatesConfigGUI,ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\Template\TemplateConfigGUI: srag\Plugins\ToGo\Template\TemplatesConfigGUI,ilUIPluginRouterGUI
  */
 class TemplateConfigGUI
 {

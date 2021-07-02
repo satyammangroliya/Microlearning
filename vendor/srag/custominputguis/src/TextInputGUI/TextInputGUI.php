@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\TextInputGUI;
+namespace srag\CustomInputGUIs\ToGo\TextInputGUI;
 
 use ilTextInputGUI;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class TextInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\TextInputGUI
+ * @package srag\CustomInputGUIs\ToGo\TextInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

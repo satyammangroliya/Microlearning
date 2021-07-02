@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\ActiveRecordConfig\SrTile;
+namespace srag\ActiveRecordConfig\ToGo;
 
 use ilPluginConfigGUI;
 use ilUtil;
-use srag\ActiveRecordConfig\SrTile\Exception\ActiveRecordConfigException;
-use srag\DIC\SrTile\DICTrait;
+use srag\ActiveRecordConfig\ToGo\Exception\ActiveRecordConfigException;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class ActiveRecordConfigGUI
  *
- * @package    srag\ActiveRecordConfig\SrTile
+ * @package    srag\ActiveRecordConfig\ToGo
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

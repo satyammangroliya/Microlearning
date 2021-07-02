@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\TableGUI\Exception;
+namespace srag\CustomInputGUIs\ToGo\TableGUI\Exception;
 
 use ilException;
 
 /**
  * Class TableGUIException
  *
- * @package srag\CustomInputGUIs\SrTile\TableGUI\Exception
+ * @package srag\CustomInputGUIs\ToGo\TableGUI\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

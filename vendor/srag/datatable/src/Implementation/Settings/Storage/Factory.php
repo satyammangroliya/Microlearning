@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Settings\Storage;
+namespace srag\DataTableUI\ToGo\Implementation\Settings\Storage;
 
-use srag\DataTableUI\SrTile\Component\Settings\Storage\Factory as FactoryInterface;
-use srag\DataTableUI\SrTile\Component\Settings\Storage\SettingsStorage;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\Factory as FactoryInterface;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\SettingsStorage;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Factory
  *
- * @package srag\DataTableUI\SrTile\Implementation\Settings\Storage
+ * @package srag\DataTableUI\ToGo\Implementation\Settings\Storage
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

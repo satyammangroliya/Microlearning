@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile\Renderer;
+namespace srag\Plugins\ToGo\Tile\Renderer;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Renderer\Container\ContainerCollectionGUI;
-use srag\Plugins\SrTile\Tile\Renderer\Desktop\DesktopCollectionGUI;
-use srag\Plugins\SrTile\Tile\Renderer\Fixed\FixedCollectionGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Renderer\Container\ContainerCollectionGUI;
+use srag\Plugins\ToGo\Tile\Renderer\Desktop\DesktopCollectionGUI;
+use srag\Plugins\ToGo\Tile\Renderer\Fixed\FixedCollectionGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class CollectionGUIFactory
  *
- * @package srag\Plugins\SrTile\Tile\Renderer
+ * @package srag\Plugins\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

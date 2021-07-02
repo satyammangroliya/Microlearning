@@ -1,16 +1,16 @@
 <?php
 
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Column\Formatter\DefaultFormatter;
-use srag\DataTableUI\SrTile\Implementation\Data\Fetcher\AbstractDataFetcher;
-use srag\DataTableUI\SrTile\Implementation\Utils\AbstractTableBuilder;
-use srag\DIC\SrTile\DICStatic;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Column\Formatter\DefaultFormatter;
+use srag\DataTableUI\ToGo\Implementation\Data\Fetcher\AbstractDataFetcher;
+use srag\DataTableUI\ToGo\Implementation\Utils\AbstractTableBuilder;
+use srag\DIC\ToGo\DICStatic;
 
 /**
  * @return string

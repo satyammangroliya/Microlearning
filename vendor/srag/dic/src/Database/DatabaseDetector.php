@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\DIC\SrTile\Database;
+namespace srag\DIC\ToGo\Database;
 
 use ilDBConstants;
 use ilDBInterface;
@@ -8,13 +8,13 @@ use ilDBPdoInterface;
 use ilDBPdoPostgreSQL;
 use ilDBStatement;
 use PDO;
-use srag\DIC\SrTile\Exception\DICException;
+use srag\DIC\ToGo\Exception\DICException;
 use stdClass;
 
 /**
  * Class DatabaseDetector
  *
- * @package srag\DIC\SrTile\Database
+ * @package srag\DIC\ToGo\Database
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

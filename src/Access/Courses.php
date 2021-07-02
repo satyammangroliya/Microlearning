@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\Plugins\SrTile\Access;
+namespace srag\Plugins\ToGo\Access;
 
 use ilConditionHandler;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Courses
  *
- * @package srag\Plugins\SrTile\Access
+ * @package srag\Plugins\ToGo\Access
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

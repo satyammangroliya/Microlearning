@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Format\Browser\Filter;
+namespace srag\DataTableUI\ToGo\Implementation\Format\Browser\Filter;
 
-use srag\CustomInputGUIs\SrTile\FormBuilder\AbstractFormBuilder;
-use srag\DataTableUI\SrTile\Component\Format\Browser\BrowserFormat;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Settings\Storage\SettingsStorage;
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
+use srag\CustomInputGUIs\ToGo\FormBuilder\AbstractFormBuilder;
+use srag\DataTableUI\ToGo\Component\Format\Browser\BrowserFormat;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\SettingsStorage;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
 
 /**
  * Class FormBuilder
  *
- * @package srag\DataTableUI\SrTile\Implementation\Format\Browser\Filter
+ * @package srag\DataTableUI\ToGo\Implementation\Format\Browser\Filter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

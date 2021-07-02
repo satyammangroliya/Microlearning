@@ -1,11 +1,11 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile;
+namespace srag\CustomInputGUIs\ToGo;
 
 /**
  * Trait CustomInputGUIsTrait
  *
- * @package srag\CustomInputGUIs\SrTile
+ * @package srag\CustomInputGUIs\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

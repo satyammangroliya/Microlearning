@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\Plugins\SrTile\ObjectLink;
+namespace srag\Plugins\ToGo\ObjectLink;
 
 use ilObjectFactory;
 use ilToGoPlugin;
 use ilUtil;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Config\ConfigFormGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Config\ConfigFormGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\ObjectLink
+ * @package srag\Plugins\ToGo\ObjectLink
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

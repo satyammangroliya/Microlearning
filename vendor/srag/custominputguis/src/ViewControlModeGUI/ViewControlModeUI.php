@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\ViewControlModeUI;
+namespace srag\CustomInputGUIs\ToGo\ViewControlModeUI;
 
 use ilSession;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class ViewControlModeUI
  *
- * @package srag\CustomInputGUIs\SrTile\ViewControlModeUI
+ * @package srag\CustomInputGUIs\ToGo\ViewControlModeUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

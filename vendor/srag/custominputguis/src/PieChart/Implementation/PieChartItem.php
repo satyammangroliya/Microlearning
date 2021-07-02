@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PieChart\Implementation;
+namespace srag\CustomInputGUIs\ToGo\PieChart\Implementation;
 
 use ILIAS\Data\Color;
 use ILIAS\UI\Implementation\Component\ComponentHelper;
 use InvalidArgumentException;
-use srag\CustomInputGUIs\SrTile\PieChart\Component\PieChartItem as PieChartItemInterface;
+use srag\CustomInputGUIs\ToGo\PieChart\Component\PieChartItem as PieChartItemInterface;
 
 /**
  * Class PieChartItem
  *
  * https://github.com/ILIAS-eLearning/ILIAS/tree/trunk/src/UI/Implementation/Component/Chart/PieChart/PieChartItem.php
  *
- * @package srag\CustomInputGUIs\SrTile\PieChart\Implementation
+ * @package srag\CustomInputGUIs\ToGo\PieChart\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

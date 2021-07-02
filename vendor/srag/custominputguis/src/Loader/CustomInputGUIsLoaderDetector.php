@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\Loader;
+namespace srag\CustomInputGUIs\ToGo\Loader;
 
 use Closure;
 use ILIAS\UI\Component\Component;
@@ -9,14 +9,14 @@ use ILIAS\UI\Implementation\Render\ComponentRenderer;
 use ILIAS\UI\Implementation\Render\Loader;
 use ILIAS\UI\Renderer;
 use Pimple\Container;
-use srag\CustomInputGUIs\SrTile\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
-use srag\CustomInputGUIs\SrTile\InputGUIWrapperUIInputComponent\Renderer as InputGUIWrapperUIInputComponentRenderer;
-use srag\DIC\SrTile\Loader\AbstractLoaderDetector;
+use srag\CustomInputGUIs\ToGo\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
+use srag\CustomInputGUIs\ToGo\InputGUIWrapperUIInputComponent\Renderer as InputGUIWrapperUIInputComponentRenderer;
+use srag\DIC\ToGo\Loader\AbstractLoaderDetector;
 
 /**
  * Class CustomInputGUIsLoaderDetector
  *
- * @package srag\CustomInputGUIs\SrTile\Loader
+ * @package srag\CustomInputGUIs\ToGo\Loader
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,33 +1,33 @@
 <?php
 
-namespace srag\Plugins\SrTile;
+namespace srag\Plugins\ToGo;
 
 use ilObject;
 use ilObjUser;
 use ilToGoPlugin;
 use ilUtil;
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\RepositoryInterface as Notifications4PluginRepositoryInterface;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
-use srag\Plugins\SrTile\Access\Access;
-use srag\Plugins\SrTile\Access\Ilias;
-use srag\Plugins\SrTile\ColorThiefCache\Repository as ColorThiefCachesRepository;
-use srag\Plugins\SrTile\Config\Repository as ConfigRepository;
-use srag\Plugins\SrTile\Favorite\Repository as FavoritesRepository;
-use srag\Plugins\SrTile\LearningProgress\Repository as LearningProgressFiltersRepository;
-use srag\Plugins\SrTile\ObjectLink\Repository as ObjectLinksRepository;
-use srag\Plugins\SrTile\OnlineStatus\Repository as OnlineStatusRepository;
-use srag\Plugins\SrTile\Rating\Repository as RatingsRepository;
-use srag\Plugins\SrTile\Recommend\Repository as RecommendsRepository;
-use srag\Plugins\SrTile\Template\Repository as TemplatesRepository;
-use srag\Plugins\SrTile\Tile\Repository as TilesRepository;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
-use srag\Plugins\SrTile\Collection\Repository as CollectionsRepository;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\RepositoryInterface as Notifications4PluginRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
+use srag\Plugins\ToGo\Access\Access;
+use srag\Plugins\ToGo\Access\Ilias;
+use srag\Plugins\ToGo\ColorThiefCache\Repository as ColorThiefCachesRepository;
+use srag\Plugins\ToGo\Config\Repository as ConfigRepository;
+use srag\Plugins\ToGo\Favorite\Repository as FavoritesRepository;
+use srag\Plugins\ToGo\LearningProgress\Repository as LearningProgressFiltersRepository;
+use srag\Plugins\ToGo\ObjectLink\Repository as ObjectLinksRepository;
+use srag\Plugins\ToGo\OnlineStatus\Repository as OnlineStatusRepository;
+use srag\Plugins\ToGo\Rating\Repository as RatingsRepository;
+use srag\Plugins\ToGo\Recommend\Repository as RecommendsRepository;
+use srag\Plugins\ToGo\Template\Repository as TemplatesRepository;
+use srag\Plugins\ToGo\Tile\Repository as TilesRepository;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
+use srag\Plugins\ToGo\Collection\Repository as CollectionsRepository;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile
+ * @package srag\Plugins\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

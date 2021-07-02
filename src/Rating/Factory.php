@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\Plugins\SrTile\Rating;
+namespace srag\Plugins\ToGo\Rating;
 
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Plugins\SrTile\Rating
+ * @package srag\Plugins\ToGo\Rating
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

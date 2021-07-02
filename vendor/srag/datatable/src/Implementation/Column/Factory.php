@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Column;
+namespace srag\DataTableUI\ToGo\Implementation\Column;
 
-use srag\DataTableUI\SrTile\Component\Column\Column as ColumnInterface;
-use srag\DataTableUI\SrTile\Component\Column\Factory as FactoryInterface;
-use srag\DataTableUI\SrTile\Component\Column\Formatter\Factory as FormatterFactoryInterface;
-use srag\DataTableUI\SrTile\Implementation\Column\Formatter\Factory as FormatterFactory;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Column\Column as ColumnInterface;
+use srag\DataTableUI\ToGo\Component\Column\Factory as FactoryInterface;
+use srag\DataTableUI\ToGo\Component\Column\Formatter\Factory as FormatterFactoryInterface;
+use srag\DataTableUI\ToGo\Implementation\Column\Formatter\Factory as FormatterFactory;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Factory
  *
- * @package srag\DataTableUI\SrTile\Implementation\Column
+ * @package srag\DataTableUI\ToGo\Implementation\Column
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

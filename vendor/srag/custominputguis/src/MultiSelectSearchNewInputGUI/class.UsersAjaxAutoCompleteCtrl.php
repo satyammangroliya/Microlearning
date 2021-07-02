@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\MultiSelectSearchNewInputGUI;
+namespace srag\CustomInputGUIs\ToGo\MultiSelectSearchNewInputGUI;
 
 use ilDBConstants;
 use ilObjUser;
@@ -8,7 +8,7 @@ use ilObjUser;
 /**
  * Class UsersAjaxAutoCompleteCtrl
  *
- * @package srag\CustomInputGUIs\SrTile\MultiSelectSearchNewInputGUI
+ * @package srag\CustomInputGUIs\ToGo\MultiSelectSearchNewInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

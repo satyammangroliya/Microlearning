@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\MultiSelectSearchInputGUI;
+namespace srag\CustomInputGUIs\ToGo\MultiSelectSearchInputGUI;
 
 use ilMultiSelectInputGUI;
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
 use ilUtil;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class MultiSelectSearchInputGUI
  *
- * @package    srag\CustomInputGUIs\SrTile\MultiSelectSearchInputGUI
+ * @package    srag\CustomInputGUIs\ToGo\MultiSelectSearchInputGUI
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author     Oskar Truffer <ot@studer-raimann.ch>

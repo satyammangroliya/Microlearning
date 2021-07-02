@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\Plugins\SrTile\ColorThiefCache;
+namespace srag\Plugins\ToGo\ColorThiefCache;
 
 use ActiveRecord;
 use arConnector;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class ColorThiefCache
  *
- * @package srag\Plugins\SrTile\ColorThiefCache
+ * @package srag\Plugins\ToGo\ColorThiefCache
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

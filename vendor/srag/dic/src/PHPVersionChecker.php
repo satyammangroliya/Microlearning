@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\DIC\SrTile;
+namespace srag\DIC\ToGo;
 
 use Throwable;
 
 /**
  * Class PHPVersionChecker
  *
- * @package srag\DIC\SrTile
+ * @package srag\DIC\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

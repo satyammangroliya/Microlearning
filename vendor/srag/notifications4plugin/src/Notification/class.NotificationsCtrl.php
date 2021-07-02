@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification;
+namespace srag\Notifications4Plugin\ToGo\Notification;
 
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class NotificationsCtrl
  *
- * @package srag\Notifications4Plugin\SrTile\Notification
+ * @package srag\Notifications4Plugin\ToGo\Notification
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\Plugins\SrTile\Collection;
+namespace srag\Plugins\ToGo\Collection;
 
 use ActiveRecord;
 use arConnector;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Topic
  *
- * @package srag\Plugins\SrTile\Collection
+ * @package srag\Plugins\ToGo\Collection
  *
  * @author  Jephte Abijuru <jephte.abijuru@minervis.com>
  */

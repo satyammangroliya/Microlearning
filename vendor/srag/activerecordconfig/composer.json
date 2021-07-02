@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\\ActiveRecordConfig\\SrTile\\": "src/"
+      "srag\\ActiveRecordConfig\\ToGo\\": "src/"
     }
   },
   "config": {

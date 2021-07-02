@@ -1,11 +1,11 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Column\Formatter\Actions;
+namespace srag\DataTableUI\ToGo\Component\Column\Formatter\Actions;
 
 /**
  * Interface Factory
  *
- * @package srag\DataTableUI\SrTile\Component\Column\Formatter\Actions
+ * @package srag\DataTableUI\ToGo\Component\Column\Formatter\Actions
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

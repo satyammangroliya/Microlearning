@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\DIC\SrTile;
+namespace srag\DIC\ToGo;
 
 use ilLogLevel;
 use ilPlugin;
-use srag\DIC\SrTile\DIC\DICInterface;
-use srag\DIC\SrTile\DIC\Implementation\ILIAS54DIC;
-use srag\DIC\SrTile\DIC\Implementation\ILIAS60DIC;
-use srag\DIC\SrTile\Exception\DICException;
-use srag\DIC\SrTile\Output\Output;
-use srag\DIC\SrTile\Output\OutputInterface;
-use srag\DIC\SrTile\Plugin\Plugin;
-use srag\DIC\SrTile\Plugin\PluginInterface;
-use srag\DIC\SrTile\Version\Version;
-use srag\DIC\SrTile\Version\VersionInterface;
+use srag\DIC\ToGo\DIC\DICInterface;
+use srag\DIC\ToGo\DIC\Implementation\ILIAS54DIC;
+use srag\DIC\ToGo\DIC\Implementation\ILIAS60DIC;
+use srag\DIC\ToGo\Exception\DICException;
+use srag\DIC\ToGo\Output\Output;
+use srag\DIC\ToGo\Output\OutputInterface;
+use srag\DIC\ToGo\Plugin\Plugin;
+use srag\DIC\ToGo\Plugin\PluginInterface;
+use srag\DIC\ToGo\Version\Version;
+use srag\DIC\ToGo\Version\VersionInterface;
 
 /**
  * Class DICStatic
  *
- * @package srag\DIC\SrTile
+ * @package srag\DIC\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

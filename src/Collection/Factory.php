@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\Plugins\SrTile\Collection;
+namespace srag\Plugins\ToGo\Collection;
 
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Plugins\SrTile\Collection
+ * @package srag\Plugins\ToGo\Collection
  *
  * @author  Jephte Abijuru <jephte.abijuru@minervis.com>
  */
@@ -53,5 +53,15 @@ final class Factory
         $collection = new Collection();
 
         return $collection;
+    }
+
+    /**
+     * @return AnonymousSession
+     */
+    public function newAnonymousSessionInstance() : AnonymousSession
+    {
+        $anonymousSession = new AnonymousSession();
+
+        return $anonymousSession;
     }
 }

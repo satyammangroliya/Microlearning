@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\Plugins\SrTile\OnlineStatus;
+namespace srag\Plugins\ToGo\OnlineStatus;
 
 use ilLink;
 use ilPersonalDesktopGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Config\ConfigFormGUI;
-use srag\Plugins\SrTile\ObjectLink\ObjectLink;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Config\ConfigFormGUI;
+use srag\Plugins\ToGo\ObjectLink\ObjectLink;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class OnlineStatusGUI
  *
- * @package           srag\Plugins\SrTile\OnlineStatus
+ * @package           srag\Plugins\ToGo\OnlineStatus
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\OnlineStatus\OnlineStatusGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\OnlineStatus\OnlineStatusGUI: ilUIPluginRouterGUI
  */
 class OnlineStatusGUI
 {

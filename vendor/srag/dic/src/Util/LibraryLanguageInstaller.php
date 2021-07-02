@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\DIC\SrTile\Util;
+namespace srag\DIC\ToGo\Util;
 
 use ilDBConstants;
 use ilGlobalCache;
 use ilObjLanguage;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Plugin\Pluginable;
-use srag\DIC\SrTile\Plugin\PluginInterface;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Plugin\Pluginable;
+use srag\DIC\ToGo\Plugin\PluginInterface;
 
 /**
  * Class LibraryLanguageInstaller
  *
- * @package srag\DIC\SrTile\Util
+ * @package srag\DIC\ToGo\Util
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,8 +1,8 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Parser;
+namespace srag\Notifications4Plugin\ToGo\Parser;
 
-use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl;
 use Twig_Environment;
 use Twig_Error;
 use Twig_Loader_String;
@@ -10,7 +10,7 @@ use Twig_Loader_String;
 /**
  * Class twigParser
  *
- * @package srag\Notifications4Plugin\SrTile\Parser
+ * @package srag\Notifications4Plugin\ToGo\Parser
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>

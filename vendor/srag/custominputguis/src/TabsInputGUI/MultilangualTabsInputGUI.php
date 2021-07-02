@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\TabsInputGUI;
+namespace srag\CustomInputGUIs\ToGo\TabsInputGUI;
 
 use ilFormPropertyGUI;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class MultilangualTabsInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\TabsInputGUI
+ * @package srag\CustomInputGUIs\ToGo\TabsInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

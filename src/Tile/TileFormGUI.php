@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile;
+namespace srag\Plugins\ToGo\Tile;
 
 use ilColorPickerInputGUI;
 use ilFormSectionHeaderGUI;
@@ -13,12 +13,12 @@ use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilSelectInputGUI;
 use ilToGoPlugin;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationInterface;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationsCtrl;
-use srag\Plugins\SrTile\Template\TemplateConfigGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationInterface;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationsCtrl;
+use srag\Plugins\ToGo\Template\TemplateConfigGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 // Customized
 use ilCheckboxInputGUI;
 use ilTextInputGUI;
@@ -27,7 +27,7 @@ use ilUIPluginRouterGUI;
 /**
  * Class TileFormGUI
  *
- * @package srag\Plugins\srTile\Tile
+ * @package srag\Plugins\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Column;
+namespace srag\DataTableUI\ToGo\Component\Column;
 
-use srag\DataTableUI\SrTile\Component\Column\Formatter\Formatter;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
+use srag\DataTableUI\ToGo\Component\Column\Formatter\Formatter;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
 
 /**
  * Interface Column
  *
- * @package srag\DataTableUI\SrTile\Component\Column
+ * @package srag\DataTableUI\ToGo\Component\Column
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

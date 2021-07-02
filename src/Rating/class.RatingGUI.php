@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\Plugins\SrTile\Rating;
+namespace srag\Plugins\ToGo\Rating;
 
 use ilLink;
 use ilPersonalDesktopGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class RatingGUI
  *
- * @package           srag\Plugins\SrTile\Rating
+ * @package           srag\Plugins\ToGo\Rating
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Rating\RatingGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\Rating\RatingGUI: ilUIPluginRouterGUI
  */
 class RatingGUI
 {
@@ -26,6 +26,7 @@ class RatingGUI
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_LIKE = "like";
     const CMD_UNLIKE = "unlike";
+    const CMD_READ_ANONYMOUS = "readAnonymous";
     const GET_PARAM_PARENT_REF_ID = "parent_ref_id";
     const GET_PARAM_REF_ID = "ref_id";
     const LANG_MODULE = "rating";
@@ -75,6 +76,7 @@ class RatingGUI
                 switch ($cmd) {
                     case self::CMD_LIKE:
                     case self::CMD_UNLIKE:
+                    case self::CMD_READ_ANONYMOUS:
                         $this->{$cmd}();
                         break;
 
@@ -125,5 +127,10 @@ class RatingGUI
         } else {
             self::dic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
         }
+    }
+    protected function readAnonymous(){
+        $obj_ref_id = $this->tile->getObjRefId();
+        self::srTile()->ratings(self::dic()->user())->view($obj_ref_id);
+        self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($obj_ref_id));
     }
 }

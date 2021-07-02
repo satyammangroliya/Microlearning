@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\ActiveRecordConfig\SrTile\Config;
+namespace srag\ActiveRecordConfig\ToGo\Config;
 
 use ActiveRecord;
 use arConnector;
 use LogicException;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Config
  *
- * @package srag\ActiveRecordConfig\SrTile\Config
+ * @package srag\ActiveRecordConfig\ToGo\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

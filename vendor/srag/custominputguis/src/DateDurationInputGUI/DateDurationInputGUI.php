@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\DateDurationInputGUI;
+namespace srag\CustomInputGUIs\ToGo\DateDurationInputGUI;
 
 use ilCalendarUtil;
 use ilDateDurationInputGUI;
 use ilDateTime;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class DateDurationInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\DateDurationInputGUI
+ * @package srag\CustomInputGUIs\ToGo\DateDurationInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Theodor Truffer <tt@studer-raimann.ch>

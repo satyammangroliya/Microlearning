@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Format\Browser;
+namespace srag\DataTableUI\ToGo\Implementation\Format\Browser;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Component\Glyph\Factory as GlyphFactory54;
@@ -8,24 +8,24 @@ use ILIAS\UI\Component\Input\Container\Filter\Standard as FilterStandard;
 use ILIAS\UI\Component\Symbol\Glyph\Factory as GlyphFactory;
 use ilUtil;
 use LogicException;
-use srag\CustomInputGUIs\SrTile\FormBuilder\FormBuilder;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Format\Browser\BrowserFormat;
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
-use srag\DataTableUI\SrTile\Component\Settings\Storage\SettingsStorage;
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Format\HtmlFormat;
+use srag\CustomInputGUIs\ToGo\FormBuilder\FormBuilder;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Format\Browser\BrowserFormat;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\SettingsStorage;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Format\HtmlFormat;
 use Throwable;
 
 /**
  * Class DefaultBrowserFormat
  *
- * @package srag\DataTableUI\SrTile\Implementation\Format\Browser
+ * @package srag\DataTableUI\ToGo\Implementation\Format\Browser
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification\Table;
+namespace srag\Notifications4Plugin\ToGo\Notification\Table;
 
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Implementation\Data\Fetcher\AbstractDataFetcher;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationInterface;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Implementation\Data\Fetcher\AbstractDataFetcher;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationInterface;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class DataFetcher
  *
- * @package srag\Notifications4Plugin\SrTile\Notification\Table
+ * @package srag\Notifications4Plugin\ToGo\Notification\Table
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

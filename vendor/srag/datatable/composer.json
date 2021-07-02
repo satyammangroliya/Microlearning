@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\\DataTableUI\\SrTile\\": "src/"
+      "srag\\DataTableUI\\ToGo\\": "src/"
     }
   },
   "config": {

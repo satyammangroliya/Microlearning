@@ -1,22 +1,22 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\TableGUI;
+namespace srag\CustomInputGUIs\ToGo\TableGUI;
 
 use ilCSVWriter;
 use ilExcel;
 use ilFormPropertyGUI;
 use ilHtmlToPdfTransformerFactory;
 use ilTable2GUI;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\CustomInputGUIs\SrTile\TableGUI\Exception\TableGUIException;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\CustomInputGUIs\ToGo\TableGUI\Exception\TableGUIException;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class TableGUI
  *
- * @package    srag\CustomInputGUIs\SrTile\TableGUI
+ * @package    srag\CustomInputGUIs\ToGo\TableGUI
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

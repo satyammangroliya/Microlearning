@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Plugins\SrTile\Template;
+namespace srag\Plugins\ToGo\Template;
 
-use srag\Plugins\SrTile\Tile\TileFormGUI;
+use srag\Plugins\ToGo\Tile\TileFormGUI;
 
 /**
  * Class TemplateFormGUI
  *
- * @package srag\Plugins\SrTile\Template
+ * @package srag\Plugins\ToGo\Template
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Settings\Sort;
+namespace srag\DataTableUI\ToGo\Implementation\Settings\Sort;
 
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField as SortFieldInterface;
-use srag\DataTableUI\SrTile\Component\Settings\Storage\SettingsStorage;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField as SortFieldInterface;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\SettingsStorage;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 use stdClass;
 
 /**
  * Class SortField
  *
- * @package srag\DataTableUI\SrTile\Implementation\Settings\Sort
+ * @package srag\DataTableUI\ToGo\Implementation\Settings\Sort
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

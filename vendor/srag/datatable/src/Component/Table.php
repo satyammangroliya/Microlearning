@@ -1,22 +1,22 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component;
+namespace srag\DataTableUI\ToGo\Component;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Component\Input\Field\FilterInput;
 use ILIAS\UI\Component\Input\Field\Input as FilterInput54;
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Fetcher\DataFetcher;
-use srag\DataTableUI\SrTile\Component\Format\Browser\BrowserFormat;
-use srag\DataTableUI\SrTile\Component\Format\Format;
-use srag\DataTableUI\SrTile\Component\Settings\Storage\SettingsStorage;
-use srag\DIC\SrTile\Plugin\Pluginable;
-use srag\DIC\SrTile\Plugin\PluginInterface;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Fetcher\DataFetcher;
+use srag\DataTableUI\ToGo\Component\Format\Browser\BrowserFormat;
+use srag\DataTableUI\ToGo\Component\Format\Format;
+use srag\DataTableUI\ToGo\Component\Settings\Storage\SettingsStorage;
+use srag\DIC\ToGo\Plugin\Pluginable;
+use srag\DIC\ToGo\Plugin\PluginInterface;
 
 /**
  * Interface Table
  *
- * @package srag\DataTableUI\SrTile\Component
+ * @package srag\DataTableUI\ToGo\Component
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

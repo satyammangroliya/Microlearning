@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Parser;
+namespace srag\Notifications4Plugin\ToGo\Parser;
 
-use srag\Notifications4Plugin\SrTile\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\SrTile\Notification\NotificationInterface;
+use srag\Notifications4Plugin\ToGo\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\ToGo\Notification\NotificationInterface;
 
 /**
  * Interface RepositoryInterface
  *
- * @package srag\Notifications4Plugin\SrTile\Parser
+ * @package srag\Notifications4Plugin\ToGo\Parser
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

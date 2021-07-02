@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\Plugins\SrTile\Certificate;
+namespace srag\Plugins\ToGo\Certificate;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Tile\TileGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Tile\TileGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class CertificateGUI
  *
- * @package srag\Plugins\SrTile\Certificate
+ * @package srag\Plugins\ToGo\Certificate
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

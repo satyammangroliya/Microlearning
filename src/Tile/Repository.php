@@ -1,25 +1,25 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile;
+namespace srag\Plugins\ToGo\Tile;
 
 use Closure;
 use ilContainerReference;
 use ilObjectFactory;
 use ilObjOrgUnit;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Config\ConfigFormGUI;
-use srag\Plugins\SrTile\Tile\Renderer\Repository as RendererRepository;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Config\ConfigFormGUI;
+use srag\Plugins\ToGo\Tile\Renderer\Repository as RendererRepository;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 use Throwable;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\Tile
+ * @package srag\Plugins\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Tile\TileGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\Tile\TileGUI: ilUIPluginRouterGUI
  */
 final class Repository
 {

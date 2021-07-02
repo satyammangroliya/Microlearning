@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\Plugins\SrTile\ObjectLink;
+namespace srag\Plugins\ToGo\ObjectLink;
 
 use ilSelectInputGUI;
 use ilToGoPlugin;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class ObjectLinkFormGUI
  *
- * @package srag\Plugins\SrTile\ObjectLink
+ * @package srag\Plugins\ToGo\ObjectLink
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

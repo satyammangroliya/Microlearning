@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\Plugins\SrTile\Tile;
+namespace srag\Plugins\ToGo\Tile;
 
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Template\TemplatesConfigGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Template\TemplatesConfigGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Plugins\SrTile\Tile
+ * @package srag\Plugins\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\ActiveRecordConfig\SrTile;
+namespace srag\ActiveRecordConfig\ToGo;
 
 use arConnector;
-use srag\ActiveRecordConfig\SrTile\Config\AbstractFactory;
-use srag\ActiveRecordConfig\SrTile\Config\AbstractRepository;
-use srag\ActiveRecordConfig\SrTile\Config\Config;
-use srag\ActiveRecordConfig\SrTile\Exception\ActiveRecordConfigException;
+use srag\ActiveRecordConfig\ToGo\Config\AbstractFactory;
+use srag\ActiveRecordConfig\ToGo\Config\AbstractRepository;
+use srag\ActiveRecordConfig\ToGo\Config\Config;
+use srag\ActiveRecordConfig\ToGo\Exception\ActiveRecordConfigException;
 
 /**
  * Class ActiveRecordConfig
  *
- * @package    srag\ActiveRecordConfig\SrTile
+ * @package    srag\ActiveRecordConfig\ToGo
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
@@ -151,7 +151,7 @@ class ActiveRecordConfig extends Config
 /**
  * Class ActiveRecordConfigRepository
  *
- * @package    srag\ActiveRecordConfig\SrTile
+ * @package    srag\ActiveRecordConfig\ToGo
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
@@ -255,7 +255,7 @@ final class ActiveRecordConfigRepository extends AbstractRepository
 /**
  * Class ActiveRecordConfigFactory
  *
- * @package    srag\ActiveRecordConfig\SrTile
+ * @package    srag\ActiveRecordConfig\ToGo
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

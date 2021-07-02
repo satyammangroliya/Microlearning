@@ -1,20 +1,20 @@
 <?php
 
-namespace srag\Plugins\SrTile\Access;
+namespace srag\Plugins\ToGo\Access;
 
 use ilObjCourse;
 use ilObjCourseAccess;
 use ilObjGroup;
 use ilObjGroupAccess;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Access
  *
- * @package srag\Plugins\SrTile\Access
+ * @package srag\Plugins\ToGo\Access
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

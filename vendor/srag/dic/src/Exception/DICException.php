@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\DIC\SrTile\Exception;
+namespace srag\DIC\ToGo\Exception;
 
 use ilException;
 
 /**
  * Class DICException
  *
- * @package srag\DIC\SrTile\Exception
+ * @package srag\DIC\ToGo\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

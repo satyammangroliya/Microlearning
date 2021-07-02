@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Notification;
+namespace srag\Notifications4Plugin\ToGo\Notification;
 
-use srag\Notifications4Plugin\SrTile\Notification\Form\FormBuilder;
-use srag\Notifications4Plugin\SrTile\Notification\Table\TableBuilder;
+use srag\Notifications4Plugin\ToGo\Notification\Form\FormBuilder;
+use srag\Notifications4Plugin\ToGo\Notification\Table\TableBuilder;
 use stdClass;
 
 /**
  * Interface FactoryInterface
  *
- * @package srag\Notifications4Plugin\SrTile\Notification
+ * @package srag\Notifications4Plugin\ToGo\Notification
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

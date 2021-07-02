@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\Plugins\SrTile\Config;
+namespace srag\Plugins\ToGo\Config;
 
 use ilToGoConfigGUI;
 use ilToGoPlugin;
-use srag\ActiveRecordConfig\SrTile\Config\AbstractFactory;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\ActiveRecordConfig\ToGo\Config\AbstractFactory;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Plugins\SrTile\Config
+ * @package srag\Plugins\ToGo\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

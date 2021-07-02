@@ -1,22 +1,22 @@
 <?php
 
-namespace srag\Plugins\SrTile\ObjectLink;
+namespace srag\Plugins\ToGo\ObjectLink;
 
 use ilToGoPlugin;
 use ilUIPluginRouterGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Config\ConfigFormGUI;
-use srag\Plugins\SrTile\Tile\TileGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Config\ConfigFormGUI;
+use srag\Plugins\ToGo\Tile\TileGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class ObjectLinksGUI
  *
- * @package           srag\Plugins\SrTile\ObjectLink
+ * @package           srag\Plugins\ToGo\ObjectLink
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\ObjectLink\ObjectLinksGUI: srag\Plugins\SrTile\Tile\TileGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\ObjectLink\ObjectLinksGUI: srag\Plugins\ToGo\Tile\TileGUI
  */
 class ObjectLinksGUI
 {

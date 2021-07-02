@@ -15,3 +15,6 @@
 ## [1.0.3] 
 - Fix the positioning of the tiles 
 - Correct the Mousehover titles
+
+## [1.0.4]
+- Added a suitable logic to count views and likes for anonymous users

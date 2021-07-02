@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\\CustomInputGUIs\\SrTile\\": "src/"
+      "srag\\CustomInputGUIs\\ToGo\\": "src/"
     }
   },
   "config": {

@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Format;
+namespace srag\DataTableUI\ToGo\Implementation\Format;
 
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DataTableUI\SrTile\Component\Column\Column;
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Table;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DataTableUI\ToGo\Component\Column\Column;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Table;
 
 /**
  * Class HtmlFormat
  *
- * @package srag\DataTableUI\SrTile\Implementation\Format
+ * @package srag\DataTableUI\ToGo\Implementation\Format
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

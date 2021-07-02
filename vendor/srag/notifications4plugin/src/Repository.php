@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile;
+namespace srag\Notifications4Plugin\ToGo;
 
 use LogicException;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
-use srag\DIC\SrTile\Plugin\PluginInterface;
-use srag\DIC\SrTile\Util\LibraryLanguageInstaller;
-use srag\Notifications4Plugin\SrTile\Notification\Repository as NotificationsRepository;
-use srag\Notifications4Plugin\SrTile\Notification\RepositoryInterface as NotificationsRepositoryInterface;
-use srag\Notifications4Plugin\SrTile\Parser\Repository as ParserRepository;
-use srag\Notifications4Plugin\SrTile\Parser\RepositoryInterface as ParserRepositoryInterface;
-use srag\Notifications4Plugin\SrTile\Sender\Repository as SenderRepository;
-use srag\Notifications4Plugin\SrTile\Sender\RepositoryInterface as SenderRepositoryInterface;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\DIC\ToGo\Plugin\PluginInterface;
+use srag\DIC\ToGo\Util\LibraryLanguageInstaller;
+use srag\Notifications4Plugin\ToGo\Notification\Repository as NotificationsRepository;
+use srag\Notifications4Plugin\ToGo\Notification\RepositoryInterface as NotificationsRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Parser\Repository as ParserRepository;
+use srag\Notifications4Plugin\ToGo\Parser\RepositoryInterface as ParserRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Sender\Repository as SenderRepository;
+use srag\Notifications4Plugin\ToGo\Sender\RepositoryInterface as SenderRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class Repository
  *
- * @package srag\Notifications4Plugin\SrTile
+ * @package srag\Notifications4Plugin\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

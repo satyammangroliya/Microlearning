@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PropertyFormGUI\Exception;
+namespace srag\CustomInputGUIs\ToGo\PropertyFormGUI\Exception;
 
 use ilFormException;
 
 /**
  * Class PropertyFormGUIException
  *
- * @package srag\CustomInputGUIs\SrTile\PropertyFormGUI\Exception
+ * @package srag\CustomInputGUIs\ToGo\PropertyFormGUI\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

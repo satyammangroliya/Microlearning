@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Data\Fetcher;
+namespace srag\DataTableUI\ToGo\Implementation\Data\Fetcher;
 
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Data\Row\RowData;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Data\Row\RowData;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
 use stdClass;
 
 /**
  * Class StaticDataFetcher
  *
- * @package srag\DataTableUI\SrTile\Implementation\Data\Fetcher
+ * @package srag\DataTableUI\ToGo\Implementation\Data\Fetcher
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

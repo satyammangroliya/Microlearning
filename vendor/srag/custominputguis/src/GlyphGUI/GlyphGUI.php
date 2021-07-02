@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\GlyphGUI;
+namespace srag\CustomInputGUIs\ToGo\GlyphGUI;
 
 use ilGlyphGUI;
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class GlyphGUI
  *
- * @package srag\CustomInputGUIs\SrTile\GlyphGUI
+ * @package srag\CustomInputGUIs\ToGo\GlyphGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Fabian Schmid <fs@studer-raimann.ch>

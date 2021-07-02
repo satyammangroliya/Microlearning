@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PieChart\Implementation;
+namespace srag\CustomInputGUIs\ToGo\PieChart\Implementation;
 
 use ILIAS\UI\Implementation\Component\ComponentHelper;
-use srag\CustomInputGUIs\SrTile\PieChart\Component\SectionValue as SectionValueInterface;
+use srag\CustomInputGUIs\ToGo\PieChart\Component\SectionValue as SectionValueInterface;
 
 /**
  * Class SectionValue
  *
  * https://github.com/ILIAS-eLearning/ILIAS/tree/trunk/src/UI/Implementation/Component/Chart/PieChart/SectionValue.php
  *
- * @package srag\CustomInputGUIs\SrTile\PieChart\Implementation
+ * @package srag\CustomInputGUIs\ToGo\PieChart\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

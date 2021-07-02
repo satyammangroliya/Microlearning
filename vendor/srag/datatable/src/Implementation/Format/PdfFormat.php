@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Format;
+namespace srag\DataTableUI\ToGo\Implementation\Format;
 
 use ilHtmlToPdfTransformerFactory;
-use srag\DataTableUI\SrTile\Component\Table;
+use srag\DataTableUI\ToGo\Component\Table;
 
 /**
  * Class PdfFormat
  *
- * @package srag\DataTableUI\SrTile\Implementation\Format
+ * @package srag\DataTableUI\ToGo\Implementation\Format
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

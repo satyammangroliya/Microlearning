@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PieChart\Implementation;
+namespace srag\CustomInputGUIs\ToGo\PieChart\Implementation;
 
 use ILIAS\UI\Implementation\Component\ComponentHelper;
-use srag\CustomInputGUIs\SrTile\PieChart\Component\LegendEntry as LegendEntryInterface;
+use srag\CustomInputGUIs\ToGo\PieChart\Component\LegendEntry as LegendEntryInterface;
 
 /**
  * Class LegendEntry
  *
  * https://github.com/ILIAS-eLearning/ILIAS/tree/trunk/src/UI/Implementation/Component/Chart/PieChart/LegendEntry.php
  *
- * @package srag\CustomInputGUIs\SrTile\PieChart\Implementation
+ * @package srag\CustomInputGUIs\ToGo\PieChart\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

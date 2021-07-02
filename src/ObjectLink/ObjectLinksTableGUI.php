@@ -1,18 +1,18 @@
 <?php
 
-namespace srag\Plugins\SrTile\ObjectLink;
+namespace srag\Plugins\ToGo\ObjectLink;
 
 use ilToGoPlugin;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\TableGUI\TableGUI;
-use srag\CustomInputGUIs\SrTile\Waiter\Waiter;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\TableGUI\TableGUI;
+use srag\CustomInputGUIs\ToGo\Waiter\Waiter;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class ObjectLinksTableGUI
  *
- * @package srag\Plugins\SrTile\ObjectLink
+ * @package srag\Plugins\ToGo\ObjectLink
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

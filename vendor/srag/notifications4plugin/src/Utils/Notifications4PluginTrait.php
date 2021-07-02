@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Utils;
+namespace srag\Notifications4Plugin\ToGo\Utils;
 
-use srag\Notifications4Plugin\SrTile\Repository as Notifications4PluginRepository;
-use srag\Notifications4Plugin\SrTile\RepositoryInterface as Notifications4PluginRepositoryInterface;
+use srag\Notifications4Plugin\ToGo\Repository as Notifications4PluginRepository;
+use srag\Notifications4Plugin\ToGo\RepositoryInterface as Notifications4PluginRepositoryInterface;
 
 /**
  * Trait Notifications4PluginTrait
  *
- * @package srag\Notifications4Plugin\SrTile\Utils
+ * @package srag\Notifications4Plugin\ToGo\Utils
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

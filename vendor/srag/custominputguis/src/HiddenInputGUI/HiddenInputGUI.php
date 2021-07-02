@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\HiddenInputGUI;
+namespace srag\CustomInputGUIs\ToGo\HiddenInputGUI;
 
 use ilHiddenInputGUI;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class HiddenInputGUI
  *
- * @package srag\CustomInputGUIs\SrTile\HiddenInputGUI
+ * @package srag\CustomInputGUIs\ToGo\HiddenInputGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

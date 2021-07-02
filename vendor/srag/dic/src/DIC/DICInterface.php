@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\DIC\SrTile\DIC;
+namespace srag\DIC\ToGo\DIC;
 
 use Collator;
 use ilAccessHandler;
@@ -66,13 +66,13 @@ use ilToolbarGUI;
 use ilTree;
 use ilUIService;
 use Session;
-use srag\DIC\SrTile\Database\DatabaseInterface;
-use srag\DIC\SrTile\Exception\DICException;
+use srag\DIC\ToGo\Database\DatabaseInterface;
+use srag\DIC\ToGo\Exception\DICException;
 
 /**
  * Interface DICInterface
  *
- * @package srag\DIC\SrTile\DIC
+ * @package srag\DIC\ToGo\DIC
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

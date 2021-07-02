@@ -1,18 +1,19 @@
 <?php
 
-namespace srag\Plugins\SrTile\Collection;
+namespace srag\Plugins\ToGo\Collection;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Collection\Filter;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Collection\Filter;
+use srag\Plugins\ToGo\Collection\AnonymousSession;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\SrTile\Collection
+ * @package srag\Plugins\ToGo\Collection
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -67,22 +68,6 @@ final class Repository
         $collection->delete();
     }
 
-    // /**
-    //  * @param Topic $topic
-    //  */
-    // protected function deleteTopic(Topic $topic)/*:void*/
-    // {
-    //     $topic->delete();
-    // }
-
-
-    // /**
-    //  * @param Branch $branch
-    //  */
-    // protected function deleteBranch(Branch $branch)/*:void*/
-    // {
-    //     $branch->delete();
-    // }
 
 
     /**
@@ -93,6 +78,14 @@ final class Repository
         $filter->delete();
     }
 
+    /**
+     * @param AnonymousSession $anonymousSession
+     */
+    protected function deleteAnonymousSession(AnonymousSession $anonymousSession)/*:void*/
+    {
+        $anonymousSession->delete();
+    }
+
 
     /**
      * @internal
@@ -100,11 +93,8 @@ final class Repository
     public function dropTables()/*:void*/
     {
         self::dic()->database()->dropTable(Collection::TABLE_NAME, false);
-        // self::dic()->database()->dropTable(Topic::TABLE_NAME, false);
-        // self::dic()->database()->dropTable(Branch::TABLE_NAME, false);
-        // self::dic()->database()->dropTable(ArBranch::TABLE_NAME, false);
-        // self::dic()->database()->dropTable(ArTopic::TABLE_NAME, false);
         self::dic()->database()->dropTable(Filter::TABLE_NAME, false);
+        self::dic()->database()->dropTable(AnonymousSession::TABLE_NAME, false);
     }
 
 
@@ -137,98 +127,75 @@ final class Repository
 
         return $collection;
     }
+    public static function getFilter()
+    {
+        $user_id=self::dic()->user()->getId();
+        $filter= Filter::where(['user_id'=>$user_id])->first();
+        if ($filter==null) {
+            $filter=new Filter();
+            $filter->setUserId($user_id);
+            $filter->setFlag(0);
+            $filter->save();
+        }
+        return $filter;
+    }
 
-    // /**
-    //  * @param string $topic_name
-    //  *
-    //  * @return Topic|null
-    //  */
-    // public function getTopic(string $topic_name)/*: ?Topic*/
-    // {
-    //     /**
-    //      * @var Topic|null $topic
-    //      */
-
-    //     $topic = Topic::where([
-    //         "topic_name"  => $topic_name
-    //     ])->first();
+    public static function getAnonymousSession(string $sess_id, int $obj_id = 0)
+    {
+        global $DIC;
+        $logger = $DIC->logger()->root();
+        $query_filter = ['sess_id' =>$sess_id, 'obj_id' =>$obj_id];
+        if($obj_id == 0){
+            $query_filter = ['sess_id' =>$sess_id];
+        }
+        $anonymousSession = AnonymousSession::where($query_filter)->first();
         
+        if ($anonymousSession == null){
+            //create a fresh new one
+            $latest_row_id= AnonymousSession::orderBy('row_id')->last();
+            if($latest_row_id == null){
+                $latest_row_id = 0;
+            }else{
+                $latest_row_id = $latest_row_id->getRowId();
+            }
+            if ($rows_count >= 500){
+                $first = AnonymousSession::first();
+                $first->delete();
+            }
+            $anonymousSession = new AnonymousSession();
+            $anonymousSession = $anonymousSession->initializeAnonymSession($sess_id, $obj_id);
+            $anonymousSession->setRowId($latest_row_id+1);
+            $anonymousSession->save();
+        }
+        return $anonymousSession;
+    }
+    public static function likeAnonymous(string $sess_id, int $obj_id, $rating){
+        $session = self::getAnonymousSession($sess_id,$obj_id);
+        $session->setRating($rating);
+        $session->store();
+    }
+    public static function viewAnonymous(string $sess_id, int $obj_id, $view){
+        $session = self::getAnonymousSession($sess_id,$obj_id);
+        $session->setView($view);
+        $session->store();
+    }
 
-    //     return $topic;
-    // }
-
-    // /**
-    //  * @param string $branch_name
-    //  *
-    //  * @return Branch|null
-    //  */
-    // public  function getBranch(string $branch_name)/*: ?Branch*/
-    // {
-    //     /**
-    //      * @var Branch|null $branch
-    //      */
-
-    //     $branch = Branch::where([
-    //         "branch_name"  => $branch_name
-    //     ])->first();
+    public static function getAnonymousViews(int $obj_id){
+        $views = AnonymousSession::where([
+            "obj_id" => $obj_id,
+            "view" => 1
+        ]);
         
-
-    //     return $branch;
-    // }
-
-
-
-    // /**
-    //  * @param string $topic_name
-    //  *
-    //  * @return Topic|null
-    //  */
-    // public  function getAllTopics($topic_name=null)/*: ?Topic*/
-    // {
-    //     /**
-    //      * @var Topic|null $topic
-    //      */
-
-    //     $topics = Topic::get();
-        
-
-    //     return $topics;
-    // }
-
-    // /**
-    //  * @param string $branch_name
-    //  *
-    //  * @return Branch|null
-    //  */
-    // public function getAllBranches(string $branch_name=null)/*: ?Branch*/
-    // {
-    //     /**
-    //      * @var Branch|null $branch
-    //      */
-
-    //     $branches = Branch::get();
-        
-
-    //     return $branches;
-    // }
-
-    // public function isFilterItemInDB(string $filter_item_name, string $filter_item_type){
-
-    // }
-
+        return $views->count();
+    }
     /**
      * @internal
      */
     public function installTables()/*:void*/
     {
         Collection::updateDB();
-        // Branch::updateDB();
-        // Topic::updateDB();
-        // $this->initialiseBranches();
-        // $this->initialiseTopics();
-        // ArTopic::updateDB();
-        // ArBranch::updateDB();
         Filter::updateDB();
+        AnonymousSession::updateDB();
     }
 
     /**
@@ -285,18 +252,7 @@ final class Repository
             }
         }
     }
-    public static function getFilter()
-    {
-        $user_id=self::dic()->user()->getId();
-        $filter= Filter::where(['user_id'=>$user_id])->first();
-        if ($filter==null) {
-            $filter=new Filter();
-            $filter->setUserId($user_id);
-            $filter->setFlag(0);
-            $filter->save();
-        }
-        return $filter;
-    }
+
 
 
     /**
@@ -343,42 +299,14 @@ final class Repository
     {
         $filter->update();
     }
+    /**
+     * @param AnonymousSession $anonymousSession
+     */
+    protected function updateAnonymousSession(AnonymousSession $anonymousSession)/*:void*/
+    {
+        $anonymousSession->update();
+    }
 
-
-//    /**
-//     * @param Topic $topic
-//     */
-//     protected function updateTopic(Topic $topic)/*:void*/
-//     {
-//         $topic->update();
-//     }
-
-//    /**
-//     * @param Branch $branch
-//     */
-//     protected function updateBranch(Branch $branch)/*:void*/
-//     {
-//         $branch->update();
-//     }
-
-    
-    
-    
-//     /**
-//     * @param ArTopic $ar_topic
-//     */
-//     protected function updateArTopic(ArTopic $ar_topic)/*:void*/
-//     {
-//         $ar_topic->update();
-//     }
-
-//    /**
-//     * @param ArBranch $ar_branch
-//     */
-//     protected function updateArBranch(ArBranch $ar_branch)/*:void*/
-//     {
-//         $ar_branch->update();
-//     }
 
 
     /**
@@ -396,39 +324,13 @@ final class Repository
     {
         $filter->store();
     }
-
-
-    // /**
-    //  * @param Topic $topic
-    //  */
-    // protected function storeTopic(Topic $topic)/*:void*/
-    // {
-    //     $topic->store();
-    // }
-
-    // /**
-    //  * @param Branch $branch
-    //  */
-    // protected function storeBranch(Branch $branch)/*:void*/
-    // {
-    //     $branch->store();
-    // }
-
-    //     /**
-    //  * @param ArTopic $ar_topic
-    //  */
-    // protected function storeArTopic(ArTopic $ar_topic)/*:void*/
-    // {
-    //     $ar_topic->store();
-    // }
-
-    // /**
-    //  * @param ArBranch $ar_branch
-    //  */
-    // protected function storeArBranch(ArBranch $ar_branch)/*:void*/
-    // {
-    //     $ar_branch->store();
-    // }
+    /**
+     * @param AnonymousSession $anonymousSession
+     */
+    protected function storeAnonymousSession(AnonymousSession $anonymousSession)/*:void*/
+    {
+        $anonymousSession->store();
+    }
 
     public function getTopics()
     {
@@ -462,8 +364,6 @@ final class Repository
                 array_push($all_branches, $ext_branch);
             }
         }
-        //remove empty words
-        //$this->debug($all_branches);
 
         return array_unique($all_branches);
     }
@@ -516,17 +416,4 @@ final class Repository
     }
 
 
-
-    public function debug($input)
-    {
-        $log="<script type='text/javascript'> console.log('";
-        if (is_array($input)) {
-            foreach ($input as $item) {
-                $log.=$item."\n";
-            }
-        } else {
-            $log.=$item;
-        }
-        return $log."')</script>";
-    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\DIC\SrTile\DIC\Implementation;
+namespace srag\DIC\ToGo\DIC\Implementation;
 
 use Collator;
 use ilAccessHandler;
@@ -65,13 +65,13 @@ use ilToolbarGUI;
 use ilTree;
 use ilUIService;
 use Session;
-use srag\DIC\SrTile\DIC\AbstractDIC;
-use srag\DIC\SrTile\Exception\DICException;
+use srag\DIC\ToGo\DIC\AbstractDIC;
+use srag\DIC\ToGo\Exception\DICException;
 
 /**
  * Class ILIAS54DIC
  *
- * @package srag\DIC\SrTile\DIC\Implementation
+ * @package srag\DIC\ToGo\DIC\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

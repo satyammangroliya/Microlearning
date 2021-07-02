@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Settings\Storage;
+namespace srag\DataTableUI\ToGo\Component\Settings\Storage;
 
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Table;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Table;
 
 /**
  * Interface SettingsStorage
  *
- * @package srag\DataTableUI\SrTile\Component\Settings\Storage
+ * @package srag\DataTableUI\ToGo\Component\Settings\Storage
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

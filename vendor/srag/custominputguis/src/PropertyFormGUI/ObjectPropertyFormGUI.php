@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PropertyFormGUI;
+namespace srag\CustomInputGUIs\ToGo\PropertyFormGUI;
 
 use ActiveRecord;
 use ilObject;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
 
 /**
  * Class ObjectPropertyFormGUI
  *
- * @package    srag\CustomInputGUIs\SrTile\PropertyFormGUI
+ * @package    srag\CustomInputGUIs\ToGo\PropertyFormGUI
  *
  * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

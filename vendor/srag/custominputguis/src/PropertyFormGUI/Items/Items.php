@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items;
+namespace srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items;
 
 use ilDateTime;
 use ilFormPropertyGUI;
@@ -11,19 +11,19 @@ use ilPropertyFormGUI;
 use ilRadioOption;
 use ilRepositorySelector2InputGUI;
 use ilUtil;
-use srag\CustomInputGUIs\SrTile\MultiLineInputGUI\MultiLineInputGUI;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Exception\PropertyFormGUIException;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\CustomInputGUIs\SrTile\TableGUI\TableGUI;
-use srag\CustomInputGUIs\SrTile\Template\Template;
-use srag\CustomInputGUIs\SrTile\UIInputComponentWrapperInputGUI\UIInputComponentWrapperInputGUI;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\MultiLineInputGUI\MultiLineInputGUI;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Exception\PropertyFormGUIException;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\CustomInputGUIs\ToGo\TableGUI\TableGUI;
+use srag\CustomInputGUIs\ToGo\Template\Template;
+use srag\CustomInputGUIs\ToGo\UIInputComponentWrapperInputGUI\UIInputComponentWrapperInputGUI;
+use srag\DIC\ToGo\DICTrait;
 use TypeError;
 
 /**
  * Class Items
  *
- * @package srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items
+ * @package srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *

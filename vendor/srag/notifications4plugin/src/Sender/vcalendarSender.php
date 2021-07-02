@@ -1,21 +1,21 @@
 <?php
 
-namespace srag\Notifications4Plugin\SrTile\Sender;
+namespace srag\Notifications4Plugin\ToGo\Sender;
 
 use ilMail;
 use ilMailbox;
 use ilMimeMail;
 use ilObjUser;
-use srag\DIC\SrTile\DICTrait;
-use srag\Notifications4Plugin\SrTile\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\SrTile\Utils\Notifications4PluginTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Notifications4Plugin\ToGo\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\ToGo\Utils\Notifications4PluginTrait;
 
 /**
  * Class vcalendarSender
  *
  * Sends the notification to an external E-Mail with calendar dates
  *
- * @package srag\Notifications4Plugin\SrTile\Sender
+ * @package srag\Notifications4Plugin\ToGo\Sender
  *
  * @author  Martin Studer <ms@studer-raimann.ch>
  */

@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Data\Fetcher;
+namespace srag\DataTableUI\ToGo\Implementation\Data\Fetcher;
 
-use srag\DataTableUI\SrTile\Component\Data\Fetcher\DataFetcher;
-use srag\DataTableUI\SrTile\Component\Table;
-use srag\DataTableUI\SrTile\Implementation\Utils\DataTableUITrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\DataTableUI\ToGo\Component\Data\Fetcher\DataFetcher;
+use srag\DataTableUI\ToGo\Component\Table;
+use srag\DataTableUI\ToGo\Implementation\Utils\DataTableUITrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class AbstractDataFetcher
  *
- * @package srag\DataTableUI\SrTile\Implementation\Data\Fetcher
+ * @package srag\DataTableUI\ToGo\Implementation\Data\Fetcher
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

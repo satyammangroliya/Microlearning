@@ -1,20 +1,20 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PieChart\Implementation;
+namespace srag\CustomInputGUIs\ToGo\PieChart\Implementation;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Implementation\Render\AbstractComponentRenderer;
 use ILIAS\UI\Implementation\Render\ResourceRegistry;
 use ILIAS\UI\Renderer as RendererInterface;
-use srag\CustomInputGUIs\SrTile\PieChart\Component\PieChart as PieChartInterface;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\PieChart\Component\PieChart as PieChartInterface;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Renderer
  *
  * https://github.com/ILIAS-eLearning/ILIAS/tree/trunk/src/UI/Implementation/Component/Chart/PieChart/Renderer.php
  *
- * @package srag\CustomInputGUIs\SrTile\PieChart\Implementation
+ * @package srag\CustomInputGUIs\ToGo\PieChart\Implementation
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

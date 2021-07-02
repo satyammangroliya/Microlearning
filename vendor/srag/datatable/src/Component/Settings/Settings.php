@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Settings;
+namespace srag\DataTableUI\ToGo\Component\Settings;
 
 use ILIAS\UI\Component\ViewControl\Pagination;
-use srag\DataTableUI\SrTile\Component\Data\Data;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
+use srag\DataTableUI\ToGo\Component\Data\Data;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
 
 /**
  * Interface Settings
  *
- * @package srag\DataTableUI\SrTile\Component\Settings
+ * @package srag\DataTableUI\ToGo\Component\Settings
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

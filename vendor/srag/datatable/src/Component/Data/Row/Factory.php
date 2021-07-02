@@ -1,11 +1,11 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Component\Data\Row;
+namespace srag\DataTableUI\ToGo\Component\Data\Row;
 
 /**
  * Interface Factory
  *
- * @package srag\DataTableUI\SrTile\Component\Data\Row
+ * @package srag\DataTableUI\ToGo\Component\Data\Row
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

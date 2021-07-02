@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\Plugins\SrTile\Favorite;
+namespace srag\Plugins\ToGo\Favorite;
 
 use ilLink;
 use ilPersonalDesktopGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-use srag\DIC\SrTile\DICTrait;
-use srag\Plugins\SrTile\Tile\Tile;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\DIC\ToGo\DICTrait;
+use srag\Plugins\ToGo\Tile\Tile;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class FavoritesGUI
  *
- * @package           srag\Plugins\SrTile\Favorite
+ * @package           srag\Plugins\ToGo\Favorite
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\SrTile\Favorite\FavoritesGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\ToGo\Favorite\FavoritesGUI: ilUIPluginRouterGUI
  */
 class FavoritesGUI
 {

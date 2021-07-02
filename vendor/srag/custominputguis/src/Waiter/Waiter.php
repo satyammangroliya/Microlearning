@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\Waiter;
+namespace srag\CustomInputGUIs\ToGo\Waiter;
 
-use srag\DIC\SrTile\DICTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class Waiter
  *
- * @package srag\CustomInputGUIs\SrTile\Waiter
+ * @package srag\CustomInputGUIs\ToGo\Waiter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

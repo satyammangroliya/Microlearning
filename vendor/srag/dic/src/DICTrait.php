@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\DIC\SrTile;
+namespace srag\DIC\ToGo;
 
-use srag\DIC\SrTile\DIC\DICInterface;
-use srag\DIC\SrTile\Exception\DICException;
-use srag\DIC\SrTile\Output\OutputInterface;
-use srag\DIC\SrTile\Plugin\PluginInterface;
-use srag\DIC\SrTile\Version\VersionInterface;
+use srag\DIC\ToGo\DIC\DICInterface;
+use srag\DIC\ToGo\Exception\DICException;
+use srag\DIC\ToGo\Output\OutputInterface;
+use srag\DIC\ToGo\Plugin\PluginInterface;
+use srag\DIC\ToGo\Version\VersionInterface;
 
 /**
  * Trait DICTrait
  *
- * @package srag\DIC\SrTile
+ * @package srag\DIC\ToGo
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

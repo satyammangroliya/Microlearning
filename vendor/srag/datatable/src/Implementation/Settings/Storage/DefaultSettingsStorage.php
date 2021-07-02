@@ -1,16 +1,16 @@
 <?php
 
-namespace srag\DataTableUI\SrTile\Implementation\Settings\Storage;
+namespace srag\DataTableUI\ToGo\Implementation\Settings\Storage;
 
 use ilTablePropertiesStorage;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\DataTableUI\SrTile\Component\Settings\Settings;
-use srag\DataTableUI\SrTile\Component\Settings\Sort\SortField;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\DataTableUI\ToGo\Component\Settings\Settings;
+use srag\DataTableUI\ToGo\Component\Settings\Sort\SortField;
 
 /**
  * Class DefaultSettingsStorage
  *
- * @package srag\DataTableUI\SrTile\Implementation\Settings\Storage
+ * @package srag\DataTableUI\ToGo\Implementation\Settings\Storage
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

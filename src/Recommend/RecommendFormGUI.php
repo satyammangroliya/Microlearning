@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\Plugins\SrTile\Recommend;
+namespace srag\Plugins\ToGo\Recommend;
 
 use ilEMailInputGUI;
 use ilNonEditableValueGUI;
 use ilToGoPlugin;
 use ilTextAreaInputGUI;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\SrTile\PropertyFormGUI\PropertyFormGUI;
-use srag\Plugins\SrTile\Utils\SrTileTrait;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\ToGo\PropertyFormGUI\PropertyFormGUI;
+use srag\Plugins\ToGo\Utils\SrTileTrait;
 
 /**
  * Class RecommendFormGUI
  *
- * @package srag\Plugins\SrTile\Recommend
+ * @package srag\Plugins\ToGo\Recommend
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

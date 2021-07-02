@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\PieChart\Component;
+namespace srag\CustomInputGUIs\ToGo\PieChart\Component;
 
 use ILIAS\Data\Color;
 
@@ -9,7 +9,7 @@ use ILIAS\Data\Color;
  *
  * https://github.com/ILIAS-eLearning/ILIAS/tree/trunk/src/UI/Component/Chart/PieChart/PieChartItem.php
  *
- * @package srag\CustomInputGUIs\SrTile\PieChart\Component
+ * @package srag\CustomInputGUIs\ToGo\PieChart\Component
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

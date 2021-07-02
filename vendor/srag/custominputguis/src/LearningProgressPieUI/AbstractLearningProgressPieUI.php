@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\CustomInputGUIs\SrTile\LearningProgressPieUI;
+namespace srag\CustomInputGUIs\ToGo\LearningProgressPieUI;
 
 use ILIAS\Data\Color;
 use ilLearningProgressBaseGUI;
 use ilLPStatus;
-use srag\CustomInputGUIs\SrTile\CustomInputGUIsTrait;
-use srag\DIC\SrTile\DICTrait;
+use srag\CustomInputGUIs\ToGo\CustomInputGUIsTrait;
+use srag\DIC\ToGo\DICTrait;
 
 /**
  * Class AbstractLearningProgressPieUI
  *
- * @package srag\CustomInputGUIs\SrTile\LearningProgressPieUI
+ * @package srag\CustomInputGUIs\ToGo\LearningProgressPieUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
