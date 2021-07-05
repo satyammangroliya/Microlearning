@@ -7,5 +7,9 @@
 <?php
 \srag\Plugins\ToGo\Repository::getInstance()->installTables();
 ?>
+<#3>
+<?php
+\srag\Plugins\ToGo\Repository::getInstance()->installTables();
+?>
 
 
