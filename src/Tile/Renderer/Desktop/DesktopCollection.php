@@ -1,14 +1,14 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile\Renderer\Desktop;
+namespace minervis\ToGo\Tile\Renderer\Desktop;
 
 use ilObjUser;
-use srag\Plugins\ToGo\Tile\Renderer\AbstractCollection;
+use minervis\ToGo\Tile\Renderer\AbstractCollection;
 
 /**
  * Class DesktopCollection
  *
- * @package srag\Plugins\ToGo\Tile\Renderer\Desktop
+ * @package minervis\ToGo\Tile\Renderer\Desktop
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch>
@@ -42,7 +42,7 @@ class DesktopCollection extends AbstractCollection
     {
         $this->obj_ref_ids = array_map(function (array $item) : int {
             return intval($item["child"]);
-        }, self::srTile()->favorites($this->user)
+        }, self::togo()->favorites($this->user)
             ->getFavorites());
     }
 }

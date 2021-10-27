@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile;
+namespace minervis\ToGo\Tile;
 
 use ilContainerReference;
 use ilObjectFactory;
@@ -8,7 +8,7 @@ use ilObjectFactory;
 /**
  * Class TileReference
  *
- * @package srag\Plugins\ToGo\Tile
+ * @package minervis\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -21,7 +21,7 @@ class TileReference extends Tile
     public static function modifyTileRefIdForRead(int $obj_ref_id = null)/*: ?int*/
     {
         // Get and set tile config for target object
-        return ilContainerReference::_lookupTargetRefId(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        return ilContainerReference::_lookupTargetRefId(self::togoObjDataCache()->lookupObjId($obj_ref_id));
     }
 
 

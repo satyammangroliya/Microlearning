@@ -1,30 +1,29 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile;
+namespace minervis\ToGo\Tile;
 
 use Closure;
 use ilContainerReference;
 use ilObjectFactory;
 use ilObjOrgUnit;
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Config\ConfigFormGUI;
-use srag\Plugins\ToGo\Tile\Renderer\Repository as RendererRepository;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Tile\Renderer\Repository as RendererRepository;
+use minervis\ToGo\Utils\ToGoTrait;
 use Throwable;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\ToGo\Tile
+ * @package minervis\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @ilCtrl_isCalledBy srag\Plugins\ToGo\Tile\TileGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy minervis\ToGo\Tile\TileGUI: ilUIPluginRouterGUI
  */
 final class Repository
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
@@ -112,39 +111,12 @@ final class Repository
 
         $this->storeTile($clone_tile);
 
-        if (self::srTile()->config()->getValue(ConfigFormGUI::KEY_ENABLED_OBJECT_LINKS)) {
+        if (self::togo()->config()->getValue('enabled_on_object_links')) {
             if (!isset($this->clone_tile_cache[$org_obj_ref_id])) {
                 $this->clone_tile_cache[$org_obj_ref_id] = [];
             }
             $this->clone_tile_cache[$org_obj_ref_id][] = $clone_obj_ref_id;
 
-            foreach (self::srTile()->objectLinks()->getObjectLinks(self::srTile()->objectLinks()->getGroupByObject($org_obj_ref_id)->getGroupId()) as $org_object_link) {
-                if ($org_object_link->getObjRefId() === $org_obj_ref_id) {
-                    continue;
-                }
-
-                if (empty($this->clone_tile_cache[$org_object_link->getObjRefId()])) {
-                    continue;
-                }
-
-                foreach ($this->clone_tile_cache[$org_object_link->getObjRefId()] as $clone_old_obj_ref_id) {
-                    if (self::dic()->tree()->getParentId($clone_old_obj_ref_id) !== self::dic()->tree()->getParentId($clone_obj_ref_id)) {
-                        continue;
-                    }
-
-                    $clone_object_link = self::srTile()->objectLinks()->factory()->newObjectLinkInstance();
-
-                    $clone_object_link->setGroupId(self::srTile()->objectLinks()->getGroupByObject($clone_old_obj_ref_id)->getGroupId());
-
-                    $clone_object_link->setObjRefId($clone_obj_ref_id);
-
-                    $clone_object_link->setSort($org_object_link->getSort());
-
-                    self::srTile()->objectLinks()->storeObjectLink($clone_object_link, false);
-
-                    break 2;
-                }
-            }
         }
     }
 
@@ -154,7 +126,7 @@ final class Repository
      */
     public function dropTables()/*:void*/
     {
-        self::dic()->database()->dropTable(Tile::TABLE_NAME, false);
+        self::ildic()->database()->dropTable(Tile::TABLE_NAME, false);
     }
 
 
@@ -208,7 +180,6 @@ final class Repository
 
                     $this->storeTile($tile); // Ensure tile id
 
-                    self::srTile()->templates()->applyToTile($tile);
                 }
             }
 
@@ -234,7 +205,7 @@ final class Repository
     {
         if (!isset(self::$parent_tile_cache[$tile->getObjRefId()])) {
             try {
-                self::$parent_tile_cache[$tile->getObjRefId()] = $this->getInstanceForObjRefId(self::dic()->tree()
+                self::$parent_tile_cache[$tile->getObjRefId()] = $this->getInstanceForObjRefId(self::ildic()->repositoryTree()
                     ->getParentId($tile->getObjRefId()));
             } catch (Throwable $ex) {
                 // Fix No node_id given!
@@ -247,17 +218,17 @@ final class Repository
 
     public function isParentAContainer($ref_id)
     {
-        $home=self::srTile()->config()->getHomeRefId();
+        $home=self::togo()->config()->getHomeRefId();
         if ($home=="") {
             return false;
         }
-        $parent_id=self::dic()->tree()->getParentId($ref_id);
+        $parent_id=self::ildic()->repositoryTree()->getParentId($ref_id);
         return $home==$parent_id;
     }
     
     public function getParentId($ref_id)
     {
-        return self::dic()->tree()->getParentId($ref_id);
+        return self::ildic()->repositoryTree()->getParentId($ref_id);
     }
 
 
@@ -459,7 +430,7 @@ final class Repository
             $this->storeTile($tile);
         }
 
-        foreach (array_merge($this->getTiles(), self::srTile()->templates()->getTemplates()) as $tile) {
+        foreach ($this->getTiles() as $tile) {
             /**
              * @var Tile $tile
              */
@@ -500,8 +471,6 @@ final class Repository
             if (empty($tile->getBranch())) {
                 $tile->setBranch("");
             }
-
-            self::srTile()->notifications4plugin()->notifications()->migrateFromOldGlobalPlugin($tile->getRecommendMailTemplate());
 
             $this->storeTile($tile);
         }

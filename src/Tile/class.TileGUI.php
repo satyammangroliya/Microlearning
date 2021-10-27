@@ -1,37 +1,35 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile;
+namespace minervis\ToGo\Tile;
 
 use ilLink;
 use ilToGoPlugin;
 use ilUIPluginRouterGUI;
 use ilUtil;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\ObjectLink\ObjectLinksGUI;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
 use ilToGoUIHookGUI;
 
-use srag\Plugins\ToGo\Collection\Collection;
-use srag\Plugins\ToGo\Collection\Filter;
+use minervis\ToGo\Collection\Collection;
+use minervis\ToGo\Collection\Filter;
 
 /**
  * Class TileGUI
  *
- * @package           srag\Plugins\ToGo\Tile
+ * @package           minervis\ToGo\Tile
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\ToGo\Tile\TileGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy minervis\ToGo\Tile\TileGUI: ilUIPluginRouterGUI
  */
 class TileGUI
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_BACK_TO_OBJECT = "backToObject";
     const CMD_BACK_TO_PARENT = "backToParent";
     const CMD_EDIT_TILE = "editTile";
-    const CMD_GET_PRECONDITIONS = "getPreconditions";
     const CMD_UPDATE_TILE = "updateTile";
     const GET_PARAM_REF_ID = "ref_id";
     const LANG_MODULE = "tile";
@@ -71,36 +69,31 @@ class TileGUI
      */
     public function executeCommand()/*: void*/
     {
-        $this->tile = self::srTile()->tiles()->getInstanceForObjRefId(intval(filter_input(INPUT_GET, self::GET_PARAM_REF_ID)));
+        $this->tile = self::togo()->tiles()->getInstanceForObjRefId(intval(filter_input(INPUT_GET, self::GET_PARAM_REF_ID)));
 
-        if (!self::srTile()->access()->hasWriteAccess($this->tile->getObjRefId())) {
+        if (!self::togo()->access()->hasWriteAccess($this->tile->getObjRefId())) {
             //die();
         }
 
-        self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_REF_ID);
+        self::ildic()->ctrl()->saveParameter($this, self::GET_PARAM_REF_ID);
 
         $this->setTabs();
 
-        $next_class = self::dic()->ctrl()->getNextClass($this);
+        $next_class = self::ildic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(ObjectLinksGUI::class):
-                self::dic()->ctrl()->forwardCommand(new ObjectLinksGUI($this));
-                break;
-
             default:
-                $cmd = self::dic()->ctrl()->getCmd();
+                $cmd = self::ildic()->ctrl()->getCmd();
 
                 switch ($cmd) {
                     case self::CMD_BACK_TO_OBJECT:
                     case self::CMD_BACK_TO_PARENT:
-                    case self::CMD_EDIT_TILE:
-                    case self::CMD_GET_PRECONDITIONS:
-                    case self::CMD_UPDATE_TILE:
                     case self::CMD_SORT_TOPIC:
                     case self::CMD_SORT_BRANCH:
                     case self::CMD_FILTER:
                     case self::CMD_READ_ANONYMOUS:
+                    case 'edit':
+                    case 'saveProperties':
                         $this->{$cmd}();
                         break;
 
@@ -117,23 +110,23 @@ class TileGUI
      */
     public static function addTabs(int $obj_ref_id)/*:void*/
     {
-        self::dic()->ctrl()->setParameterByClass(self::class, self::GET_PARAM_REF_ID, $obj_ref_id);
-        if (self::srTile()->tiles()->isParentAContainer($obj_ref_id)|| self::srTile()->config()->getHomeRefId()==$obj_ref_id) {
-            self::dic()->tabs()->addTab(self::TAB_TILE, ilToGoPlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTargetByClass([
+        self::ildic()->ctrl()->setParameterByClass(self::class, self::GET_PARAM_REF_ID, $obj_ref_id);
+        if (self::togo()->tiles()->isParentAContainer($obj_ref_id)|| self::togo()->config()->getHomeRefId()==$obj_ref_id) {
+            self::ildic()->tabs()->addTab(self::TAB_TILE, ilToGoPlugin::PLUGIN_NAME, self::ildic()->ctrl()->getLinkTargetByClass([
                 ilUIPluginRouterGUI::class,
                 self::class
-            ], self::CMD_EDIT_TILE));
+            ], 'edit'));
 
-            if (!self::srTile()->access()->hasWriteAccess($obj_ref_id)) {
-                self::dic()->tabs()->clearTabs();
+            if (!self::togo()->access()->hasWriteAccess($obj_ref_id)) {
+                self::ildic()->tabs()->clearTabs();
             }
         }
     }
 
     public static function addFilterItem(string $item)
     {
-        self::dic()->ctrl()->setParameterByClass(self::class, self::GET_FILTER_ITEM, $item);
-        self::dic()->ctrl()->saveParameterByClass(self::class, self::GET_FILTER_ITEM);
+        self::ildic()->ctrl()->setParameterByClass(self::class, self::GET_FILTER_ITEM, $item);
+        self::ildic()->ctrl()->saveParameterByClass(self::class, self::GET_FILTER_ITEM);
     }
 
 
@@ -142,23 +135,20 @@ class TileGUI
      */
     protected function setTabs()/*: void*/
     {
-        self::dic()->tabs()->clearTargets();
+        self::ildic()->tabs()->clearTargets();
 
-        $parent = self::srTile()->tiles()->getParentTile($this->tile);
-        if (self::srTile()->tiles()->isObject($parent->getObjRefId())) {
-            self::dic()->tabs()->setBack2Target($parent->_getTitle(), self::dic()->ctrl()
+        $parent = self::togo()->tiles()->getParentTile($this->tile);
+        if (self::togo()->tiles()->isObject($parent->getObjRefId())) {
+            self::ildic()->tabs()->setBack2Target($parent->_getTitle(), self::ildic()->ctrl()
                 ->getLinkTarget($this, self::CMD_BACK_TO_PARENT));
         }
 
-        self::dic()->tabs()->setBackTarget($this->tile->_getTitle(), self::dic()->ctrl()
+        self::ildic()->tabs()->setBackTarget($this->tile->_getTitle(), self::ildic()->ctrl()
             ->getLinkTarget($this, self::CMD_BACK_TO_OBJECT));
-
-        self::dic()->tabs()->addTab(self::TAB_TILE, self::plugin()->translate("edit_tile", self::LANG_MODULE), self::dic()->ctrl()->getLinkTargetByClass([
+        self::ildic()->tabs()->addTab(self::TAB_TILE, self::togoplugin()->translate("edit_tile", self::LANG_MODULE), self::ildic()->ctrl()->getLinkTargetByClass([
             ilUIPluginRouterGUI::class,
             self::class
-        ], self::CMD_EDIT_TILE));
-
-        ObjectLinksGUI::addTabs();
+        ], 'edit'));
     }
 
 
@@ -167,10 +157,10 @@ class TileGUI
      */
     protected function backToParent()/*: void*/
     {
-        $parent = self::srTile()->tiles()->getParentTile($this->tile);
+        $parent = self::togo()->tiles()->getParentTile($this->tile);
 
-        if (self::srTile()->tiles()->isObject($parent->getObjRefId())) {
-            self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($parent->getObjRefId()));
+        if (self::togo()->tiles()->isObject($parent->getObjRefId())) {
+            self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($parent->getObjRefId()));
         }
     }
 
@@ -180,64 +170,53 @@ class TileGUI
      */
     protected function backToObject()/*: void*/
     {
-        self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
+        self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
+    }
+
+    /**
+     *
+     */
+    protected function edit()/*: void*/
+    {
+        self::ildic()->tabs()->activateTab(self::TAB_TILE);
+
+        $form = self::togo()->tiles()->factory()->newFormInstance($this, $this->tile);
+        $a_form = $form->initPropertyForm();
+        self::togoplugin()->output($a_form, true);
     }
 
 
     /**
      *
      */
-    protected function editTile()/*: void*/
+    protected function saveProperties()/*: void*/
     {
-        self::dic()->tabs()->activateTab(self::TAB_TILE);
+        self::ildic()->tabs()->activateTab(self::TAB_TILE);
 
-        $form = self::srTile()->tiles()->factory()->newFormInstance($this, $this->tile);
+        $form = self::togo()->tiles()->factory()->newFormInstance($this, $this->tile);
+        $a_form = $form->initPropertyForm();
 
-        self::output()->output($form, true);
-    }
-
-
-    /**
-     *
-     */
-    protected function updateTile()/*: void*/
-    {
-        self::dic()->tabs()->activateTab(self::TAB_TILE);
-
-        $form = self::srTile()->tiles()->factory()->newFormInstance($this, $this->tile);
-
-        if (!$form->storeForm()) {
-            self::output()->output($form, true);
+        if (!$form->saveProperties($a_form)) {
+            self::togoplugin()->output($a_form, true);
 
             return;
         }
-
-        ilUtil::sendSuccess(self::plugin()->translate("saved", self::LANG_MODULE), true);
-        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_TILE);
+        ilUtil::sendSuccess(self::togoplugin()->translate("saved", self::LANG_MODULE), true);
+        self::ildic()->ctrl()->redirect($this, 'edit');
     }
 
-
-    /**
-     *
-     */
-    protected function getPreconditions()/*: void*/
-    {
-        $preconditions = self::srTile()->ilias()->courses()->getPreconditions($this->tile->getObjRefId());
-
-        self::output()->output(self::srTile()->tiles()->renderer()->factory()->newCollectionGUIInstance()->fixed($preconditions));
-    }
 
     protected function readAnonymous($ref_id = 0){
-        self::dic()->ctrl()->setParameterByClass(self::class, self::CMD_READ_ANONYMOUS, true);
-        self::dic()->ctrl()->saveParameterByClass(self::class, self::CMD_READ_ANONYMOUS);
+        self::ildic()->ctrl()->setParameterByClass(self::class, self::CMD_READ_ANONYMOUS, true);
+        self::ildic()->ctrl()->saveParameterByClass(self::class, self::CMD_READ_ANONYMOUS);
         $obj_ref_id = $this->tile->getObjRefId();
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
-        self::srTile()->collections(self::dic()->user())->viewAnonymous(self::dic()->authSession()->getId(), $obj_id, 1);
-        self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($obj_ref_id));
+        $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
+        self::togo()->collections(self::ildic()->user())->viewAnonymous(self::ildic()['ilAuthSession']->getId(), $obj_id, 1);
+        self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($obj_ref_id));
     }
 
     public function getAnonymousLink(){
-        $tile_link=self::dic()->ctrl()->getLinkTargetByClass([
+        $tile_link=self::ildic()->ctrl()->getLinkTargetByClass([
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_READ_ANONYMOUS);
@@ -252,21 +231,6 @@ class TileGUI
         return $this->tile;
     }
 
-    /**
-     *
-     */
-    protected function sortTopic()/*: void*/
-    {
-        self::srTile()->collections(self::dic()->user())->sortBy($this->tile->getObjRefId(), Collection::SORT_BY_TOPIC);
-        $this->backToObject();
-    }
-
-    protected function sortBranch()/*: void*/
-    {
-        self::srTile()->collections(self::dic()->user())->sortBy($this->tile->getObjRefId(), Collection::SORT_BY_BRANCH);
-        $this->backToObject();
-    }
-
     protected function filter()
     {
         $item_type=filter_input(INPUT_GET, self::GET_FILTER_BY);
@@ -278,17 +242,17 @@ class TileGUI
 
         //check wether we have items with  this particular item_name
         if ($item_type!="all") {
-            $collection=self::srTile()->collections(self::dic()->user());
+            $collection=self::togo()->collections(self::ildic()->user());
             $items=$item_type=="branch"?$collection->getBranches():$collection->getTopics();
             //TODO
         }
 
 
-        $user_id=self::dic()->user()->getId();
+        $user_id=self::ildic()->user()->getId();
 
         $filter=Filter::where(["user_id"=>$user_id])->first();
         if ($filter===null) {
-            $filter=Filter();
+            $filter=new Filter();
             $filter->setUserId($user_id);
         }
         $filter->setItemType($item_type);
@@ -297,6 +261,6 @@ class TileGUI
         $filter->save();
 
 
-        self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
+        self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->tile->getObjRefId()));
     }
 }

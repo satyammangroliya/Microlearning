@@ -1,10 +1,9 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile;
+namespace minervis\ToGo\Tile;
 
 use ActiveRecord;
 use arConnector;
-use ColorThief\ColorThief;
 use ilLink;
 use ilLinkResourceItems;
 use ilObject;
@@ -14,20 +13,20 @@ use ilObjSCORMLearningModuleGUI;
 use ilSAHSPresentationGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class Tile
  *
- * @package srag\Plugins\ToGo\Tile
+ * @package minervis\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Tile extends ActiveRecord
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_tile";
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const IMAGE_PREFIX = "tile_";
@@ -1641,7 +1640,7 @@ class Tile extends ActiveRecord
      */
     public function getHome()
     {
-        $fields=self::srTile()->config()->getValue("base_container");
+        $fields=self::togo()->config()->getValue("base_container");
         return $fields;
     }
 
@@ -1710,8 +1709,6 @@ class Tile extends ActiveRecord
     public function _getBackgroundColor() : string
     {
         switch ($this->getBackgroundColorType()) {
-            case Tile::COLOR_TYPE_AUTO_FROM_IMAGE:
-                return $this->_getImageDominantColor();
 
             case Tile::COLOR_TYPE_SET:
                 return $this->convertHexToRGB($this->getBackgroundColor());
@@ -1732,9 +1729,6 @@ class Tile extends ActiveRecord
         switch ($this->getBorderColorType()) {
             case Tile::COLOR_TYPE_BACKGROUND:
                 return $this->_getBackgroundColor();
-
-            case Tile::COLOR_TYPE_AUTO_FROM_IMAGE:
-                return $this->_getImageDominantColor();
 
             case Tile::COLOR_TYPE_SET:
                 return $this->convertHexToRGB($this->getBorderColor());
@@ -1780,9 +1774,6 @@ class Tile extends ActiveRecord
                     return $this->getContrastYIQ($background_color);
                 }
                 break;
-
-            case Tile::COLOR_TYPE_AUTO_FROM_IMAGE:
-                return $this->_getImageDominantColor();
 
             case Tile::COLOR_TYPE_SET:
                 return $this->convertHexToRGB($this->getFontColor());
@@ -1918,14 +1909,13 @@ class Tile extends ActiveRecord
             }
             $this->setImage("");
 
-            self::srTile()->colorThiefCaches()->delete($image_old_path);
         }
 
         if (!empty($path_of_new_image)) {
             if (file_exists($path_of_new_image)) {
                 $this->setImage($this->getTileId() . "." . pathinfo($path_of_new_image, PATHINFO_EXTENSION));
 
-                self::dic()->filesystem()->web()->createDir($this->getImagePathAsRelative(false));
+                self::ildic()->filesystem()->web()->createDir($this->getImagePathAsRelative(false));
 
                 copy($path_of_new_image, $this->getImagePath());
             }
@@ -1983,14 +1973,13 @@ class Tile extends ActiveRecord
             }
             $this->setBackgroundImage("");
 
-            self::srTile()->colorThiefCaches()->delete($image_old_path);
         }
 
         if (!empty($path_of_new_image)) {
             if (file_exists($path_of_new_image)) {
                 $this->setBackgroundImage($this->getTileId() . "." . pathinfo($path_of_new_image, PATHINFO_EXTENSION));
 
-                self::dic()->filesystem()->web()->createDir($this->getBackgroundImagePathAsRelative(false));
+                self::ildic()->filesystem()->web()->createDir($this->getBackgroundImagePathAsRelative(false));
 
                 copy($path_of_new_image, $this->getBackgroundImagePath());
             }
@@ -2045,21 +2034,21 @@ class Tile extends ActiveRecord
         $this->_getIlObject();
 
         //open directly the one object if it's only one AND as READ ACCESS
-        if ($this->getOpenObjWithOneChildDirect() === Tile::OPEN_TRUE && self::srTile()->access()->hasReadAccess($this->getObjRefId())) {
+        if ($this->getOpenObjWithOneChildDirect() === Tile::OPEN_TRUE && self::togo()->access()->hasReadAccess($this->getObjRefId())) {
             switch (true) {
                 case ($this->il_object->getType() === "crs"):
                 case ($this->il_object->getType() === "cat"):
                 case ($this->il_object->getType() === "grp"):
                 case ($this->il_object->getType() === "fold"):
                 case ($this instanceof TileReference):
-                    $childs = self::dic()->tree()->getChilds($this->getObjRefId());
+                    $childs = self::ildic()->repositoryTree()->getChilds($this->getObjRefId());
 
                     $childs = array_filter($childs, function (array $child) : bool {
-                        return self::srTile()->access()->hasReadAccess($child["child"]);
+                        return self::togo()->access()->hasReadAccess($child["child"]);
                     });
 
                     if (count($childs) === 1) {
-                        $tile = self::srTile()->tiles()->getInstanceForObjRefId(intval(current($childs)["child"]));
+                        $tile = self::togo()->tiles()->getInstanceForObjRefId(intval(current($childs)["child"]));
 
                         $tile->_getIlObject();
 
@@ -2095,7 +2084,7 @@ class Tile extends ActiveRecord
     public function _getAdvancedLink(bool $only_link = false) : string
     {
         // write access - open normally!
-        if (self::srTile()->access()->hasWriteAccess($this->getObjRefId())) {
+        if (self::togo()->access()->hasWriteAccess($this->getObjRefId())) {
             if ($only_link) {
                 return $this->_getSimpleLink();
             } else {
@@ -2107,7 +2096,7 @@ class Tile extends ActiveRecord
 
         switch (true) {
             case ($tile->il_object->getType() === "sahs"):
-                self::dic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
+                self::ildic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
 
                 if ($only_link) {
                     return ILIAS_HTTP_PATH . '/goto.php?target=cat_' . $this->getObjRefId() . '_opensahs_' . $tile->getObjRefId() . '&client_id='
@@ -2124,13 +2113,13 @@ class Tile extends ActiveRecord
                         $om++;
                     } else {
                         if ($om == 0) {
-                            return ' href="' . self::dic()->ctrl()->getLinkTargetByClass(ilSAHSPresentationGUI::class, '') . '" target="ilContObj' . $slm_gui->object->getId() . '"';
+                            return ' href="' . self::ildic()->ctrl()->getLinkTargetByClass(ilSAHSPresentationGUI::class, '') . '" target="ilContObj' . $slm_gui->object->getId() . '"';
                         }
                     }
 
-                    self::dic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
+                    self::ildic()->ctrl()->setParameterByClass(ilSAHSPresentationGUI::class, ilToGoUIHookGUI::GET_PARAM_REF_ID, $tile->getObjRefId());
 
-                    return ' onclick="startSAHS(\'' . self::dic()->ctrl()->getLinkTargetByClass(ilSAHSPresentationGUI::class, '') . "','ilContObj"
+                    return ' onclick="startSAHS(\'' . self::ildic()->ctrl()->getLinkTargetByClass(ilSAHSPresentationGUI::class, '') . "','ilContObj"
                         . $slm_gui->object->getId() . "'," . $om . "," . $width . "," . $height . ');"';
                 }
 
@@ -2186,34 +2175,6 @@ class Tile extends ActiveRecord
         }
 
         return "";
-    }
-
-
-    /**
-     * @return string
-     */
-    public function _getImageDominantColor() : string
-    {
-        $image = $this->getImagePathWithCheck();
-
-        $colorThiefCache = self::srTile()->colorThiefCaches()->getColorThiefCache($image);
-
-        if (!empty($image)) {
-            if (empty($colorThiefCache->getColor())) {
-                $dominantColor = ColorThief::getColor($image);
-
-                if (is_array($dominantColor)) {
-                    $colorThiefCache->setColor(implode(",", $dominantColor));
-                }
-
-                self::srTile()->colorThiefCaches()->storeColorThiefCache($colorThiefCache);
-            }
-        } else {
-            $colorThiefCache->setColor("");
-            self::srTile()->colorThiefCaches()->storeColorThiefCache($colorThiefCache);
-        }
-
-        return $colorThiefCache->getColor();
     }
 
 

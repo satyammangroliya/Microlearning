@@ -6,13 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'srag\\RemovePluginDataConfirm\\ToGo\\' => array($vendorDir . '/srag/removeplugindataconfirm/src'),
-    'srag\\Plugins\\ToGo\\' => array($baseDir . '/src'),
-    'srag\\Notifications4Plugin\\ToGo\\' => array($vendorDir . '/srag/notifications4plugin/src'),
-    'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
-    'srag\\DataTableUI\\ToGo\\' => array($vendorDir . '/srag/datatable/src'),
-    'srag\\DIC\\ToGo\\' => array($vendorDir . '/srag/dic/src'),
-    'srag\\CustomInputGUIs\\ToGo\\' => array($vendorDir . '/srag/custominputguis/src'),
-    'srag\\ActiveRecordConfig\\ToGo\\' => array($vendorDir . '/srag/activerecordconfig/src'),
-    'ColorThief\\' => array($vendorDir . '/ksubileau/color-thief-php/lib/ColorThief'),
+    'minervis\\ToGo\\' => array($baseDir . '/src'),
 );

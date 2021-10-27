@@ -1,23 +1,22 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile;
+namespace minervis\ToGo\Tile;
 
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Template\TemplatesConfigGUI;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Plugins\ToGo\Tile
+ * @package minervis\ToGo\Tile
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Factory
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
@@ -58,7 +57,7 @@ final class Factory
 
 
     /**
-     * @param TileGUI|TemplatesConfigGUI $parent
+     * @param TileGUI $parent
      * @param Tile                       $tile
      *
      * @return TileFormGUI

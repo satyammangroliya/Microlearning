@@ -1,30 +1,28 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile\Renderer;
+namespace minervis\ToGo\Tile\Renderer;
 
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
-use srag\CustomInputGUIs\ToGo\CustomInputGUIsTrait;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Rating\RatingGUI;
-use srag\Plugins\ToGo\Tile\Tile;
-use srag\Plugins\ToGo\Tile\TileGUI;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Rating\RatingGUI;
+use minervis\ToGo\Tile\Tile;
+use minervis\ToGo\Tile\TileGUI;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class AbstractSingleGUI
  *
- * @package srag\Plugins\ToGo\Tile\Renderer
+ * @package minervis\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch>
  */
 abstract class AbstractSingleGUI implements SingleGUIInterface
 {
-    use DICTrait;
-    use SrTileTrait;
-    use CustomInputGUIsTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var Tile
@@ -48,78 +46,76 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
      */
     public function render() : string
     {
-        self::dic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_PARENT_REF_ID, ilToGoUIHookGUI::filterRefId());
-        self::dic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
+        self::ildic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_PARENT_REF_ID, ilToGoUIHookGUI::filterRefId());
+        self::ildic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
 
 
-        $tpl = self::plugin()->template("TileSingle/single.html");
+        $tpl = self::togoplugin()->template("TileSingle/single.html");
         $tpl->setCurrentBlock("tile");
 
-        $tpl->setVariableEscaped("TILE_ID", $this->tile->getTileId());
+        $tpl->setVariable("TILE_ID", htmlspecialchars($this->tile->getTileId()));
 
-        $tpl->setVariableEscaped("OBJECT_TYPE", ($this->tile->_getIlObject() !== null ? $this->tile->_getIlObject()->getType() : ""));
+        $tpl->setVariable("OBJECT_TYPE", htmlspecialchars(($this->tile->_getIlObject() !== null ? $this->tile->_getIlObject()->getType() : "")));
 
         if ($this->tile->getShowTitle() === Tile::SHOW_TRUE) {
-            $tpl->setVariableEscaped("TITLE", $this->tile->_getTitle());
+            $tpl->setVariable("TITLE", htmlspecialchars($this->tile->_getTitle()));
         }
-        $tpl->setVariableEscaped("TITLE_HORIZONTAL_ALIGN", $this->tile->getLabelHorizontalAlign());
-        $tpl->setVariableEscaped("TITLE_VERTICAL_ALIGN", $this->tile->getLabelVerticalAlign());
         
         $tpl->setVariable("LINK", $this->tile->_getAdvancedLink());
-        if (self::dic()->user()->getId() == ANONYMOUS_USER_ID) {
-            $anonymlink_link=self::dic()->ctrl()->getLinkTargetByClass([
+        if (self::ildic()->user()->getId() == ANONYMOUS_USER_ID) {
+            $anonymlink_link=self::ildic()->ctrl()->getLinkTargetByClass([
                 ilUIPluginRouterGUI::class,
                 RatingGUI::class
             ], RatingGUI::CMD_READ_ANONYMOUS);
             $tpl->setVariable("LINK", ' href="' . $anonymlink_link. '"');
         }
 
-        if (self::srTile()->access()->hasOpenAccess($this->tile)) {
-            $tpl->setVariableEscaped("VIEWS_IMAGE_PATH", self::plugin()->directory() . "/templates/images/eye.svg");
+        if (self::togo()->access()->hasOpenAccess($this->tile)) {
+            $tpl->setVariable("VIEWS_IMAGE_PATH", htmlspecialchars(self::togoplugin()->directory() . "/templates/images/eye.svg"));
 
             $views_count=$this->getViewsCount($this->tile->_getIlObject()->getID());
-            $tpl->setVariableEscaped("VIEWS_COUNT", $views_count);
-            $tpl->setVariableEscaped("VIEWS_TEXT", self::plugin()->translate("views_text", TileGUI::LANG_MODULE));
+            $tpl->setVariable("VIEWS_COUNT", htmlspecialchars($views_count));
+            $tpl->setVariable("VIEWS_TEXT", htmlspecialchars(self::togoplugin()->translate("views_text", TileGUI::LANG_MODULE)));
             //Devices
             if ($this->tile->getShowPhone()===1) {
-                $tpl->setVariableEscaped("SHOW_PHONE", "enabled");
+                $tpl->setVariable("SHOW_PHONE", "enabled");
             } else {
-                $tpl->setVariableEscaped("SHOW_PHONE", "disabled");
+                $tpl->setVariable("SHOW_PHONE", "disabled");
             }
 
             if ($this->tile->getShowTablet()===1) {
-                $tpl->setVariableEscaped("SHOW_TABLET", "enabled");
+                $tpl->setVariable("SHOW_TABLET", "enabled");
             } else {
-                $tpl->setVariableEscaped("SHOW_TABLET", "disabled");
+                $tpl->setVariable("SHOW_TABLET", "disabled");
             }
 
             if ($this->tile->getShowLaptop()===1) {
-                $tpl->setVariableEscaped("SHOW_LAPTOP", "enabled");
+                $tpl->setVariable("SHOW_LAPTOP", "enabled");
             } else {
-                $tpl->setVariableEscaped("SHOW_LAPTOP", "disabled");
+                $tpl->setVariable("SHOW_LAPTOP", "disabled");
             }
 
             if ($this->tile->getEnableRating() === Tile::SHOW_TRUE
-                && self::srTile()->access()->hasReadAccess($this->tile->getObjRefId())
+                && self::togo()->access()->hasReadAccess($this->tile->getObjRefId())
             ) {
-                if (self::srTile()->ratings(self::dic()->user())->hasLike($this->tile->getObjRefId())) {
-                    $tpl->setVariable("RATING_LINK", self::dic()->ctrl()->getLinkTargetByClass([
+                if (self::togo()->ratings(self::ildic()->user())->hasLike($this->tile->getObjRefId())) {
+                    $tpl->setVariable("RATING_LINK", self::ildic()->ctrl()->getLinkTargetByClass([
                         ilUIPluginRouterGUI::class,
                         RatingGUI::class
                     ], RatingGUI::CMD_UNLIKE));
-                    $tpl->setVariableEscaped("RATING_TEXT", self::plugin()->translate("unlike", RatingGUI::LANG_MODULE));
-                    $tpl->setVariableEscaped("RATING_IMAGE_PATH", self::plugin()->directory() . "/templates/images/like.svg");
+                    $tpl->setVariable("RATING_TEXT", self::togoplugin()->translate("unlike", RatingGUI::LANG_MODULE));
+                    $tpl->setVariable("RATING_IMAGE_PATH", self::togoplugin()->directory() . "/templates/images/like.svg");
                 } else {
-                    $tpl->setVariable("RATING_LINK", self::dic()->ctrl()->getLinkTargetByClass([
+                    $tpl->setVariable("RATING_LINK", self::ildic()->ctrl()->getLinkTargetByClass([
                         ilUIPluginRouterGUI::class,
                         RatingGUI::class
                     ], RatingGUI::CMD_LIKE));
-                    $tpl->setVariableEscaped("RATING_TEXT", self::plugin()->translate("like", RatingGUI::LANG_MODULE));
-                    $tpl->setVariableEscaped("RATING_IMAGE_PATH", self::plugin()->directory() . "/templates/images/star.svg");
+                    $tpl->setVariable("RATING_TEXT", self::togoplugin()->translate("like", RatingGUI::LANG_MODULE));
+                    $tpl->setVariable("RATING_IMAGE_PATH", self::togoplugin()->directory() . "/templates/images/star.svg");
                 }
 
                 if ($this->tile->getShowLikesCount() === Tile::SHOW_TRUE) {
-                    $likes_count = self::srTile()->ratings(self::dic()->user())->getLikesCount($this->tile->getObjRefId());
+                    $likes_count = self::togo()->ratings(self::ildic()->user())->getLikesCount($this->tile->getObjRefId());
 
                     if ($likes_count > 0) {
                         $tpl->setVariable("LIKES_COUNT", $likes_count);
@@ -129,17 +125,12 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         }
 
         $image = $this->tile->getImagePathWithCheck();
-        $tpl_image = self::plugin()->template("TileSingle/image.html");
-        $tpl_image->setVariableEscaped("IMAGE", (!empty($image) ? "./" . $image : ""));
-        $tpl->setVariable("IMAGE", self::output()->getHTML($tpl_image));
+        $tpl->setVariable("IMAGE", htmlspecialchars((!empty($image) ? "./" . $image : "")));
 
-        $tpl->setVariableEscaped("IMAGE_POSITION", $this->tile->getImagePosition());
-        $tpl->setVariableEscaped("IMAGE_SHOW_AS_BACKGROUND", $this->tile->getShowImageAsBackground());
-        $tpl->setVariableEscaped("SHADOW", $this->tile->getShadow());
 
         $tpl->parseCurrentBlock();
 
-        return self::output()->getHTML($tpl);
+        return self::togoplugin()->getHTML($tpl);
     }
 
 
@@ -155,14 +146,9 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         $count_anonymous_reads = 0;
         require_once './Services/Tracking/classes/class.ilChangeEvent.php';
         $event_active=\ilChangeEvent::_isActive();
-
-
-       
-        $count_anonymous_reads += self::srTile()->collections(self::dic()->user())->getAnonymousViews($a_obj_id);
+        $count_anonymous_reads += self::togo()->collections(self::ildic()->user())->getAnonymousViews($a_obj_id);
        
         if (!$event_active) {
-            \ilChangeEvent::_activate();
-            $activated_by_the_plugin=true;
             \ilChangeEvent::_activate();
         }
         if ($event_active) {
@@ -176,11 +162,7 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
                         $count_users++;
                     }
                     $count_user_reads += $evt['read_count'];
-
-                    
                 }
-                self::dic()->logger()->root()->info("Anonymous reads: ". $count_anonymous_reads);
-                self::dic()->logger()->root()->info("User  reads: ". $count_users);
                 if ($count_anonymous_reads>0) {
                     $count_users+=$count_anonymous_reads;
                 }

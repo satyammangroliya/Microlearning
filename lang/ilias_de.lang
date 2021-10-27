@@ -10,52 +10,10 @@ config_was_sind#:# Ref ID zum 'Was Sind Lernsnacks'-
 config_bag_image#:#Rücksack
 config_save#:#Speichern
 config_back_color#:# Hintergrundfarbe: Header
-favorites_add_to_favorites#:#Zu den Favoriten legen
-favorites_added_to_favorites#:#Das Objekt wurde zu den Favoriten gelegt
-favorites_remove_from_favorites#:#Aus den Favoriten entfernen
-favorites_removed_from_favorites#:#Das Objekt wurde aus den Favoriten entfernt
-object_links_actions#:#Aktionen
-object_links_add#:#Hinzufügen
-object_links_add_object_link#:#Objekt-Verknüpfung hinzufügen
-object_links_added_object_link#:#Objekt-Verknüpfung hinzugefügt
-object_links_cancel#:#Abbrechen
-object_links_can_not_be_changed_anymore#:#Kann nach dem Öffnen nicht mehr geändert werden
-object_links_language#:#Sprache
-object_links_merged#:#Zusammengeführt
-object_links_object#:#Objekt
-object_links_object_links#:#Objekt-Verknüpfungen
-object_links_open#:#Öffnen
-object_links_remove_object_link#:#Objekt-Verknüpfung entfernen
-object_links_removed_object_link#:#Objekt-Verknüpfung entfernt
-onlinestatus_offline#:#Offline
-onlinestatus_online#:#Online
-onlinestatus_set_offline#:#Offline setzen
-onlinestatus_set_online#:#Online setzen
-onlinestatus_setted_offline#:#Offline gesetzt
-onlinestatus_setted_online#:#Online gesetzt
 rating_like#:#Like
 rating_liked#:#Liked
 rating_unlike#:#Unlike
 rating_unliked#:#Unliked
-recommendation_cancel#:#Abbrechen
-recommendation_link#:#Link
-recommendation_message#:#Nachricht
-recommendation_recommend#:#Empfehlen
-recommendation_recommendation#:#Empfehlung %s
-recommendation_recommended_to#:#An
-recommendation_sent_failure#:#Ihre Empfehlung konnte leider nicht gesendet werden!
-recommendation_sent_success#:#Ihre Empfehlung wurde gesendet!
-recommendation_submit#:#Senden
-template_actions#:#Aktionen
-template_cancel#:#Abbrechen
-template_edit_template#:#Vorlage bearbeiten
-template_not_override#:#Nicht überschreiben
-template_object_type#:#Objekt-Typ
-template_other#:#Andere
-template_override#:#Überschreiben
-template_override_confirm#:#Möchten Sie alle Objekte dieses Types überschreiben?
-template_overrided#:#Überschrieben
-template_templates#:#Vorlagen
 tile#:#Kachel
 tile_actions#:#Aktionen
 tile_apply#:#Anwenden

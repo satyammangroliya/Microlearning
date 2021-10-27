@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile\Renderer\Container;
+namespace minervis\ToGo\Tile\Renderer\Container;
 
-use srag\Plugins\ToGo\Tile\Renderer\AbstractCollection;
+use minervis\ToGo\Tile\Renderer\AbstractCollection;
 
 /**
  * Class ContainerCollection
  *
- * @package srag\Plugins\ToGo\Tile\Renderer\Container
+ * @package minervis\ToGo\Tile\Renderer\Container
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch>

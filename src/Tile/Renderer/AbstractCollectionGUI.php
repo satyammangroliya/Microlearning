@@ -1,37 +1,36 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile\Renderer;
+namespace minervis\ToGo\Tile\Renderer;
 
 use ilLink;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Tile\Tile;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
-use srag\Plugins\ToGo\Tile\TileGUI;
-use srag\Plugins\ToGo\Config\ConfigFormGUI;
+use minervis\ToGo\Tile\Tile;
+use minervis\ToGo\Utils\ToGoTrait;
+use minervis\ToGo\Tile\TileGUI;
 
 use ilGroupedListGUI;
 
 /**
  * Class AbstractCollectionGUI
  *
- * @package srag\Plugins\ToGo\Tile\Renderer
+ * @package minervis\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  studer + raimann ag - Martin Studer <ms@studer-raimann.ch> *
  */
 abstract class AbstractCollectionGUI implements CollectionGUIInterface
 {
-    use SrTileTrait;
-    use DICTrait;
+    use ToGoTrait;
+    //use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     private $test_link="";
     /**
      * @var CollectionInterface $collection
      */
     protected $collection;
+    protected $tiles;
     
 
 
@@ -42,7 +41,8 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     public function __construct($param)
     {
-        $this->collection = self::srTile()->tiles()->renderer()->factory()->newCollectionInstance($this, $param);
+        $this->collection = self::togo()->tiles()->renderer()->factory()->newCollectionInstance($this, $param);
+        $this->tiles = $this->collection->getTiles();
     }
 
 
@@ -51,8 +51,8 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     protected function initJS()/*: void*/
     {
-        self::dic()->ui()->mainTemplate()->addJavascript(self::plugin()->directory() . "/js/tiles.js");
-        self::dic()->ui()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/@iconfu/svg-inject/dist/svg-inject.min.js");
+        self::ildic()->ui()->mainTemplate()->addJavascript(self::togoplugin()->directory() . "/js/tiles.js");
+        self::ildic()->ui()->mainTemplate()->addJavaScript(self::togoplugin()->directory() . "/node_modules/@iconfu/svg-inject/dist/svg-inject.min.js");
     }
 
 
@@ -61,87 +61,64 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     public function render() : string
     {
+        global $tpl;
         $this->initJS();
 
         $collection_html = "";
+        
 
-        if (count($this->collection->getTiles()) > 0) {
-            $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
+        if (count($this->tiles) > 0) {
+            $parent_tile = self::togo()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
             
-            self::dic()->ui()->mainTemplate()->addCss(self::plugin()->directory() . "/css/togo.css");
+            self::ildic()->ui()->mainTemplate()->addCss(self::togoplugin()->directory() . "/css/togo.css");
 
-            $tpl = self::plugin()->template("TileCollection/collection.html");
+            $tpl = self::togoplugin()->template("TileCollection/collection.html");
 
-            self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, intval(ilToGoUIHookGUI::filterRefId()));
-
-            $tpl->setVariableEscaped("HEADER", self::plugin()->directory() ."/templates/images/headerImage.png");
-            $tpl->setVariableEscaped("HEADER_RESPONSIVE", self::plugin()->directory() ."/templates/images/headerImage.png");
+            self::ildic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, intval(ilToGoUIHookGUI::filterRefId()));            
             
-            
+            $home_link=ilLink::_getStaticLink(intval(self::togo()->config()->getHomeRefId()));
 
-            $home_link=ilLink::_getStaticLink(intval(self::srTile()->config()->getHomeRefId()));
+            $tpl->setVariable("VIEW", htmlspecialchars($parent_tile->getView()));
 
-            
-            
-            $coll=self::srTile()->collections(self::dic()->user());
-            $tpl->setVariableEscaped("VIEW", $parent_tile->getView());
+            $tile_html = self::togoplugin()->getHTML(array_map(function (Tile $tile) : SingleGUIInterface {
+                return self::togo()->tiles()->renderer()->factory()->newSingleGUIInstance($this, $tile);
+            }, $this->tiles));
 
-            $tile_html = self::output()->getHTML(array_map(function (Tile $tile) : SingleGUIInterface {
-                return self::srTile()->tiles()->renderer()->factory()->newSingleGUIInstance($this, $tile);
-            }, $this->collection->getTiles()));
-
-            $tpl->setVariable("TILES", $tile_html);
-            $tpl->setVariable("TOPICS", self::output()->getHTML($this->renderTopicDropdown($coll->getTopics())));
-            $tpl->setVariable("BRANCHES", self::output()->getHTML($this->renderBranchDropdown($coll->getBranches())));
-            
-
+            $tpl->setVariable("TILES", $tile_html);         
             
             $tpl->setVariable("BACK_HOME_LINK", $home_link);
-            if ($parent_tile) {
-                $background_image=$parent_tile->getBackgroundImagePathWithCheck();
-                if ($background_image) {
-                    $tpl->setVariable("BACKGROUND_IMAGE", "./".$background_image);
-                }
-            }
             
-            $colors=self::srTile()->config()->getValue(ConfigFormGUI::BACK_COLOR);
-            if (!empty($colors)) {
-                $tpl->setVariable("BACK_COLOR", "#".$colors);
-            } else {
-                $tpl->setVariable("BACK_COLOR", "#FFFFFF");
-            }
+            $tpl->setVariable("BACK_COLOR", "#FFFFFF");
             
             
 
-            $umfrage_obj_ref_id=self::srTile()->config()->getUmfrageObjRefId();
+            $umfrage_obj_ref_id=self::togo()->config()->getUmfrageObjRefId();
             $umfrage_link="";
             if ($umfrage_obj_ref_id) {
-                $umfrage_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($umfrage_obj_ref_id))->_getAdvancedLink();
+                $umfrage_link=self::togo()->tiles()->getInstanceForObjRefId(intval($umfrage_obj_ref_id))->_getAdvancedLink();
                 $umfrage_link=str_replace("href=", "", $umfrage_link);
                 $umfrage_link=str_replace('"', "", $umfrage_link);
             } else {
                 $umfrage_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6137.html";
             }
             
-            $tpl->setVariable("LS_UMFRAGE", self::output()->getHTML($this->generateLinks("Umfrage", $umfrage_link)));
+            $tpl->setVariable("LS_UMFRAGE", self::togoplugin()->getHTML($this->generateLinks("Umfrage", $umfrage_link)));
 
-            $was_sind_obj_ref_id=self::srTile()->config()->getWasSindObjRefId();
-            $was_sind_lernsnacks_bgn_link="Was sind die Lern-Snacks?";
+            $was_sind_obj_ref_id=self::togo()->config()->getWasSindObjRefId();
+            $was_sind_lernsnacks_bgn_link="Was sind Lern-Snacks?";
             if ($was_sind_obj_ref_id) {
-                $was_sind_lernsnacks_bgn_link=self::srTile()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
+                $was_sind_lernsnacks_bgn_link=self::togo()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
                 $was_sind_lernsnacks_bgn_link=str_replace("href=", "", $was_sind_lernsnacks_bgn_link);
                 $was_sind_lernsnacks_bgn_link=str_replace('"', "", $was_sind_lernsnacks_bgn_link);
             } else {
                 $was_sind_lernsnacks_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6136.html";
             }
-           
-
             
-            $tpl->setVariable("LS_WAS_SIND", self::output()->getHTML($this->generateLinks("Was sind Lern-Snacks?", $was_sind_lernsnacks_bgn_link)));
-            $tpl->setVariable("LS_HOME", self::output()->getHTML($this->generateLinks("Angebot", $home_link)));
+            $tpl->setVariable("LS_WAS_SIND", self::togoplugin()->getHTML($this->generateLinks("Was sind Lern-Snacks?", $was_sind_lernsnacks_bgn_link)));
+            $tpl->setVariable("LS_HOME", self::togoplugin()->getHTML($this->generateLinks("Angebot", $home_link)));
             $tpl->setVariable("BRANCH_SEL", $this->getBranchSelection());
             $tpl->setVariable("TOPIC_SEL", $this->getTopicSelection());
-            $collection_html = self::output()->getHTML($tpl);
+            $collection_html = self::togoplugin()->getHTML($tpl);
 
             $this->hideOriginalRowsOfTiles();
         }
@@ -157,14 +134,14 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
     {
         $css = '';
 
-        $parent_tile = self::srTile()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
+        $parent_tile = self::togo()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);
 
         $css .= '.tile';
         $css .= '{' . $parent_tile->_getLayout() . '}';
 
         $is_parent_css_rendered = false;
-        foreach ($this->collection->getTiles() as $tile) {
-            self::dic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilToGoPlugin::PLUGIN_NAME, ilToGoPlugin::EVENT_CHANGE_TILE_BEFORE_RENDER, [
+        foreach ($this->tiles as $tile) {
+            self::ildic()->event()->raise(IL_COMP_PLUGIN . "/" . ilToGoPlugin::PLUGIN_NAME, ilToGoPlugin::EVENT_CHANGE_TILE_BEFORE_RENDER, [
                 "tile" => $tile
             ]);
 
@@ -200,106 +177,27 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             }
         }
 
-        self::dic()->ui()->mainTemplate()->addInlineCss($css);
+        self::ildic()->ui()->mainTemplate()->addInlineCss($css);
     }
 
     public function generateLinks(string $label, string $obj_link)
     {
         //cut the href out
         
-        $ui=self::dic()->ui()->factory();
-        $renderer=self::dic()->ui()->renderer();
+        $ui=self::ildic()->ui()->factory();
+        $renderer=self::ildic()->ui()->renderer();
         return $renderer->render($ui->link()->standard($label, $obj_link));
     }
 
-
-    public function renderTopicDropdown($all_topics=array())
-    {
-        $init_topics=array(
-            'Lärmschutz',
-            'Leitern und Tritte',
-            'KommMitMensch',
-            'Brandschutz',
-            'Stress',
-            'Sicher schneiden',
-            'Transport',
-            'Verkehrssicherheit'
-        );
-        $ui=self::dic()->ui()->factory();
-        $renderer =self::dic()->ui()->renderer();
-        $topics=array();
-        $item_link=self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            TileGUI::class
-        ], TileGUI::CMD_FILTER);
-
-
-
-        foreach ($all_topics as $topic) {
-            $topics[]=$ui->button()->shy($topic, $this->editLink($item_link, $topic));
-        }
-
-        if (count($all_topics)==0) {
-            $actions=array("Kein Thema"=>"#");
-            $labels="Kein Thema";
-            $topics[]=$ui->viewControl()->mode($actions, $labels);
-        }
-
-        return $renderer->render($ui->dropdown()->standard($topics)->withLabel("Nach Thema"));
-    }
-    /**
-     * @deprecated
-     */
-
-    public function renderBranchDropdown($all_branches=array())
-    {
-
-        /**
-         * Branches have moved to the tiles table and the initialzationmis not necessary
-         */
-        $init_branches=array(
-            'Lärmschutz',
-            'Leitern und Tritte',
-            'KommMitMensch',
-            'Brandschutz',
-            'Stress',
-            'Sicher schneiden',
-            'Transport',
-            'Verkehrssicherheit'
-        );
-        $ui=self::dic()->ui()->factory();
-        $renderer =self::dic()->ui()->renderer();
-        $branches=array();
-        $item_link=self::dic()->ctrl()->getLinkTargetByClass([
-            ilUIPluginRouterGUI::class,
-            TileGUI::class
-        ], TileGUI::CMD_FILTER);
-
-        
-
-
-        foreach ($all_branches as $branch) {
-            $branches[]=$ui->button()->shy($branch, $this->editLink($item_link, $branch, $item_type="branch"));
-        }
-        
-        if (count($all_branches)==0) {
-            $actions=array("Keine Branche"=>"#");
-            $labels="Keine Branche";
-            $branches[]=$ui->viewControl()->mode($actions, $labels);
-        }
-        return $renderer->render($ui->dropdown()->standard($branches)->withLabel("Nach Branche"));
-    }
-
-
-    private function editLink($link, $filter_item, $item_type="topic")
+    private function editLink($filter_item, $item_type="topic")
     {
         $filter_item=urlencode($filter_item);
 
-        self::dic()->ctrl()->saveParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY);
-        self::dic()->ctrl()->saveParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM);
-        self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY, $item_type);
-        self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM, $filter_item);
-        $item_link=self::dic()->ctrl()->getLinkTargetByClass([
+        self::ildic()->ctrl()->saveParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY);
+        self::ildic()->ctrl()->saveParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM);
+        self::ildic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_BY, $item_type);
+        self::ildic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_FILTER_ITEM, $filter_item);
+        $item_link=self::ildic()->ctrl()->getLinkTargetByClass([
             ilUIPluginRouterGUI::class,
             TileGUI::class
         ], TileGUI::CMD_FILTER);
@@ -308,35 +206,20 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
     private function getBranchSelection()
     {
-        $init_branches=array(
-            'Gastgewerbe',
-            'Backgewerbe',
-            'Nahrungsmittelindustrie',
-            'Schausteller',
-            'Fleischwirtschaft',
-            'Getränkeindustrie'
-        );
-        $coll=self::srTile()->collections(self::dic()->user());
-        $branches=$coll->getBranches();
-
+        $branches = array_map(function ($tile){
+            return explode(',', $tile->getBranch());
+        }, $this->tiles);
+        $branches = array_merge(... $branches);
+        $branches = array_filter($branches);
         $branch_menu=$this->renderSelection("branch", $branches);
         return $branch_menu;
     }
     private function getTopicSelection()
     {
-        $init_topics=array(
-            'Lärmschutz',
-            'Leitern und Tritte',
-            'KommMitMensch',
-            'Brandschutz',
-            'Stress',
-            'Sicher schneiden',
-            'Transport',
-            'Verkehrssicherheit'
-        );
-        $coll=self::srTile()->collections(self::dic()->user());
-        $topics=$coll->getTopics();
-
+        $topics= array_map(function(Tile $tile) {
+            return $tile->getTopic();
+        }, $this->tiles);
+        $topics = array_unique(array_filter($topics));
         $topics_menu=$this->renderSelection("topic", $topics);
         return $topics_menu;
     }
@@ -347,11 +230,11 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         $gr_list->setAsDropDown(true);
         if ($items) {
             foreach ($items as $item) {
-                $item_link=$this->editLink(null, $item, $item_type=$sel_name);
+                $item_link=$this->editLink($item, $item_type=$sel_name);
                 $gr_list->addEntry($item, $item_link);
             }
             return $gr_list->getHTML();
         }
-        return "";
+        return '';
     }
 }

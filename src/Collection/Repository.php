@@ -1,26 +1,26 @@
 <?php
 
-namespace srag\Plugins\ToGo\Collection;
+namespace minervis\ToGo\Collection;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
-use srag\Plugins\ToGo\Tile\Tile;
-use srag\Plugins\ToGo\Collection\Filter;
-use srag\Plugins\ToGo\Collection\AnonymousSession;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
+use minervis\ToGo\Tile\Tile;
+use minervis\ToGo\Collection\Filter;
+use minervis\ToGo\Collection\AnonymousSession;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\ToGo\Collection
+ * @package minervis\ToGo\Collection
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Repository
 {
-    use SrTileTrait;
-    use DICTrait;
+    use ToGoTrait;
+    //use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self[]
@@ -92,9 +92,9 @@ final class Repository
      */
     public function dropTables()/*:void*/
     {
-        self::dic()->database()->dropTable(Collection::TABLE_NAME, false);
-        self::dic()->database()->dropTable(Filter::TABLE_NAME, false);
-        self::dic()->database()->dropTable(AnonymousSession::TABLE_NAME, false);
+        self::ildic()->database()->dropTable(Collection::TABLE_NAME, false);
+        self::ildic()->database()->dropTable(Filter::TABLE_NAME, false);
+        self::ildic()->database()->dropTable(AnonymousSession::TABLE_NAME, false);
     }
 
 
@@ -129,7 +129,7 @@ final class Repository
     }
     public static function getFilter()
     {
-        $user_id=self::dic()->user()->getId();
+        $user_id=self::ildic()->user()->getId();
         $filter= Filter::where(['user_id'=>$user_id])->first();
         if ($filter==null) {
             $filter=new Filter();
@@ -142,8 +142,6 @@ final class Repository
 
     public static function getAnonymousSession(string $sess_id, int $obj_id = 0)
     {
-        global $DIC;
-        $logger = $DIC->logger()->root();
         $query_filter = ['sess_id' =>$sess_id, 'obj_id' =>$obj_id];
         if($obj_id == 0){
             $query_filter = ['sess_id' =>$sess_id];
@@ -157,10 +155,6 @@ final class Repository
                 $latest_row_id = 0;
             }else{
                 $latest_row_id = $latest_row_id->getRowId();
-            }
-            if ($rows_count >= 500){
-                $first = AnonymousSession::first();
-                $first->delete();
             }
             $anonymousSession = new AnonymousSession();
             $anonymousSession = $anonymousSession->initializeAnonymSession($sess_id, $obj_id);
@@ -256,35 +250,6 @@ final class Repository
 
 
     /**
-     * @param int $obj_ref_id
-     */
-    public function sortBy(int $obj_ref_id, $criterium=Collection::SORT_DEFAULT)/*: void*/
-    {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
-
-        $collection = $this->getCollection($obj_id);
-
-        if ($collection === null) {
-            $collection = $this->factory()->newInstance();
-
-            $collection->setObjId($obj_id);
-
-            $collection->setUserId($this->user->getId());
-
-            $collection->setCollectionId();
-
-            $collection->setSortCriterion($criterium);
-
-            $this->storeCollection($collection);
-        } else {
-            $collection->setSortCriterion($criterium);
-
-            $this->updateCollection($collection);
-        }
-    }
-
-
-    /**
      * @param Collection $collection
      */
     protected function updateCollection(Collection $collection)/*:void*/
@@ -367,53 +332,5 @@ final class Repository
 
         return array_unique($all_branches);
     }
-
-    
-
-
-
-    
-
-    public static function getTileIds($item_type="all", $item_name="")
-    {
-        $ids=[];
-        $query_result=[];
-        switch ($item_type) {
-            case "topic":
-                $query_result=Tile::where(['topic'=>$item_name])->get();
-                break;
-            case "branch":
-                $query_result=Tile::where(['branch'=>"%".$item_name."%"], "LIKE")->get();
-                break;
-            default:
-                $query_result=Tile::get();
-        }
-       
-        foreach ($query_result as $result) {
-            $ids[]=$result->getTileId();
-        }
-        return $ids;
-    }
-
-    public function setFilter(string $item_type, string $item_name)
-    {
-    }
-
-
-
-    /**
-     * @param int $obj_ref_id
-     */
-    public function unsort(int $obj_ref_id)/*: void*/
-    {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
-
-        $collection = $this->getCollection($obj_id);
-
-        if ($collection !== null) {
-            $this->deleteCollection($collection);
-        }
-    }
-
 
 }

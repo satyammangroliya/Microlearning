@@ -1,26 +1,26 @@
 <?php
 
-namespace srag\Plugins\ToGo\Tile\Renderer;
+namespace minervis\ToGo\Tile\Renderer;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Tile\Renderer\Container\ContainerCollectionGUI;
-use srag\Plugins\ToGo\Tile\Renderer\Desktop\DesktopCollectionGUI;
-use srag\Plugins\ToGo\Tile\Renderer\Fixed\FixedCollectionGUI;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Tile\Renderer\Container\ContainerCollectionGUI;
+use minervis\ToGo\Tile\Renderer\Desktop\DesktopCollectionGUI;
+use minervis\ToGo\Tile\Renderer\Fixed\FixedCollectionGUI;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class CollectionGUIFactory
  *
- * @package srag\Plugins\ToGo\Tile\Renderer
+ * @package minervis\ToGo\Tile\Renderer
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class CollectionGUIFactory
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null

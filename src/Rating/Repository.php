@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\Plugins\ToGo\Rating;
+namespace minervis\ToGo\Rating;
 
 use ilObjUser;
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
-use srag\Plugins\ToGo\Collection\AnonymousSession;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
+use minervis\ToGo\Collection\AnonymousSession;
 
 /**
  * Class Repository
  *
- * @package srag\Plugins\ToGo\Rating
+ * @package minervis\ToGo\Rating
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Repository
 {
-    use SrTileTrait;
-    use DICTrait;
+    use ToGoTrait;
+    //use DICTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self[]
@@ -72,7 +72,7 @@ final class Repository
      */
     public function dropTables()/*:void*/
     {
-        self::dic()->database()->dropTable(Rating::TABLE_NAME, false);
+        self::ildic()->database()->dropTable(Rating::TABLE_NAME, false);
     }
 
 
@@ -92,7 +92,7 @@ final class Repository
      */
     public function getLikesCount($obj_ref_id) : int
     {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
 
         $authenticated_count = Rating::where([
             "obj_id" => $obj_id
@@ -131,11 +131,11 @@ final class Repository
      */
     public function hasLike(int $obj_ref_id) : bool
     {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
         
         if ( $this->user->getId() == ANONYMOUS_USER_ID){
             
-            $session = self::srTile()->collections($this->user)->getAnonymousSession(self::dic()->authSession()->getId(), $obj_id);
+            $session = self::togo()->collections($this->user)->getAnonymousSession(self::ildic()['ilAuthSession']->getId(), $obj_id);
             return $session->getRating() !== 0;
         }else{
 
@@ -159,10 +159,10 @@ final class Repository
      */
     public function like(int $obj_ref_id)/*: void*/
     {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
         if($this->user->getId() == ANONYMOUS_USER_ID){
-            $sess_id = self::dic()->authSession()->getId();
-            self::srTile()->collections($this->user)->likeAnonymous($sess_id, $obj_id, 1);
+            $sess_id = self::ildic()['ilAuthSession']->getId();
+            self::togo()->collections($this->user)->likeAnonymous($sess_id, $obj_id, 1);
         }
         
 
@@ -194,10 +194,10 @@ final class Repository
      */
     public function unlike(int $obj_ref_id)/*: void*/
     {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
+        $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
         if($this->user->getId() == ANONYMOUS_USER_ID){
-            $sess_id = self::dic()->authSession()->getId();
-            self::srTile()->collections($this->user)->likeAnonymous($sess_id, $obj_id, 0);
+            $sess_id = self::ildic()['ilAuthSession']->getId();
+            self::togo()->collections($this->user)->likeAnonymous($sess_id, $obj_id, 0);
             
         }
 
@@ -209,11 +209,10 @@ final class Repository
     }
     public function view(int $obj_ref_id)
     {
-        $obj_id = intval(self::dic()->objDataCache()->lookupObjId($obj_ref_id));
-        self::dic()->logger()->root()->info("Object ID: ". $obj_id);
+        $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
         if($this->user->getId() == ANONYMOUS_USER_ID){
-            $sess_id = self::dic()->authSession()->getId();
-            self::srTile()->collections($this->user)->viewAnonymous($sess_id, $obj_id, 1);            
+            $sess_id = self::ildic()['ilAuthSession']->getId();
+            self::togo()->collections($this->user)->viewAnonymous($sess_id, $obj_id, 1);            
         }
 
 

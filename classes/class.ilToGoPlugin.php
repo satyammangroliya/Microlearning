@@ -1,12 +1,9 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
-if (file_exists(__DIR__ . "/../../Certificate/vendor/autoload.php")) {
-    require_once __DIR__ . "/../../Certificate/vendor/autoload.php";
-}
 
-use srag\Plugins\ToGo\Utils\SrTileTrait;
-use srag\RemovePluginDataConfirm\ToGo\PluginUninstallTrait;
+
+use minervis\ToGo\Utils\ToGoTrait;
 
 
 /**
@@ -16,8 +13,8 @@ use srag\RemovePluginDataConfirm\ToGo\PluginUninstallTrait;
  */
 class ilToGoPlugin extends ilUserInterfaceHookPlugin
 {
-    use PluginUninstallTrait;
-    use SrTileTrait;
+   // use PluginUninstallTrait;
+    use ToGoTrait;
     const PLUGIN_ID = "togo";
     const PLUGIN_NAME = "ToGo";
     const PLUGIN_CLASS_NAME = self::class;
@@ -70,7 +67,7 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
             case "Services/Object":
                 switch ($a_event) {
                     case "cloneObject":
-                        self::srTile()->tiles()->cloneTile($a_parameter["cloned_from_object"]->getRefId(), $a_parameter["object"]->getRefId());
+                        self::togo()->tiles()->cloneTile($a_parameter["cloned_from_object"]->getRefId(), $a_parameter["object"]->getRefId());
                         break;
                     default:
                         break;
@@ -90,9 +87,7 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
     {
         parent::updateLanguages($a_lang_keys);
 
-        $this->installRemovePluginDataConfirmLanguages();
-
-        self::srTile()->notifications4plugin()->installLanguages();
+        //$this->installRemovePluginDataConfirmLanguages();
     }
 
 
@@ -101,9 +96,15 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
      */
     protected function deleteData()/*: void*/
     {
-        self::srTile()->dropTables();
+        self::togo()->dropTables();
     }
     public function shouldUseOneUpdateStepOnly()
     {
+    }
+
+    protected function beforeUninstall()
+    {
+        self::togo()->dropTables();
+        return true;
     }
 }

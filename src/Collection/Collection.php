@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\Plugins\ToGo\Collection;
+namespace minervis\ToGo\Collection;
 
 use ActiveRecord;
 use arConnector;
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class Collection
  *
- * @package srag\Plugins\ToGo\Collection
+ * @package minervis\ToGo\Collection
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Collection extends ActiveRecord
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_coll";
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
 

@@ -1,24 +1,24 @@
 <?php
 
-namespace srag\Plugins\ToGo\Rating;
+namespace minervis\ToGo\Rating;
 
 use ActiveRecord;
 use arConnector;
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class Rating
  *
- * @package srag\Plugins\ToGo\Rating
+ * @package minervis\ToGo\Rating
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Rating extends ActiveRecord
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_rating";
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
 

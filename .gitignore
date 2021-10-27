@@ -1,6 +1,0 @@
-#vendor
-#node_modules
-.idea
-node_modules
-/js/recommend.js 
-/js/recommend.min.js

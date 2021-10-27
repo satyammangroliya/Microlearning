@@ -10,52 +10,10 @@ config_was_sind#:# Ref ID of the  'Was Sind Lernsnacks' object
 config_bag_image#:#Bagpack image
 config_back_color#:# Header Background color
 config_save#:#Save
-favorites_add_to_favorites#:#Add to favorites
-favorites_added_to_favorites#:#The object has been added to the favorites
-favorites_remove_from_favorites#:#Remove from favorites
-favorites_removed_from_favorites#:#The object has been removed from the favorites
-object_links_actions#:#Actions
-object_links_add#:#Add
-object_links_add_object_link#:#Add object link
-object_links_added_object_link#:#Added object link
-object_links_cancel#:#Cancel
-object_links_can_not_be_changed_anymore#:#Can not be changed anymore after open
-object_links_language#:#Language
-object_links_merged#:#Merged
-object_links_object#:#Object
-object_links_object_links#:#Object links
-object_links_open#:#Open
-object_links_remove_object_link#:#Remove object link
-object_links_removed_object_link#:#Removed object link
-onlinestatus_offline#:#Offline
-onlinestatus_online#:#Online
-onlinestatus_set_offline#:#Set offline
-onlinestatus_set_online#:#Set online
-onlinestatus_setted_offline#:#Set offline
-onlinestatus_setted_online#:#Set online
 rating_like#:#Like
 rating_liked#:#Liked
 rating_unlike#:#Unlike
 rating_unliked#:#Unliked
-recommendation_cancel#:#Cancel
-recommendation_link#:#Link
-recommendation_message#:#Message
-recommendation_recommend#:#Recommend
-recommendation_recommendation#:#Recommendation %s
-recommendation_recommended_to#:#To
-recommendation_sent_failure#:#Sorry, your recommendation could not be sent!
-recommendation_sent_success#:#Your recommendation has been sent!
-recommendation_submit#:#Submit
-template_actions#:#Actions
-template_cancel#:#Cancel
-template_edit_template#:#Edit template
-template_not_override#:#Not override
-template_object_type#:#Object type
-template_other#:#Other
-template_override#:#Override
-template_override_confirm#:#Would you like to override all objects of this type?
-template_overrided#:#Overrided
-template_templates#:#Templates
 tile#:#Tile
 tile_actions#:#Actions
 tile_apply#:#Apply

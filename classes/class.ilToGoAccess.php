@@ -1,27 +1,13 @@
 <?php
 
-namespace minervis\ToGo\Access;
-
-use ilObjCourse;
-use ilObjCourseAccess;
-use ilObjGroup;
-use ilObjGroupAccess;
-use ilToGoPlugin;
-//use srag\DIC\ToGo\DICTrait;
-use minervis\ToGo\Tile\Tile;
-use minervis\ToGo\Utils\ToGoTrait;
-
 /**
  * Class Access
  *
- * @package minervis\ToGo\Access
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author  Jephte Abijuru <jephte.abijuru@minervis.com>
  */
-final class Access
+class ilToGoAccess
 {
-    //use DICTrait;
-    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
@@ -75,15 +61,18 @@ final class Access
      */
     public function hasOpenAccess(Tile $tile) : bool
     {
+        global $DIC;
         if (!isset(self::$has_open_access[$tile->getObjRefId()])) {
             if ($this->hasReadAccess($tile->getObjRefId())) {
                 self::$has_open_access[$tile->getObjRefId()] = true;
             } else {
                 if ($tile->_getIlObject() instanceof ilObjCourse) {
-                    self::$has_open_access[$tile->getObjRefId()] = (new ilObjCourseAccess())->_checkAccess("join", "join", $tile->getObjRefId(), self::togoObjDataCache()->lookupObjId($tile->getObjRefId()));
+                    self::$has_open_access[$tile->getObjRefId()] = (new ilObjCourseAccess())->_checkAccess("join", "join", $tile->getObjRefId(), $DIC
+                        ->objDataCache()->lookupObjId($tile->getObjRefId()));
                 } else {
                     if ($tile->_getIlObject() instanceof ilObjGroup) {
-                        self::$has_open_access[$tile->getObjRefId()] = (new ilObjGroupAccess())->_checkAccess("join", "join", $tile->getObjRefId(), self::togoObjDataCache()->lookupObjId($tile->getObjRefId()));
+                        self::$has_open_access[$tile->getObjRefId()] = (new ilObjGroupAccess())->_checkAccess("join", "join", $tile->getObjRefId(), $DIC
+                            ->objDataCache()->lookupObjId($tile->getObjRefId()));
                     } else {
                         self::$has_open_access[$tile->getObjRefId()] = false;
                     }
@@ -102,8 +91,9 @@ final class Access
      */
     public function hasReadAccess(int $obj_ref_id) : bool
     {
+        global $DIC;
         if (!isset(self::$has_read_access[$obj_ref_id])) {
-            self::$has_read_access[$obj_ref_id] = self::ildic()->access()->checkAccess("read", "", $obj_ref_id);
+            self::$has_read_access[$obj_ref_id] = $DIC->access()->checkAccess("read", "", $obj_ref_id);
         }
 
         return self::$has_read_access[$obj_ref_id];
@@ -117,8 +107,9 @@ final class Access
      */
     public function hasVisibleAccess(int $obj_ref_id) : bool
     {
+        global $DIC;
         if (!isset(self::$has_visible_access[$obj_ref_id])) {
-            self::$has_visible_access[$obj_ref_id] = self::ildic()->access()->checkAccess("visible", "", $obj_ref_id);
+            self::$has_visible_access[$obj_ref_id] = $DIC->access()->checkAccess("visible", "", $obj_ref_id);
         }
 
         return self::$has_visible_access[$obj_ref_id];
@@ -132,8 +123,9 @@ final class Access
      */
     public function hasWriteAccess(int $obj_ref_id) : bool
     {
+        global $DIC;
         if (!isset(self::$has_write_access[$obj_ref_id])) {
-            self::$has_write_access[$obj_ref_id] = self::ildic()->access()->checkAccess("write", "", $obj_ref_id);
+            self::$has_write_access[$obj_ref_id] = $DIC->access()->checkAccess("write", "", $obj_ref_id);
         }
 
         return self::$has_write_access[$obj_ref_id];

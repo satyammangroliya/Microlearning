@@ -1,38 +1,32 @@
 <?php
 
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Config\ConfigFormGUI;
-use srag\Plugins\ToGo\Recommend\RecommendGUI;
-use srag\Plugins\ToGo\Tile\Tile;
-use srag\Plugins\ToGo\Tile\TileGUI;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Tile\Tile;
+use minervis\ToGo\Tile\TileGUI;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class ilToGoUIHookGUI
  *
- * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author Jephte Abijuru <jephte.abijuru@minervis.com>
  *
  * @ilCtrl_isCalledBy ilToGoUIHookGUI: ilUIPluginRouterGUI
  */
 class ilToGoUIHookGUI extends ilUIHookPluginGUI
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const PAR_TABS = "tabs";
     const TEMPLATE_GET = "template_get";
     const TOOLBAR_LOADER = "tile_toolbar_loader";
     const REPOSITORY_LOADER = "tile_repository_loader";
-    const FAVORITES_LOADER = "tile_desktop_loader";
-    const RECOMMEND_MODAL_LOADER = "tile_recommend_modal";
-    const TEMPLATE_ID_REPOSITORY = "Services/Container/tpl.container_list_block.html";
-    const TEMPLATE_ID_FAVORITES = "Services/PersonalDesktop/tpl.pd_list_block.html";
     const TAB_PERM_ID = "perm";
     const ADMIN_FOOTER_TPL_ID = "tpl.adm_content.html";
-    const ACTIONS_MENU_TEMPLATE = "Services/UIComponent/AdvancedSelectionList/tpl.adv_selection_list.html";
     const GET_PARAM_REF_ID = "ref_id";
     const GET_PARAM_TARGET = "target";
     const GET_RENDER_EDIT_TILE_ACTION = "render_edit_tile_action";
+    const TEMPLATE_ID_REPOSITORY = "Services/Container/tpl.container_list_block.html";
     /**
      * @var bool[]
      */
@@ -40,8 +34,6 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         = [
             self::TOOLBAR_LOADER         => false,
             self::REPOSITORY_LOADER      => false,
-            self::FAVORITES_LOADER       => false,
-            self::RECOMMEND_MODAL_LOADER => false
         ];
 
 
@@ -86,69 +78,8 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         if ($this->matchRepository($a_part, $a_par)) {
             return [
                 "mode" => self::REPLACE,
-                "html" => self::output()->getHTML(self::srTile()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]))
+                "html" => self::togoplugin()->getHTML(self::togo()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]))
             ];
-        }
-
-        if ($this->matchFavorites($a_part, $a_par)) {
-            return [
-                "mode" => self::REPLACE,
-                "html" => self::output()->getHTML(self::srTile()->tiles()->renderer()->factory()->newCollectionGUIInstance()->desktop(self::dic()->user()))
-            ];
-        }
-
-        if ($this->matchRecommendModal($a_part, $a_par)) {
-            return [
-                "mode" => self::APPEND,
-                "html" => (new RecommendGUI())->getModal()
-            ];
-        }
-
-        if ($a_par["tpl_id"] === self::ACTIONS_MENU_TEMPLATE && $a_part === self::TEMPLATE_GET) {
-            if (!empty(filter_input(INPUT_GET, self::GET_RENDER_EDIT_TILE_ACTION))) {
-                $html = $a_par["html"];
-
-                $matches = [];
-                preg_match('/id="act_([0-9]+)/', $html, $matches);
-                if (is_array($matches) && count($matches) >= 2) {
-                    $obj_ref_id = intval($matches[1]);
-
-                    if (self::srTile()->tiles()->isObject($obj_ref_id)) {
-                        if (self::srTile()->access()->hasWriteAccess($obj_ref_id)) {
-                            self::dic()->ctrl()->setParameterByClass(TileGUI::class, TileGUI::GET_PARAM_REF_ID, $obj_ref_id);
-
-                            $actions = [
-                                [TileGUI::LANG_MODULE, "edit_tile", TileGUI::class, TileGUI::CMD_EDIT_TILE]
-                            ];
-
-                            $actions_html = self::output()->getHTML(array_map(function (array $action) : string {
-                                return '<li>' . self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(
-                                    '<span class="xsmall">' . self::plugin()
-                                            ->translate($action[1], $action[0]) . '</span>',
-                                    self::dic()->ctrl()->getLinkTargetByClass([
-                                            ilUIPluginRouterGUI::class,
-                                            $action[2]
-                                        ], $action[3])
-                                )) . '</li>';
-                            }, $actions));
-
-                            $matches = [];
-                            preg_match(
-                                '/<ul\s+class="dropdown-menu pull-right"\s+role="menu"\s+id="ilAdvSelListTable_.*"\s*>/',
-                                $html,
-                                $matches
-                            );
-                            if (is_array($matches) && count($matches) >= 1) {
-                                $html = str_ireplace($matches[0], $matches[0] . $actions_html, $html);
-                            } else {
-                                $html = $actions_html . $html;
-                            }
-
-                            return ["mode" => self::REPLACE, "html" => $html];
-                        }
-                    }
-                }
-            }
         }
 
         return parent::getHTML($a_comp, $a_part, $a_par);
@@ -163,21 +94,17 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         $obj_ref_id = self::filterRefId();
 
         if ($this->matchToolbar($a_part)) {
-            if (!self::srTile()->access()->hasWriteAccess($obj_ref_id)) {
-                if (self::srTile()->tiles()->getInstanceForObjRefId($obj_ref_id)->getShowObjectTabs() === Tile::SHOW_FALSE) {
-                    self::dic()->tabs()->clearTargets();
-                    self::dic()->tabs()->clearSubTabs();
+            if (!self::togo()->access()->hasWriteAccess($obj_ref_id)) {
+                if (self::togo()->tiles()->getInstanceForObjRefId($obj_ref_id)->getShowObjectTabs() === Tile::SHOW_FALSE) {
+                    self::ildic()->tabs()->clearTargets();
+                    self::ildic()->tabs()->clearSubTabs();
                 }
-
-                
-
-
                 return;
             }
  
 
 
-            if (count(array_filter(self::dic()->tabs()->target, function (array $tab) : bool {
+            if (count(array_filter(self::ildic()->tabs()->target, function (array $tab) : bool {
                 return (strpos($tab["id"], self::TAB_PERM_ID) !== false);
             })) > 0
             ) {
@@ -201,7 +128,7 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
             && $baseClass !== strtolower(ilAdministrationGUI::class)
             && $a_part === self::PAR_TABS
             && (self::$load[self::TOOLBAR_LOADER] = true)
-            && self::srTile()->tiles()->isObject($obj_ref_id));
+            && self::togo()->tiles()->isObject($obj_ref_id));
     }
 
 
@@ -219,47 +146,13 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
             && $a_part === self::TEMPLATE_GET
             && $a_par["tpl_id"] === self::TEMPLATE_ID_REPOSITORY
             && (self::$load[self::REPOSITORY_LOADER] = true)
-            && self::srTile()->config()->getValue(ConfigFormGUI::KEY_ENABLED_ON_REPOSITORY)
-            && !in_array(self::dic()->ctrl()->getCmd(), ["editOrder"])
-            && !in_array(self::dic()->ctrl()->getCallHistory()[0]["cmd"], ["editOrder"])
+            && (true == true)
+            && !in_array(self::ildic()->ctrl()->getCmd(), ["editOrder"])
+            && !in_array(self::ildic()->ctrl()->getCallHistory()[0]["cmd"], ["editOrder"])
             && !$_SESSION["il_cont_admin_panel"]
-            && self::srTile()->tiles()->isObject($obj_ref_id)
-            && self::srTile()->tiles()->getInstanceForObjRefId($obj_ref_id)->getView() !== Tile::VIEW_DISABLED);
+            && self::togo()->tiles()->isObject($obj_ref_id)
+            && self::togo()->tiles()->getInstanceForObjRefId($obj_ref_id)->getView() !== Tile::VIEW_DISABLED);
     }
-
-
-    /**
-     * @param string $a_part
-     * @param array  $a_par
-     *
-     * @return bool
-     */
-    protected function matchFavorites(string $a_part, array $a_par) : bool
-    {
-        $baseClass = strtolower(filter_input(INPUT_GET, "baseClass"));
-
-        return (!self::$load[self::FAVORITES_LOADER]
-            && $baseClass === strtolower(ilPersonalDesktopGUI::class)
-            && $a_part === self::TEMPLATE_GET
-            && $a_par["tpl_id"] === self::TEMPLATE_ID_FAVORITES
-            && (self::$load[self::FAVORITES_LOADER] = true)
-            && self::srTile()->config()->getValue(ConfigFormGUI::KEY_ENABLED_ON_FAVORITES));
-    }
-
-
-    /**
-     * @param string $a_part
-     * @param array  $a_par
-     *
-     * @return bool
-     */
-    protected function matchRecommendModal(string $a_part, array $a_par) : bool
-    {
-        return (!self::$load[self::RECOMMEND_MODAL_LOADER]
-            && $a_par["tpl_id"] === self::ADMIN_FOOTER_TPL_ID
-            && (self::$load[self::RECOMMEND_MODAL_LOADER] = true));
-    }
-
 
     /**
      * @param string $key
@@ -271,7 +164,7 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
     {
         $should_not_display = [];
 
-        self::dic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilToGoPlugin::PLUGIN_NAME, ilToGoPlugin::EVENT_SHOULD_NOT_DISPLAY_ALERT_MESSAGE, [
+        self::ildic()->appEventHandler()->raise(IL_COMP_PLUGIN . "/" . ilToGoPlugin::PLUGIN_NAME, ilToGoPlugin::EVENT_SHOULD_NOT_DISPLAY_ALERT_MESSAGE, [
             "lang_module"        => $module,
             "lang_key"           => $key,
             "alert_type"         => $alert_type,
@@ -279,7 +172,7 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
         ]);
 
         if (empty($should_not_display)) {
-            ilUtil::{"send" . ucfirst($alert_type)}(self::plugin()->translate($key, $module), $keep);
+            ilUtil::{"send" . ucfirst($alert_type)}(self::togoplugin()->translate($key, $module), $keep);
         }
     }
 }

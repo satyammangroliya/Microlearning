@@ -1,28 +1,28 @@
 <?php
 
-namespace srag\Plugins\ToGo\Collection;
+namespace minervis\ToGo\Collection;
 
 use ilLink;
 use ilPersonalDesktopGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Tile\Tile;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Tile\Tile;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class CollectionGUI1
  *
- * @package           srag\Plugins\ToGo\Collection
+ * @package           minervis\ToGo\Collection
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\ToGo\Collection\CollectionGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy minervis\ToGo\Collection\CollectionGUI: ilUIPluginRouterGUI
  */
 class CollectionGUI
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     const CMD_LIKE = "";
     const CMD_UNLIKE = "unlike";
@@ -30,10 +30,6 @@ class CollectionGUI
     const GET_PARAM_REF_ID = "ref_id";
     const LANG_MODULE = "collection";
 
-    //Customized
-    const TAB_SORT="sort";
-    const CMD_SORT_TOPIC="sortTopic";
-    const CMD_SORT_BRANCH="sortBranch";
     /**
      * @var int
      */
@@ -57,27 +53,25 @@ class CollectionGUI
      */
     public function executeCommand()/*: void*/
     {
-        //$this->parent_ref_id = intval(filter_input(INPUT_GET, self::GET_PARAM_PARENT_REF_ID));
-        $this->tile = self::srTile()->tiles()->getInstanceForObjRefId(intval(filter_input(INPUT_GET, self::GET_PARAM_REF_ID)));
+        $this->tile = self::togo()->tiles()->getInstanceForObjRefId(intval(filter_input(INPUT_GET, self::GET_PARAM_REF_ID)));
 
         if (!($this->tile->getEnableRating() === Tile::SHOW_TRUE
-            && self::srTile()->access()->hasReadAccess($this->tile->getObjRefId()))
+            && self::togo()->access()->hasReadAccess($this->tile->getObjRefId()))
         ) {
             die();
         }
-        self::dic()->ctrl()->saveParameter($this, self::GET_FILTER_ITEM);
-        self::dic()->ctrl()->saveParameter($this, self::GET_FILTER_BY);
+        self::ildic()->ctrl()->saveParameter($this, self::GET_FILTER_ITEM);
+        self::ildic()->ctrl()->saveParameter($this, self::GET_FILTER_BY);
 
-        //self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_PARENT_REF_ID);
-        self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_REF_ID);
+        self::ildic()->ctrl()->saveParameter($this, self::GET_PARAM_REF_ID);
 
         $this->setTabs();
 
-        $next_class = self::dic()->ctrl()->getNextClass($this);
+        $next_class = self::ildic()->ctrl()->getNextClass($this);
 
         switch ($next_class) {
             default:
-                $cmd = self::dic()->ctrl()->getCmd();
+                $cmd = self::ildic()->ctrl()->getCmd();
 
                 switch ($cmd) {
                     case self::CMD_LIKE:
@@ -106,14 +100,14 @@ class CollectionGUI
      */
     protected function like()/*: void*/
     {
-        self::srTile()->ratings(self::dic()->user())->like($this->tile->getObjRefId());
+        self::togo()->ratings(self::ildic()->user())->like($this->tile->getObjRefId());
 
         ilToGoUIHookGUI::askAndDisplayAlertMessage("liked", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
-            self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
+            self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
         } else {
-            self::dic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
+            self::ildic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
         }
     }
 
@@ -123,14 +117,14 @@ class CollectionGUI
      */
     protected function unlike()/*: void*/
     {
-        self::srTile()->ratings(self::dic()->user())->unlike($this->tile->getObjRefId());
+        self::togo()->ratings(self::ildic()->user())->unlike($this->tile->getObjRefId());
 
         ilToGoUIHookGUI::askAndDisplayAlertMessage("unliked", self::LANG_MODULE);
 
         if (!empty($this->parent_ref_id)) {
-            self::dic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
+            self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
         } else {
-            self::dic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
+            self::ildic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
         }
     }
 }

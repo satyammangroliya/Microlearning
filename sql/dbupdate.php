@@ -1,15 +1,15 @@
 
 <#1>
 <?php
-\srag\Plugins\ToGo\Repository::getInstance()->installTables();
+\minervis\ToGo\Repository::getInstance()->installTables();
 ?>
 <#2>
 <?php
-\srag\Plugins\ToGo\Repository::getInstance()->installTables();
+\minervis\ToGo\Repository::getInstance()->installTables();
 ?>
 <#3>
 <?php
-\srag\Plugins\ToGo\Repository::getInstance()->installTables();
+\minervis\ToGo\Repository::getInstance()->installTables();
 ?>
 
 

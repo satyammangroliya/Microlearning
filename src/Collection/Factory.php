@@ -1,22 +1,22 @@
 <?php
 
-namespace srag\Plugins\ToGo\Collection;
+namespace minervis\ToGo\Collection;
 
 use ilToGoPlugin;
-use srag\DIC\ToGo\DICTrait;
-use srag\Plugins\ToGo\Utils\SrTileTrait;
+//use srag\DIC\ToGo\DICTrait;
+use minervis\ToGo\Utils\ToGoTrait;
 
 /**
  * Class Factory
  *
- * @package srag\Plugins\ToGo\Collection
+ * @package minervis\ToGo\Collection
  *
  * @author  Jephte Abijuru <jephte.abijuru@minervis.com>
  */
 final class Factory
 {
-    use DICTrait;
-    use SrTileTrait;
+    //use DICTrait;
+    use ToGoTrait;
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
     /**
      * @var self|null
