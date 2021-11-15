@@ -74,8 +74,10 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
     {
         $this->dic->tabs()->addTab(self::TAB_CONFIGURATION, $this->plugin_object->txt("config_configuration"), $this->dic->ctrl()
             ->getLinkTargetByClass(self::class, self::CMD_CONFIGURE));
-        $this->dic->tabs()->addTab(self::TAB_DEBUG, "DebugMode", $this->dic->ctrl()
+        if ($this->config->isDebugMode()){
+            $this->dic->tabs()->addTab(self::TAB_DEBUG, "DebugMode", $this->dic->ctrl()
             ->getLinkTargetByClass(self::class, self::CMD_DEBUG));
+        }
         $this->dic['ilLocator']->addItem(ilToGoPlugin::PLUGIN_NAME, $this->dic->ctrl()->getLinkTarget($this, self::CMD_CONFIGURE));
     }
 
@@ -97,6 +99,7 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
     {
         global $tpl,$DIC;
         //$this->dic->tabs()->activateTab(self::TAB_DEBUG);
+        $this->config->writeLog('');
 
         $debug_link=self::ildic()->ctrl()->getLinkTargetByClass(self::class,self::CMD_RUN);
 
@@ -163,9 +166,9 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
 		$ti->setValue( $values["umfrage_object"]);
 		$form->addItem($ti);
         // Umfrage (text)
-		$ti = new ilCheckboxInputGUI('Debug mode', "debug");
-		$ti->setChecked( (int) intval($values["debug"]));
-		$form->addItem($ti);
+		$debug = new ilCheckboxInputGUI('Debug mode', "debug");
+		$debug->setChecked( (int) intval($values["debug"]));
+		
 
         $stage = new ilRadioGroupInputGUI(
             'Debug stage',
@@ -173,7 +176,7 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
         );
         $stage->setRequired(false);
         $stage->setValue(intval($this->config->getStage()));
-        $form->addItem($stage);
+        //$form->addItem($stage);
 
         $default =  new ilRadioOption(
             'Stage 1',
@@ -218,6 +221,9 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
         
         );
         $stage->addOption($stage7);
+        
+        $debug->addSubItem($stage);
+        $form->addItem($debug);
 	
 		$form->addCommandButton(self::CMD_UPDATE_CONFIGURE, $pl->txt("config_save"));
 	                
