@@ -1,7 +1,7 @@
 <?php
 
 namespace minervis\ToGo\Tile\Renderer;
-
+use \Datetime;
 use ilLink;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
@@ -122,7 +122,31 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
 
             $this->hideOriginalRowsOfTiles();
         }
-
+        $config = self::togo()->config();
+        if ($config->isDebugMode() && ($config->getStage() == 3)){
+           $outmem =  debug_backtrace();
+           self::ildic()->logger()->root()->dump($outmem);
+        }
+        if ($config->isDebugMode() && ($config->getStage() == 5)){
+           
+            $config->writeLog('---------------Call trace--------------- ');
+            $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+            $config->writeLog($trace, true);
+         }
+        if ($config->isDebugMode() && ($config->getStage() === 4)){
+            $config->writeLog('---------------Test duration of link generation--------------- ');
+            $starttime = microtime(true);
+            $this->getBranchSelection();
+            $this->getTopicSelection();
+            $stoptime = microtime(true);
+            $now = DateTime::createFromFormat('U.u', $starttime);
+            $formatted_starttime = $now->format("m-d-Y H:i:s.u");
+            $config->writeLog('Generation of Links for topics and Branches started at: ' . $formatted_starttime);
+            $now = DateTime::createFromFormat('U.u', $stoptime);
+            $formatted_stoptime = $now->format("m-d-Y H:i:s.u");
+            $config->writeLog('Generation of Links for topics and Branches finished at: ' . $formatted_stoptime);
+            $config->writeLog('Total time of Link  generation: ' . ($stoptime - $starttime)*1000);
+         }
         return $collection_html;
     }
 
@@ -210,7 +234,7 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             return explode(',', $tile->getBranch());
         }, $this->tiles);
         $branches = array_merge(... $branches);
-        $branches = array_filter($branches);
+        $branches = array_unique(array_filter($branches));
         $branch_menu=$this->renderSelection("branch", $branches);
         return $branch_menu;
     }

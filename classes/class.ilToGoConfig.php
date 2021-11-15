@@ -3,6 +3,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use ILIAS\DI\Container;
 use minervis\ToGo\Utils\ToGoTrait;
 
+
 /**
  * class ilToGoConfig
  * @author  Jephte Abijuru <jephte.abijuru@minervis.com>
@@ -35,6 +36,7 @@ use minervis\ToGo\Utils\ToGoTrait;
         $this->dic = $DIC;
         $this->db = $DIC->database();
         $this->read();
+        $this->initDebugMode();
 	}
 
     /**
@@ -63,6 +65,7 @@ use minervis\ToGo\Utils\ToGoTrait;
             foreach($this->values as $name=>$value){
                 $insert_query = $insert_query . "( ". $ilDB->quote($name, "text") . " , ". $ilDB->quote($value, "text") . ")";
             }
+            //$ilDB->manipulate($insert_query);
 
         }else{
             $a_data = array();
@@ -152,5 +155,71 @@ use minervis\ToGo\Utils\ToGoTrait;
             $ilDB->dropTable(self::TABLE_NAME);            
         }       
     }
+
+    public function isDebugMode()
+    {
+         return boolval($this->getValue('debug'));
+    }
+    public function initDebugMode()
+    {
+        $this->addItem('debug','0');
+        $this->addItem('output', '1');
+        $this->addItem('stage','0');
+       
+
+    }
+
+    public function getStage()
+    {
+        return intval($this->getValue('stage'));
+    }
+
+    public function getOutput()
+    {
+        return intval($this->getValue('output'));
+
+    }
+
+    public function addItem($name, $value)
+    {
+        global $ilDB;
+        $result = $ilDB->query("SELECT * FROM " .self::TABLE_NAME . " WHERE name = ". $ilDB->quote($name,"text"));
+        if ($ilDB->numRows($result)>0){
+
+        }else{
+            $insert_query = "INSERT INTO " .self::TABLE_NAME ."(name, value) VALUES (" . $ilDB->quote($name,"text") ."," . $ilDB->quote($value,"text") .")";
+            $ilDB->manipulate($insert_query);
+        }
+        
+
+    }
+
+    public function writeLog($message,  $dump = false, $delete=false)
+    {
+        global $DIC;
+        
+        $logfile = ILIAS_ABSOLUTE_PATH ."/" . ILIAS_WEB_DIR . "/" . CLIENT_ID . "/". ilToGoPlugin::WEB_DATA_FOLDER . "/togodebug.log" ;
+        $time = microtime(true);
+        $now = DateTime::createFromFormat('U.u', $time);
+        $time = $now->format("m-d-Y H:i:s.u");
+        if ($dump){
+            $message = "[" . $time . "]  " . json_encode($message,JSON_PRETTY_PRINT);
+        }else{
+            $message = "[" . $time . "]  " . $message;
+        }
+        if ($delete){
+            file_put_contents($logfile, $message . "\n");
+        }else{
+            file_put_contents($logfile, $message . "\n", FILE_APPEND);
+        }
+
+    }
+
+    public function getLog()
+    {
+        return "./" . ILIAS_WEB_DIR . "/" . CLIENT_ID . "/". ilToGoPlugin::WEB_DATA_FOLDER . "/togodebug.log";
+    }
+
+
 
  }

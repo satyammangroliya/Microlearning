@@ -40,7 +40,6 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
     /**
      * @return int|null
      *
-     * @deprecated
      */
     public static function filterRefId()/*: ?int*/
     {
@@ -76,9 +75,49 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
     public function getHTML(/*string*/ $a_comp, /*string*/ $a_part, $a_par = []) : array
     {
         if ($this->matchRepository($a_part, $a_par)) {
+
+            if (self::togo()->config()->isDebugMode()){
+                $config = self::togo()->config();
+                $stage = $config->getStage();
+                $html = '';
+                $message = '';
+                $starttime = microtime(true);
+                switch($stage){
+                    case 0:
+                        $message = ":Plugin's HTML";
+                        $html = self::togoplugin()->getHTML(self::togo()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]));
+                        break;
+                    case 1:
+                        $message = ": No HTML rendering(empty)";
+                        $html = '';
+                        break;
+                    case 2:
+                        $message = ": Normal ILIAS HTML view";
+                        $html = parent::getHTML($a_comp, $a_part, $a_par);
+                        break;
+                    default:
+                        $html = self::togoplugin()->getHTML(self::togo()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]));
+                        break;
+                    
+                }
+                $config->writeLog("---------------Test duration HTML generation " . $message ."--------------- ");
+                $stoptime = microtime(true);
+                $now = DateTime::createFromFormat('U.u', $starttime);
+                $formatted_starttime = $now->format("m-d-Y H:i:s.u");
+                $config->writeLog('Page generation started at: ' . $formatted_starttime);
+                $now = DateTime::createFromFormat('U.u', $stoptime);
+                $formatted_stoptime = $now->format("m-d-Y H:i:s.u");
+                $config->writeLog('Page generation finished at: ' . $formatted_stoptime);
+                $config->writeLog('Total time of html template generation: ' . ($stoptime - $starttime)*1000);
+                return [
+                    "mode" => self::REPLACE,
+                    "html" => $html
+                ];
+            }
+            $html = self::togoplugin()->getHTML(self::togo()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]));
             return [
                 "mode" => self::REPLACE,
-                "html" => self::togoplugin()->getHTML(self::togo()->tiles()->renderer()->factory()->newCollectionGUIInstance()->container($a_par["html"]))
+                "html" => $html
             ];
         }
 
@@ -103,7 +142,7 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
             }
  
 
-
+            //(self::togo()->config()->getHomeRefId()==$obj_ref_id) && 
             if (count(array_filter(self::ildic()->tabs()->target, function (array $tab) : bool {
                 return (strpos($tab["id"], self::TAB_PERM_ID) !== false);
             })) > 0
@@ -151,6 +190,7 @@ class ilToGoUIHookGUI extends ilUIHookPluginGUI
             && !in_array(self::ildic()->ctrl()->getCallHistory()[0]["cmd"], ["editOrder"])
             && !$_SESSION["il_cont_admin_panel"]
             && self::togo()->tiles()->isObject($obj_ref_id)
+            && (self::togo()->config()->getHomeRefId()==$obj_ref_id)
             && self::togo()->tiles()->getInstanceForObjRefId($obj_ref_id)->getView() !== Tile::VIEW_DISABLED);
     }
 
