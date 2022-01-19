@@ -3,7 +3,7 @@
 namespace minervis\ToGo\Collection;
 
 use ilLink;
-use ilPersonalDesktopGUI;
+use ilDashboardGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 //use srag\DIC\ToGo\DICTrait;
@@ -107,7 +107,7 @@ class CollectionGUI
         if (!empty($this->parent_ref_id)) {
             self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
         } else {
-            self::ildic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
+            self::ildic()->ctrl()->redirectByClass(ilDashboardGUI::class, "jumpToSelectedItems");
         }
     }
 
@@ -124,7 +124,7 @@ class CollectionGUI
         if (!empty($this->parent_ref_id)) {
             self::ildic()->ctrl()->redirectToURL(ilLink::_getStaticLink($this->parent_ref_id));
         } else {
-            self::ildic()->ctrl()->redirectByClass(ilPersonalDesktopGUI::class, "jumpToSelectedItems");
+            self::ildic()->ctrl()->redirectByClass(ilDashboardGUI::class, "jumpToSelectedItems");
         }
     }
 }

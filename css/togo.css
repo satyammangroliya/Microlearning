@@ -10,7 +10,7 @@
 .tiles[data-view="1"] {
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */
 
 }
 .tiles[data-view="2"] {
@@ -404,6 +404,12 @@ div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer{
 
 .togo-hidden{
   display: none;
+}
+/*Hide the breadcrumbs as before in ILIAS54 but not using JS*/
+.breadcrumb,
+.media.il_HeaderInner.ilFileDropTarget,
+.media.il_HeaderInner{
+  display: none !important;
 }
 
 div#mainspacekeeper.container-fluid.ilContainerWidth.ilFixedTopSpacer.mainspacekeeper_padding{

@@ -135,7 +135,7 @@ final class Plugin
             exit;
         } else {
             if ($main_template) {
-                self::ildic()->ui()->mainTemplate()->getStandardTemplate(); //i iliAS 6 its called loadStandardTemplate
+                self::ildic()->ui()->mainTemplate()->loadStandardTemplate();
             }
 
             self::ildic()->ui()->mainTemplate()->setLocator();
@@ -145,7 +145,7 @@ final class Plugin
             }
 
             if ($show) {
-                self::ildic()->ui()->mainTemplate()->show(); //ilias6 self::dic()->ui()->mainTemplate()->printToStdout()
+                self::ildic()->ui()->mainTemplate()->printToStdout();
             }
         }
     }

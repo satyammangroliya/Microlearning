@@ -61,7 +61,6 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
      */
     public function render() : string
     {
-        global $tpl;
         $this->initJS();
 
         $collection_html = "";
@@ -118,6 +117,12 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
             $tpl->setVariable("LS_HOME", self::togoplugin()->getHTML($this->generateLinks("Angebot", $home_link)));
             $tpl->setVariable("BRANCH_SEL", $this->getBranchSelection());
             $tpl->setVariable("TOPIC_SEL", $this->getTopicSelection());
+
+            //Access: Admin? or normal user?
+            if (self::togo()->access()->hasWriteAccess(self::togo()->config()->getHomeRefId())){
+                $tpl->setVariable("ACCESS_BOX", "open");
+            }
+
             $collection_html = self::togoplugin()->getHTML($tpl);
 
             $this->hideOriginalRowsOfTiles();

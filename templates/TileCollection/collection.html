@@ -2,7 +2,7 @@
 <span class="ilFixedTopSpacer"></span>
 <div id="HeaderContainer" class="lsHeader" style="background-color:{BACK_COLOR} !important">
 	<div class="ilLSMainMenu">
-		<div class="container-fluid ilContainerWidth">
+		<div class="container-fluid">
 			<div class="row">
 				<nav id="ilLSTopNav" class="navbar navbar-default" role="navigation">
 	
@@ -36,27 +36,24 @@
 		<div  class="header-background">
 			<img src="{BACKGROUND_IMAGE}">
 		</div>
+		<div id="togohidden" access="{ACCESS_BOX}"></div>
 	</div>
 </div>
 <script type="text/javascript" >
-	detectUserAdmin();
-	function detectUserAdmin(){
-        if($("#mm_adm").length!=0){
-            return true;
-        }else{
-			$("#ilTab, .breadcrumb").addClass("togo-hidden");
-			//resize the mainskeeper
-			if($("#mainspacekeeper").length!=0){
-				var item="#mainspacekeeper";
-				if($(item)[0].classList==undefined){
-					$(item)[0].classList=[];
-				}
-				$(item)[0].classList.add("mainspacekeeper_padding");
-			}
+	$( document ).ready(function() {
+		detectUserAdmin();
+		function detectUserAdmin(){
+			if($("#togohidden").attr("access")=== "open"){
+				return true;
+			}else{
+				$("#ilTab").addClass("togo-hidden");
 
-        }
-        return false;      
-    }
+			}
+			return false;      
+		}
+    
+});
+	
 
 </script>
 <div class="tiles" data-view="{VIEW}">

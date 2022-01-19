@@ -36,7 +36,7 @@ class ContainerSingleGUI extends AbstractSingleGUI
             }, null, ilFileUploadGUI::class)();
 
             // Remove on load code which not works anymore because refers to not exists element
-            foreach (self::ildic()->ui()->mainTemplate()->on_load_code as &$codes) {
+            foreach ((array) self::ildic()->ui()->mainTemplate()->on_load_code as &$codes) {
                 foreach ($codes as &$code) {
                     if (strpos($code, "FileUpload") !== false) {
                         $code = "";

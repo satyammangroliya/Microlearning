@@ -104,6 +104,7 @@ class TileFormGUI
         $image = new ilImageFileInputGUI($this->txt("image"), 'image');
         if ($this->tile->getImage() !== '') {
             $image->setImage("./" . $this->tile->getImagePath());
+            self::ildic()->logger()->root()->info("path: ". $this->tile->getImagePath());
         }
         $form->addItem($image);
 
@@ -198,7 +199,7 @@ class TileFormGUI
 
                 /** @var UploadResult $result */
                 $result = array_pop(self::ildic()->upload()->getResults());
-                if (!$result) break;
+                if ($result == null) break;
 
                 if ($form->getInput("image_delete") || $result->getSize() > 0) {
                     $this->tile->applyNewImage("");
