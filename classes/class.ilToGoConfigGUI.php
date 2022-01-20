@@ -205,19 +205,19 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
         $stage->addOption($stage4);
         $stage5 =  new ilRadioOption(
             'Dauer von Linkgenerierung messen',
-            4,
+            4
         
         );
         $stage->addOption($stage5);
         $stage6 =  new ilRadioOption(
             'Call trace',
-            5,
+            5
         
         );
         $stage->addOption($stage6);
         $stage7 =  new ilRadioOption(
             'Server response(local)',
-            6,
+            6
         
         );
         $stage->addOption($stage7);
