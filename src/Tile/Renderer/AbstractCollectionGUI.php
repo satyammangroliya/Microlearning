@@ -11,6 +11,8 @@ use minervis\ToGo\Utils\ToGoTrait;
 use minervis\ToGo\Tile\TileGUI;
 
 use ilGroupedListGUI;
+use minervis\ToGo\Collection\AnonymousSession;
+use minervis\ToGo\Collection\AnonymousSummary;
 
 /**
  * Class AbstractCollectionGUI
@@ -64,7 +66,6 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
         $this->initJS();
 
         $collection_html = "";
-        
 
         if (count($this->tiles) > 0) {
             $parent_tile = self::togo()->tiles()->getInstanceForObjRefId(ilToGoUIHookGUI::filterRefId() ?? ROOT_FOLDER_ID);

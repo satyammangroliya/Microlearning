@@ -83,6 +83,11 @@ final class Repository
         $this->collections(self::ildic()->user())->dropTables();
     }
 
+    public function createSessSequence()
+    {
+        
+    }
+
 
 
     /**

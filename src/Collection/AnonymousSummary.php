@@ -9,17 +9,17 @@ use ilToGoPlugin;
 use minervis\ToGo\Utils\ToGoTrait;
 
 /**
- * Class AnonymousSession
+ * Class AnonymousSummary
  *
  * @package minervis\ToGo\Collection
  *
  * @author  Jephte Abijuru <jephte.abijuru@minervis.com>
  */
-class AnonymousSession extends ActiveRecord
+class AnonymousSummary extends ActiveRecord
 {
     //use DICTrait;
     use ToGoTrait;
-    const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_sess";
+    const TABLE_NAME = "ui_uihk_" . ilToGoPlugin::PLUGIN_ID . "_sum";
     const PLUGIN_CLASS_NAME = ilToGoPlugin::class;
 
 
@@ -44,30 +44,11 @@ class AnonymousSession extends ActiveRecord
     /**
      * @var int
      *
-     * @con_has_field    true
-     * @con_fieldtype    integer
-     * @con_length       8
-     * @con_is_notnull   true
-     * @con_is_primary   true
-     * @con_sequence     true
-     */
-    protected $row_id;
-    /**
-     * @var string
-     *
-     * @con_has_field    true
-     * @con_fieldtype    text
-     * @con_is_notnull   true
-     * @con_length        256
-     */
-    protected $sess_id;
-    /**
-     * @var int
-     *
      * @con_has_field   true
      * @con_fieldtype   integer
      * @con_length      8
      * @con_is_notnull  true
+     * @con_is_primary   true
      */
     protected $obj_id;
     /**
@@ -78,7 +59,7 @@ class AnonymousSession extends ActiveRecord
      * @con_length      2
      * @con_is_notnull  true
      */
-    protected $rating;
+    protected $tot_ratings;
     /**
      * @var int
      *
@@ -87,11 +68,11 @@ class AnonymousSession extends ActiveRecord
      * @con_length      2
      * @con_is_notnull  true
      */
-    protected $view;
+    protected $tot_views;
 
 
     /**
-     * AnonymousSession constructor
+     * AnonymousSummary constructor
      *
      * @param int              $primary_key_value
      * @param arConnector|null $connector
@@ -122,13 +103,10 @@ class AnonymousSession extends ActiveRecord
     public function wakeUp(/*string*/ $field_name, $field_value)
     {
         switch ($field_name) {
-            case "row_id":
             case "obj_id":
-            case "views":
-            case "rating":
+            case "tot_views":
+            case "tot_ratings":
                 return intval($field_value);
-            case "sess_id":
-                return $field_value;
 
             default:
                 return null;
@@ -150,75 +128,36 @@ class AnonymousSession extends ActiveRecord
         $this->obj_id = $obj_id;
     }
 
-    /**
-     * @param string $sess_id
-     */
-    public function setSessId(string $sess_id)/*: void*/
-    {
-        $this->sess_id = $sess_id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSessId() : int
-    {
-        return $this->sess_id;
-    }
 
     /**
      * @return int
      */
-    public function getRating() : int
+    public function getTotRatings() : int
     {
-        return $this->rating;
+        return $this->tot_ratings;
     }
 
     /**
      * @param int $rating
      */
-    public function setRating(int $rating)/*: void*/
+    public function setTotRatings(int $tot_ratings)/*: void*/
     {
-        $this->rating = $rating;
+        $this->tot_ratings = $tot_ratings;
     }
     /**
      * @return int
      */
-    public function getView() : int
+    public function getTotViews() : int
     {
-        return $this->view;
+        return $this->tot_views;
     }
 
     /**
      * @param int $view
      */
-    public function setView(int $view)/*: void*/
+    public function setTotViews(int $views)/*: void*/
     {
-        $this->view = $view;
-    }
-    /**
-     * @return int
-     */
-    public function geRowId() : int
-    {
-        return $this->row_id;
-    }
-
-    /**
-     * @param int $row_id
-     */
-    public function setRowId(int $row_id)/*: void*/
-    {
-        $this->row_id = $row_id;
-    }
-
-    public function initializeAnonymSession($sess_id, $obj_id)
-    {
-        $this->setSessId($sess_id);
-        $this->setObjId($obj_id);
-        $this->setView(0);
-        $this->setRating(0);
-        return $this;
+        $this->tot_views = $views;
     }
 
 }

@@ -21,6 +21,7 @@ class ComposerStaticInit3b817b3ab12e84deda939e49bdc7090e
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'ilToGoAccess' => __DIR__ . '/../..' . '/classes/class.ilToGoAccess.php',
         'ilToGoConfig' => __DIR__ . '/../..' . '/classes/class.ilToGoConfig.php',
         'ilToGoConfigGUI' => __DIR__ . '/../..' . '/classes/class.ilToGoConfigGUI.php',
@@ -28,6 +29,7 @@ class ComposerStaticInit3b817b3ab12e84deda939e49bdc7090e
         'ilToGoUIHookGUI' => __DIR__ . '/../..' . '/classes/class.ilToGoUIHookGUI.php',
         'minervis\\ToGo\\Access\\Access' => __DIR__ . '/../..' . '/src/Access/Access.php',
         'minervis\\ToGo\\Collection\\AnonymousSession' => __DIR__ . '/../..' . '/src/Collection/AnonymousSession.php',
+        'minervis\\ToGo\\Collection\\AnonymousSummary' => __DIR__ . '/../..' . '/src/Collection/AnonymousSummary.php',
         'minervis\\ToGo\\Collection\\Collection' => __DIR__ . '/../..' . '/src/Collection/Collection.php',
         'minervis\\ToGo\\Collection\\CollectionGUI' => __DIR__ . '/../..' . '/src/Collection/class.CollectionGUI.php',
         'minervis\\ToGo\\Collection\\Factory' => __DIR__ . '/../..' . '/src/Collection/Factory.php',

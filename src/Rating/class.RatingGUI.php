@@ -6,7 +6,6 @@ use ilLink;
 use ilDashboardGUI;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
-//use srag\DIC\ToGo\DICTrait;
 use minervis\ToGo\Tile\Tile;
 use minervis\ToGo\Utils\ToGoTrait;
 
@@ -16,7 +15,6 @@ use minervis\ToGo\Utils\ToGoTrait;
  * @package           minervis\ToGo\Rating
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @ilCtrl_isCalledBy minervis\ToGo\Rating\RatingGUI: ilUIPluginRouterGUI
  */
 class RatingGUI

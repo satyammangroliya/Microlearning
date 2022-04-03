@@ -7,6 +7,7 @@ use ilToGoPlugin;
 //use srag\DIC\ToGo\DICTrait;
 use minervis\ToGo\Utils\ToGoTrait;
 use minervis\ToGo\Collection\AnonymousSession;
+use minervis\ToGo\Collection\AnonymousSummary;
 
 /**
  * Class Repository
@@ -96,10 +97,10 @@ final class Repository
 
         $authenticated_count = Rating::where([
             "obj_id" => $obj_id
-        ])->count();
-        $anonymous_count = AnonymousSession::where([
-            "obj_id" => $obj_id
-        ]);
+        ])->where(['user_id' => ANONYMOUS_USER_ID], '!=')->count();
+        $anonymous_count = AnonymousSummary::where([
+            "obj_id" => $obj_id,
+        ])->last()->getTotRatings();
         return $authenticated_count + $anonymous_count;
     }
 

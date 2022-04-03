@@ -5,6 +5,7 @@ namespace minervis\ToGo\Tile\Renderer;
 use ilToGoPlugin;
 use ilToGoUIHookGUI;
 use ilUIPluginRouterGUI;
+use minervis\ToGo\Collection\AnonymousSession;
 //use srag\DIC\ToGo\DICTrait;
 use minervis\ToGo\Rating\RatingGUI;
 use minervis\ToGo\Tile\Tile;

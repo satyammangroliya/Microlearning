@@ -6,7 +6,6 @@ use ilLink;
 use ilToGoPlugin;
 use ilUIPluginRouterGUI;
 use ilUtil;
-//use srag\DIC\ToGo\DICTrait;
 use minervis\ToGo\Utils\ToGoTrait;
 use ilToGoUIHookGUI;
 

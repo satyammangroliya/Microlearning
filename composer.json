@@ -27,7 +27,10 @@
       "minervis\\ToGo\\": "src/"
     },
     "classmap": [
-      "classes/"
+      "classes/",
+      "src/Collection/class.CollectionGUI.php",
+      "src/Rating/class.RatingGUI.php",
+      "src/Tile/class.TileGUI.php"
     ]
   },
   "config": {

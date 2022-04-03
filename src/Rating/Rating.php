@@ -5,7 +5,6 @@ namespace minervis\ToGo\Rating;
 use ActiveRecord;
 use arConnector;
 use ilToGoPlugin;
-//use srag\DIC\ToGo\DICTrait;
 use minervis\ToGo\Utils\ToGoTrait;
 
 /**

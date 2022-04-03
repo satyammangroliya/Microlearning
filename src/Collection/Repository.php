@@ -9,6 +9,7 @@ use minervis\ToGo\Utils\ToGoTrait;
 use minervis\ToGo\Tile\Tile;
 use minervis\ToGo\Collection\Filter;
 use minervis\ToGo\Collection\AnonymousSession;
+use minervis\ToGo\Collection\AnonymousSummary;
 
 /**
  * Class Repository
@@ -95,6 +96,7 @@ final class Repository
         self::ildic()->database()->dropTable(Collection::TABLE_NAME, false);
         self::ildic()->database()->dropTable(Filter::TABLE_NAME, false);
         self::ildic()->database()->dropTable(AnonymousSession::TABLE_NAME, false);
+        self::ildic()->database()->dropTable(AnonymousSummary::TABLE_NAME, false);
     }
 
 
@@ -142,6 +144,7 @@ final class Repository
 
     public static function getAnonymousSession(string $sess_id, int $obj_id = 0)
     {
+        global $DIC;
         $query_filter = ['sess_id' =>$sess_id, 'obj_id' =>$obj_id];
         if($obj_id == 0){
             $query_filter = ['sess_id' =>$sess_id];
@@ -150,16 +153,14 @@ final class Repository
         
         if ($anonymousSession == null){
             //create a fresh new one
-            $latest_row_id= AnonymousSession::orderBy('row_id')->last();
-            if($latest_row_id == null){
-                $latest_row_id = 0;
-            }else{
-                $latest_row_id = $latest_row_id->getRowId();
-            }
             $anonymousSession = new AnonymousSession();
             $anonymousSession = $anonymousSession->initializeAnonymSession($sess_id, $obj_id);
-            $anonymousSession->setRowId($latest_row_id+1);
+            $anonymousSession->create();
             $anonymousSession->save();
+
+            if(AnonymousSession::count() >= 400){
+                self::deleteInvalidSessions();
+            }
         }
         return $anonymousSession;
     }
@@ -167,21 +168,51 @@ final class Repository
         $session = self::getAnonymousSession($sess_id,$obj_id);
         $session->setRating($rating);
         $session->store();
+        
+        $summary = self::getAnonymousSummary($obj_id);
+        $summary->setTotRatings($summary->getTotRatings() + ($rating ? $rating != 0 : -1));
+        $summary->save();
+        
     }
+
     public static function viewAnonymous(string $sess_id, int $obj_id, $view){
+        $update = true;
+        if(($anonym_sess = AnonymousSession::where(['sess_id' =>$sess_id, 'obj_id' =>$obj_id]))->count() > 0 ){
+            if($anonym_sess->first()->getView() == 1) $update = false;           
+        }
         $session = self::getAnonymousSession($sess_id,$obj_id);
         $session->setView($view);
         $session->store();
+
+        if($update){
+            $summary = self::getAnonymousSummary($obj_id);
+            $summary->setTotViews($summary->getTotViews() + $view);
+            $summary->save();
+        }
     }
 
     public static function getAnonymousViews(int $obj_id){
-        $views = AnonymousSession::where([
+        $views = AnonymousSummary::where([
             "obj_id" => $obj_id,
-            "view" => 1
-        ]);
+        ])->first();
         
-        return $views->count();
+        return $views->getTotViews();
     }
+
+    public static function getAnonymousRatings($obj_id)
+    {
+        $ratings = AnonymousSummary::where([
+            "obj_id" => $obj_id,
+        ])->first();
+        
+        return $ratings->getTotRatings();   
+    }
+
+    public static function getAnonymousSummary($obj_id)
+    {
+        return AnonymousSummary::findOrGetInstance($obj_id);
+    }
+
     /**
      * @internal
      */
@@ -190,63 +221,8 @@ final class Repository
         Collection::updateDB();
         Filter::updateDB();
         AnonymousSession::updateDB();
+        AnonymousSummary::updateDB();
     }
-
-    /**
-     *
-     */
-    protected function initialiseTopics()
-    {/*:void*/
-        foreach (Topic::get() as $topic) {
-            $this->deleteTopic($topic);
-        }
-        $init_topics=array(
-            'Lärmschutz',
-            'Leitern und Tritte',
-            'KommMitMensch',
-            'Brandschutz',
-            'Stress',
-            'Sicher schneiden',
-            'Transport',
-            'Verkehrssicherheit'
-        );
-
-
-        foreach ($init_topics as $topic_name) {
-            $topic_query=$this->getTopic($topic_name);
-            if ($topic_query===null) {
-                $topic=new Topic();
-                $topic->setTopicName($topic_name);
-                $this->storeTopic($topic);
-            }
-        }
-    }
-
-    protected function initialiseBranches()
-    {/*:void*/
-        foreach (Branch::get() as $branch) {
-            $this->deleteBranch($branch);
-        }
-        $init_branches=array(
-            'Gastgewerbe',
-            'Backgewerbe',
-            'Nahrungsmittelindustrie',
-            'Schausteller',
-            'Fleischwirtschaft',
-            'Getränkeindustrie'
-        );
-
-        foreach ($init_branches as $branch_name) {
-            //check if the element is new
-            $branch_query=$this->getBranch($branch_name);
-            if ($branch_query===null) {
-                $branch=new Branch();
-                $branch->setBranchName($branch_name);
-                $this->storeBranch($branch);
-            }
-        }
-    }
-
 
 
     /**
@@ -331,6 +307,13 @@ final class Repository
         }
 
         return array_unique($all_branches);
+    }
+
+    public static function deleteInvalidSessions()
+    {
+        global $DIC;
+        $sql = 'DELETE FROM ' . AnonymousSession::returnDbTableName() . ' WHERE sess_id NOT IN (SELECT session_id FROM usr_session)';
+        $DIC->database()->manipulate($sql);
     }
 
 }
