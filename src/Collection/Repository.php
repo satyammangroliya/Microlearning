@@ -195,7 +195,7 @@ final class Repository
         $views = AnonymousSummary::where([
             "obj_id" => $obj_id,
         ])->first();
-        
+        if (!$views) return 0;
         return $views->getTotViews();
     }
 
@@ -204,7 +204,7 @@ final class Repository
         $ratings = AnonymousSummary::where([
             "obj_id" => $obj_id,
         ])->first();
-        
+        if(!$ratings) return 0;
         return $ratings->getTotRatings();   
     }
 

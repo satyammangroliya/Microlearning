@@ -147,7 +147,7 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         $count_anonymous_reads = 0;
         require_once './Services/Tracking/classes/class.ilChangeEvent.php';
         $event_active=\ilChangeEvent::_isActive();
-        $count_anonymous_reads += self::togo()->collections(self::ildic()->user())->getAnonymousViews($a_obj_id);
+        $count_anonymous_reads = self::togo()->collections(self::ildic()->user())->getAnonymousViews($a_obj_id);
        
         if (!$event_active) {
             \ilChangeEvent::_activate();

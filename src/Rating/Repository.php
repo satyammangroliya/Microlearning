@@ -94,14 +94,18 @@ final class Repository
     public function getLikesCount($obj_ref_id) : int
     {
         $obj_id = intval(self::togoObjDataCache()->lookupObjId($obj_ref_id));
-
-        $authenticated_count = Rating::where([
+        $likes_count = 0;
+        $authenticated_rating = Rating::where([
             "obj_id" => $obj_id
-        ])->where(['user_id' => ANONYMOUS_USER_ID], '!=')->count();
-        $anonymous_count = AnonymousSummary::where([
+        ])->where(['user_id' => ANONYMOUS_USER_ID], '!=');
+        if ($authenticated_rating){
+            $likes_count = $authenticated_rating->count();
+        }
+        $anonymous_rating = AnonymousSummary::where([
             "obj_id" => $obj_id,
-        ])->last()->getTotRatings();
-        return $authenticated_count + $anonymous_count;
+        ])->last();
+        $likes_count = $likes_count + $anonymous_rating->getTotRatings();
+        return $likes_count;
     }
 
 
