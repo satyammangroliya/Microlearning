@@ -104,7 +104,7 @@ final class Repository
         $anonymous_rating = AnonymousSummary::where([
             "obj_id" => $obj_id,
         ])->last();
-        $likes_count = $likes_count + $anonymous_rating->getTotRatings();
+        $likes_count = $likes_count + (!$anonymous_rating ? 0 : $anonymous_rating->getTotRatings());
         return $likes_count;
     }
 
