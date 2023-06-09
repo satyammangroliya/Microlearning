@@ -239,7 +239,7 @@ class TileGUI
             $item_type="all";
         }
 
-        //check wether we have items with  this particular item_name
+        //check whether we have items with  this particular item_name
         if ($item_type!="all") {
             $collection=self::togo()->collections(self::ildic()->user());
             $items=$item_type=="branch"?$collection->getBranches():$collection->getTopics();

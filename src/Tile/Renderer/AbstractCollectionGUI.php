@@ -98,23 +98,21 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
                 $umfrage_link=self::togo()->tiles()->getInstanceForObjRefId(intval($umfrage_obj_ref_id))->_getAdvancedLink();
                 $umfrage_link=str_replace("href=", "", $umfrage_link);
                 $umfrage_link=str_replace('"', "", $umfrage_link);
-            } else {
-                $umfrage_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6137.html";
+                $tpl->setVariable("LS_UMFRAGE", self::togoplugin()->getHTML($this->generateLinks("Umfrage", $umfrage_link)));
             }
-            
-            $tpl->setVariable("LS_UMFRAGE", self::togoplugin()->getHTML($this->generateLinks("Umfrage", $umfrage_link)));
+
+
 
             $was_sind_obj_ref_id=self::togo()->config()->getWasSindObjRefId();
-            $was_sind_lernsnacks_bgn_link="Was sind Lern-Snacks?";
+            $was_sind_lernsnacks_link="Was sind Lern-Snacks?";
             if ($was_sind_obj_ref_id) {
-                $was_sind_lernsnacks_bgn_link=self::togo()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
-                $was_sind_lernsnacks_bgn_link=str_replace("href=", "", $was_sind_lernsnacks_bgn_link);
-                $was_sind_lernsnacks_bgn_link=str_replace('"', "", $was_sind_lernsnacks_bgn_link);
-            } else {
-                $was_sind_lernsnacks_bgn_link="https://ilias.bgn-akademie.de/goto_bgnakademie_cat_6136.html";
+                $was_sind_lernsnacks_link=self::togo()->tiles()->getInstanceForObjRefId(intval($was_sind_obj_ref_id))->_getAdvancedLink();
+                $was_sind_lernsnacks_link=str_replace("href=", "", $was_sind_lernsnacks_link);
+                $was_sind_lernsnacks_link=str_replace('"', "", $was_sind_lernsnacks_link);
+                $tpl->setVariable("LS_WAS_SIND", self::togoplugin()->getHTML($this->generateLinks("Was sind Lern-Snacks?", $was_sind_lernsnacks_link)));
             }
             
-            $tpl->setVariable("LS_WAS_SIND", self::togoplugin()->getHTML($this->generateLinks("Was sind Lern-Snacks?", $was_sind_lernsnacks_bgn_link)));
+            
             $tpl->setVariable("LS_HOME", self::togoplugin()->getHTML($this->generateLinks("Angebot", $home_link)));
             $tpl->setVariable("BRANCH_SEL", $this->getBranchSelection());
             $tpl->setVariable("TOPIC_SEL", $this->getTopicSelection());
@@ -175,17 +173,17 @@ abstract class AbstractCollectionGUI implements CollectionGUIInterface
                 "tile" => $tile
             ]);
 
-            $css .= '#sr_tile_' . $tile->getTileId();
+            $css .= '#togo_tile_' . $tile->getTileId();
             $css .= '{' . $tile->_getSize() . '}';
 
-            $css .= '#sr_tile_' . $tile->getTileId() . ' .card_bottom';
+            $css .= '#togo_tile_' . $tile->getTileId() . ' .card_bottom';
             $css .= '{' . $tile->_getColor(false, true) . '}';
 
-            $css .= '#sr_tile_' . $tile->getTileId() . ' > .card';
+            $css .= '#togo_tile_' . $tile->getTileId() . ' > .card';
             $css .= '{' . $tile->_getColor() . $tile->_getBorder() . '}';
 
-            $css .= '#sr_tile_' . $tile->getTileId() . ' .btn-default, ';
-            $css .= '#sr_tile_' . $tile->getTileId() . ' .badge';
+            $css .= '#togo_tile_' . $tile->getTileId() . ' .btn-default, ';
+            $css .= '#togo_tile_' . $tile->getTileId() . ' .badge';
             $css .= '{' . $tile->_getColor(true) . '}';
 
             if (!$is_parent_css_rendered) {

@@ -12,7 +12,7 @@ return array(
     'ilToGoConfigGUI' => $baseDir . '/classes/class.ilToGoConfigGUI.php',
     'ilToGoPlugin' => $baseDir . '/classes/class.ilToGoPlugin.php',
     'ilToGoUIHookGUI' => $baseDir . '/classes/class.ilToGoUIHookGUI.php',
-    'minervis\\ToGo\\Access\\Access' => $baseDir . '/src/Access/Access.php',
+    'minervis\\ToGo\\Access\\TogoAccess' => $baseDir . '/src/Access/Access.php',
     'minervis\\ToGo\\Collection\\AnonymousSession' => $baseDir . '/src/Collection/AnonymousSession.php',
     'minervis\\ToGo\\Collection\\AnonymousSummary' => $baseDir . '/src/Collection/AnonymousSummary.php',
     'minervis\\ToGo\\Collection\\Collection' => $baseDir . '/src/Collection/Collection.php',

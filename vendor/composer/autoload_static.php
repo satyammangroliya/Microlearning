@@ -27,7 +27,7 @@ class ComposerStaticInit3b817b3ab12e84deda939e49bdc7090e
         'ilToGoConfigGUI' => __DIR__ . '/../..' . '/classes/class.ilToGoConfigGUI.php',
         'ilToGoPlugin' => __DIR__ . '/../..' . '/classes/class.ilToGoPlugin.php',
         'ilToGoUIHookGUI' => __DIR__ . '/../..' . '/classes/class.ilToGoUIHookGUI.php',
-        'minervis\\ToGo\\Access\\Access' => __DIR__ . '/../..' . '/src/Access/Access.php',
+        'minervis\\ToGo\\Access\\TogoAccess' => __DIR__ . '/../..' . '/src/Access/TogoAccess.php',
         'minervis\\ToGo\\Collection\\AnonymousSession' => __DIR__ . '/../..' . '/src/Collection/AnonymousSession.php',
         'minervis\\ToGo\\Collection\\AnonymousSummary' => __DIR__ . '/../..' . '/src/Collection/AnonymousSummary.php',
         'minervis\\ToGo\\Collection\\Collection' => __DIR__ . '/../..' . '/src/Collection/Collection.php',

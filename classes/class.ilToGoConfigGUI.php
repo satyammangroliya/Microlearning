@@ -223,7 +223,7 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
         $stage->addOption($stage7);
         
         $debug->addSubItem($stage);
-        $form->addItem($debug);
+        //$form->addItem($debug);
 	
 		$form->addCommandButton(self::CMD_UPDATE_CONFIGURE, $pl->txt("config_save"));
 	                
@@ -311,7 +311,6 @@ class ilToGoConfigGUI extends ilPluginConfigGUI
         $link = ILIAS_HTTP_PATH . '/goto.php?target=cat_' . $this->config->getHomeRefId() . '&client_id='
         . CLIENT_ID;
 
-        //$link = 'https://ilias.bgn-akademie.de/goto.php?target=cat_5338&client_id=bgnakademie';
         $response = file_get_contents($link, false, stream_context_create(array('https'=>
                     array(
                         'timeout' => 1200,  //1200 Seconds is 20 Minutes

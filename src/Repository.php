@@ -8,7 +8,7 @@ use ilToGoPlugin;
 use ilUtil;
 use ilToGoConfig;
 //use srag\DIC\ToGo\DICTrait;
-use minervis\ToGo\Access\Access;
+use minervis\ToGo\Access\TogoAccess;
 use minervis\ToGo\Rating\Repository as RatingsRepository;
 use minervis\ToGo\Tile\Repository as TilesRepository;
 use minervis\ToGo\Utils\ToGoTrait;
@@ -54,11 +54,11 @@ final class Repository
 
 
     /**
-     * @return Access
+     * @return TogoAccess
      */
-    public function access() : Access
+    public function access() : TogoAccess
     {
-        return Access::getInstance();
+        return TogoAccess::getInstance();
     }
 
 
