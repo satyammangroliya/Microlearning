@@ -6,13 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'ilToGoAccess' => $baseDir . '/classes/class.ilToGoAccess.php',
     'ilToGoConfig' => $baseDir . '/classes/class.ilToGoConfig.php',
     'ilToGoConfigGUI' => $baseDir . '/classes/class.ilToGoConfigGUI.php',
     'ilToGoPlugin' => $baseDir . '/classes/class.ilToGoPlugin.php',
     'ilToGoUIHookGUI' => $baseDir . '/classes/class.ilToGoUIHookGUI.php',
-    'minervis\\ToGo\\Access\\TogoAccess' => $baseDir . '/src/Access/Access.php',
+    'minervis\\ToGo\\Access\\TogoAccess' => $baseDir . '/src/Access/TogoAccess.php',
     'minervis\\ToGo\\Collection\\AnonymousSession' => $baseDir . '/src/Collection/AnonymousSession.php',
     'minervis\\ToGo\\Collection\\AnonymousSummary' => $baseDir . '/src/Collection/AnonymousSummary.php',
     'minervis\\ToGo\\Collection\\Collection' => $baseDir . '/src/Collection/Collection.php',

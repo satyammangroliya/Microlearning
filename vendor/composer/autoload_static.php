@@ -21,7 +21,6 @@ class ComposerStaticInit3b817b3ab12e84deda939e49bdc7090e
     );
 
     public static $classMap = array (
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'ilToGoAccess' => __DIR__ . '/../..' . '/classes/class.ilToGoAccess.php',
         'ilToGoConfig' => __DIR__ . '/../..' . '/classes/class.ilToGoConfig.php',
         'ilToGoConfigGUI' => __DIR__ . '/../..' . '/classes/class.ilToGoConfigGUI.php',
