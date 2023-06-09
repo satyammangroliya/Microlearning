@@ -12,13 +12,13 @@ Update, activate and config the plugin in the ILIAS Plugin Administration
 
 ## Configuration  
 
-3 Objects have to be specified here:  
+3 Objects have to/can  be specified here:  
 
-- Homepage object
-- Survey Object
-- "Was Sind Lern-Snacks?" Object
+- Homepage object(Mandatory): contains the home page/root object containing the microcards
+- Survey Object(optional): was originally designed to allow adding links for surveys
+- "Was Sind Lern-Snacks?" Object(mandatory): was origianally designed to enable designing an About page for the learning snacks
 
-You can read the REF_ID of each object in the raw link of the corresponding Object. The Link https://ilias.bgn-akademie.de/goto.php?target=cat_5338&client_id=bgnakademie for example is pointing to the object with REF_ID 5338.  
+You can read the REF_ID of each object in the raw link of the corresponding Object. The Link https://ilias.super_leaarning_platform.de/goto.php?target=cat_5338&client_id=superclient for example is pointing to the object with REF_ID 5338.  
 
 
 ## USE
@@ -44,4 +44,4 @@ The plugin implements three main functionalities:
 - The Header and Menu design
 
 ### compatibility
-ILIAS 5.4
+ILIAS 5.4-7.999
