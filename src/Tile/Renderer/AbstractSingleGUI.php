@@ -50,16 +50,17 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         self::ildic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_PARENT_REF_ID, ilToGoUIHookGUI::filterRefId());
         self::ildic()->ctrl()->setParameterByClass(RatingGUI::class, RatingGUI::GET_PARAM_REF_ID, $this->tile->getObjRefId());
 
+        $current_object = $this->tile->_getIlObject();
 
         $tpl = self::togoplugin()->template("TileSingle/single.html");
         $tpl->setCurrentBlock("tile");
 
         $tpl->setVariable("TILE_ID", htmlspecialchars($this->tile->getTileId()));
 
-        $tpl->setVariable("OBJECT_TYPE", htmlspecialchars(($this->tile->_getIlObject() !== null ? $this->tile->_getIlObject()->getType() : "")));
+        $tpl->setVariable("OBJECT_TYPE", htmlspecialchars(($this->tile->_getIlObject() !== null ? $current_object->getType() : "")));
 
         if ($this->tile->getShowTitle() === Tile::SHOW_TRUE) {
-            $tpl->setVariable("TITLE", htmlspecialchars($this->tile->_getTitle()));
+            $tpl->setVariable("TITLE", $this->tile->_getTitle());
         }
         
         $tpl->setVariable("LINK", $this->tile->_getAdvancedLink());
@@ -126,6 +127,13 @@ abstract class AbstractSingleGUI implements SingleGUIInterface
         }
 
         $image = $this->tile->getImagePathWithCheck();
+        if ($image == ""){
+            $ilias_img = self::ildic()->object()->commonSettings()->tileImage()->getByObjId($current_object->getId());
+            if ($ilias_img->exists()){
+                $image = $ilias_img->getFullPath();
+            }
+
+        }
         $tpl->setVariable("IMAGE", htmlspecialchars((!empty($image) ? "./" . $image : "")));
 
 
