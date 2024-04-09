@@ -77,7 +77,7 @@ abstract class AbstractCollection implements CollectionInterface
     {        
         $this->setOrder();
         if ($this->order_by['flag']==1) {
-            $item_name = $item_name=$this->order_by['item_name'];
+            $item_name =$this->order_by['item_name'];
             $item_type = $this->order_by['item_type'];
             
             if ($item_type == 'topic') {
