@@ -18,3 +18,7 @@
 
 ## [1.0.4]
 - Added a suitable logic to count views and likes for anonymous users
+## [1.0.20]  
+- Use ILIAS Tile background images if available
+- If title and description have html tags, don't strip them
+- If ILIAS tile layout is activated, plugin  fails to extract IDs from the html. Use ILIAS object's subitems and sort them accordingly
