@@ -30,10 +30,10 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
     /**
      * @return self
      */
-    public static function getInstance() : self
+    public static function getInstance(\ilDBInterface $db, \ilComponentRepositoryWrite $component_repository, string $id) : self
     {
         if (self::$instance === null) {
-            self::$instance = new self();
+            self::$instance = new self($db, $component_repository, $id);
         }
 
         return self::$instance;
@@ -43,9 +43,9 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
     /**
      * ilToGoPlugin constructor
      */
-    public function __construct()
+    public function __construct( \ilDBInterface $db, \ilComponentRepositoryWrite $component_repository, string $id)
     {
-        parent::__construct();
+        parent::__construct($db, $component_repository, $id);
     }
 
 
@@ -102,7 +102,7 @@ class ilToGoPlugin extends ilUserInterfaceHookPlugin
     {
     }
 
-    protected function beforeUninstall()
+    protected function beforeUninstall(): bool
     {
         self::togo()->dropTables();
         return true;

@@ -42,7 +42,8 @@ trait ToGoTrait
     }
     public static function togoplugin()
     {
-        $instance = ilToGoPlugin::getInstance();
+        
+        $instance = ilToGoPlugin::getInstance($db, $component_repository, $id);
         return new Plugin($instance);
     }
 
